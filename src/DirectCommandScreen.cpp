@@ -62,7 +62,7 @@ void DirectCommandScreen::handleInput() {
 void DirectCommandScreen::onEnter() {
     // Optionally refresh data or reset states
   log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()");
-  const char* labelText = "DIRECT COMMAND MODE";
+  const char* labelText = "Direct Command Mode";
 
   // Estimate width for centering using default font size 1 (6px/char approx)
   int textWidth = strlen(labelText) * 6;

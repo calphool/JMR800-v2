@@ -62,7 +62,7 @@ void ConfigScreen::handleInput() {
 void ConfigScreen::onEnter() {
     // Optionally refresh data or reset states
   log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
-  const char* labelText = "CONFIG MODE";
+  const char* labelText = "Config Mode";
 
   // Estimate width for centering using default font size 1 (6px/char approx)
   int textWidth = strlen(labelText) * 6;
