@@ -1,0 +1,27 @@
+#pragma once
+
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH110X.h>
+#include <vector>
+#include "Widget.h"
+#include "Screen.h"
+
+/* ----------------------------------------------------------------------
+   |  DirectCommandScreen -- Allows the sending of commands directly    |
+   |  without using the controls                                        |
+   ---------------------------------------------------------------------- */
+class DirectCommandScreen : public Screen {
+
+private:
+    std::vector<Widget*> widgets;
+
+public:
+    DirectCommandScreen();
+    ~DirectCommandScreen();  
+
+    void addWidget(Widget* w);
+    void draw() override;
+    void handleInput() override;
+    void onEnter() override;
+    void onExit() override;
+};
