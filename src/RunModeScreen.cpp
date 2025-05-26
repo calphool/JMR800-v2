@@ -61,7 +61,7 @@ void RunModeScreen::handleInput() {
    -------------------------------------------------------------- */
 void RunModeScreen::onEnter() {
   log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()");
-    const char* labelText = "RUN MODE";
+    const char* labelText = "Run Mode";
 
     // Estimate width for centering using default font size 1 (6px/char approx)
     int textWidth = strlen(labelText) * 6;

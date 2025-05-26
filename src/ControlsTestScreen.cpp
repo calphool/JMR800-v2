@@ -61,7 +61,7 @@ void ControlsTestScreen::handleInput() {
    -------------------------------------------------------------- */
 void ControlsTestScreen::onEnter() {
     log(LOG_VERBOSE, "Inside ControlsTestScreen->onEnter()");
-    const char* labelText = "CONTROLS TEST MODE";
+    const char* labelText = "Controls Test Mode";
 
     // Estimate width for centering using default font size 1 (6px/char approx)
     int textWidth = strlen(labelText) * 6;
