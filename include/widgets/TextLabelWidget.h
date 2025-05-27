@@ -20,8 +20,8 @@ private:
     LabelColor color;
 
 public:
-    TextLabelWidget(const String& t, int x, int y, 
-                    uint8_t fs = 1, bool tiny = false, LabelColor color = LabelColor::WHITE);
+    TextLabelWidget(const String& t, int x, int y, uint8_t fs = 1, bool tiny = false, 
+        LabelColor color = LabelColor::WHITE);
 
     void draw() override;
     void handleInput() override;
@@ -31,4 +31,7 @@ public:
     void setFontSize(uint8_t fs);
     void useTiny(bool tiny);
     void setColor(LabelColor c);
+
+protected:
+    WidgetType getType() const override;
 };

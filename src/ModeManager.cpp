@@ -2,6 +2,10 @@
 #include "HardwareManager.h"
 #include "Logging.h"
 
+
+ModeManager modeManager;
+
+
 void ModeManager::addMode(AppMode* mode) {
     modes.push_back(mode);
 }

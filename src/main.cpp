@@ -15,7 +15,6 @@
 #include "modes/ConfigMode.h"
 
 
-ModeManager modeManager;
 RunMode runMode;
 ControlsTestMode testMode;
 DirectCommandMode directMode;

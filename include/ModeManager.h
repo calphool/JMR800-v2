@@ -17,3 +17,4 @@ public:
     AppMode* currentMode() const;
 };
 
+extern ModeManager modeManager;

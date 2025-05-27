@@ -1,18 +1,26 @@
 #include "widgets/PotentiometerKnobWidget.h"
 #include "ScreenManager.h"
+#include "Logging.h"
+#include "HardwareManager.h"
 
-PotentiometerKnobWidget::PotentiometerKnobWidget(int knobId, int x, int y) : KnobWidget(x, y),
-      value(0), highlighted(false), blinkState(false) {}
+PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : KnobWidget(x, y),
+      knobId(_knobId), value(0), highlighted(false), blinkState(false) {
+  log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor");
+}
 
 void PotentiometerKnobWidget::setValue(uint8_t v) {
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->setValue()");
     value = v;
 }
 
 void PotentiometerKnobWidget::setHighlighted(bool h) {
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->setHighlighted()");
     highlighted = h;
 }
 
 void PotentiometerKnobWidget::drawArrow(int deg) {
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->drawArrow()");
+
     int cx = x + 4;
     int cy = y + 3;
 
@@ -26,6 +34,8 @@ void PotentiometerKnobWidget::drawArrow(int deg) {
 }
 
 void PotentiometerKnobWidget::draw() {
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->draw()");
+
     if (highlighted) {
         blinkState = !blinkState;
     }
@@ -41,5 +51,18 @@ void PotentiometerKnobWidget::draw() {
 }
 
 void PotentiometerKnobWidget::handleInput() {
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->handleInput()");
 
+    if(knobId > NUM_KNOBS || knobId < 0) {
+        char buf[128];
+        sprintf(buf, "PotentiometerKnobWidget->handleInput() invoked with an invalid knobId: %d", knobId);
+        log(LOG_ERROR, buf);
+        return;
+    }
+
+    setValue(hardware.getKnobValue(knobId));
+}
+
+WidgetType PotentiometerKnobWidget::getType() const {
+    return WidgetType::PotentiometerKnob;
 }

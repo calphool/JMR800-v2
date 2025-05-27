@@ -4,7 +4,7 @@
 
 class PotentiometerKnobWidget : public KnobWidget {
 public:
-    PotentiometerKnobWidget(int knobId, int x, int y);
+    PotentiometerKnobWidget(int _knobId, int x, int y);
 
     void setValue(uint8_t value);         // 0–255 (mapped to degrees)
     void setHighlighted(bool highlight);  // blinking only when highlighted
@@ -84,4 +84,7 @@ const int8_t arrow_dy[360] = {
 };
 
     void drawArrow(int deg);
+
+protected:
+    WidgetType getType() const override;
 };

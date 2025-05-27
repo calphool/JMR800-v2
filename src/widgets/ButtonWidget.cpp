@@ -2,9 +2,11 @@
 #include "widgets/ButtonWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
+#include "HardwareManager.h"
 
-ButtonWidget::ButtonWidget(int x, int y) : Widget(x, y), pressed(false), red(false), green(false) {
-    log(LOG_VERBOSE, "Inside ButtonWidget->constructor"); 
+ButtonWidget::ButtonWidget(int _buttonId, int x, int y) : Widget(x, y), 
+  pressed(false), red(false), green(false), buttonId(_buttonId) {
+  log(LOG_VERBOSE, "Inside ButtonWidget->constructor");
 }
 
 void ButtonWidget::setPressed(bool p) {
@@ -31,4 +33,16 @@ void ButtonWidget::draw() {
 }
 
 void ButtonWidget::handleInput() {
+  if(buttonId < 0 || buttonId > NUM_BUTTONS) {
+        char buf[128];
+        sprintf(buf, "ButtonWidget->handleInput() invoked with an invalid buttonId: %d", buttonId);
+        log(LOG_ERROR, buf);
+        return;
+  }
+
+  this->setPressed(hardware.isButtonPressed(buttonId));
+}
+
+WidgetType ButtonWidget::getType() const {
+    return WidgetType::Button;
 }

@@ -6,6 +6,7 @@
 #include "widgets/PotentiometerKnobWidget.h"
 #include "widgets/EncoderKnobWidget.h"
 #include "widgets/ButtonWidget.h"
+#include "HardwareManager.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
@@ -32,6 +33,21 @@ void ControlsTestScreen::addWidget(Widget* w) {
 }
 
 
+void truncateTo3Right(long value, char* outStr) {
+    char temp[20];  // enough to hold any 64-bit integer as a string
+    snprintf(temp, sizeof(temp), "%ld", value);  // convert to string
+
+    size_t len = strlen(temp);
+    if (len > 3) {
+        // Copy last 3 characters
+        strcpy(outStr, temp + len - 3);
+    } else {
+        // Copy whole string if length <= 3
+        strcpy(outStr, temp);
+    }
+}
+
+
 /* --------------------------------------------------------------
    |  draw -- renders each registered widget in order onto the   |
    |  current display buffer                                     |
@@ -45,6 +61,7 @@ void ControlsTestScreen::draw() {
 }
 
 
+
 /* --------------------------------------------------------------
    |  handleInput -- passes control to each widget to handle     |
    |  input events such as knob movement or encoder clicks       |
@@ -55,6 +72,10 @@ void ControlsTestScreen::handleInput() {
   for (Widget* w : widgets) {
      w->handleInput();
   }
+
+  char buf[4];
+  truncateTo3Right(hardware.getEncoderValue(), buf);
+  numBox->setText(buf);
 }
 
 
@@ -72,6 +93,8 @@ void ControlsTestScreen::onEnter() {
     addWidget(rectangle);
     Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
     addWidget(modeLabel);
+    numBox = new TextLabelWidget("---", 90, 17, 1, false, LabelColor::WHITE);
+    addWidget(numBox);
    
     int iKnobID = 0;
     for(int i=7; i<78;i=i+10) {
@@ -96,8 +119,10 @@ void ControlsTestScreen::onEnter() {
     Widget* miniScreen = new RectangleWidget(88, 15, 21, 11, false, RectColor::WHITE);
     addWidget(miniScreen);
 
+    int iButtonCtr = 0;
     for(int j=30; j < 62; j = j + 8) {  
-      Widget* button = new ButtonWidget(109, j);
+      Widget* button = new ButtonWidget(iButtonCtr, 109, j);
+      iButtonCtr++;
       addWidget(button);
     }
 }

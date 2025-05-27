@@ -44,3 +44,7 @@ void RectangleWidget::setColor(RectColor c) {
 void RectangleWidget::handleInput() {
   log(LOG_VERBOSE, "Inside RectangleWidget->handleInput()");
 }
+
+WidgetType RectangleWidget::getType() const {
+    return WidgetType::Rectangle;
+}

@@ -4,6 +4,7 @@
 #include <Adafruit_SH110X.h>
 #include <vector>
 #include "widgets/Widget.h"
+#include "widgets/TextLabelWidget.h"
 #include "screens/Screen.h"
 
 /* -----------------------------------------------------------------
@@ -24,4 +25,7 @@ public:
     void handleInput() override;
     void onEnter() override;
     void onExit() override;
+
+private:
+    TextLabelWidget* numBox;
 };

@@ -9,4 +9,5 @@ public:
 
 protected:
     void drawBezel();
+    WidgetType getType() const override;
 };

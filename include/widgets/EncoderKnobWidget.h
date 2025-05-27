@@ -13,6 +13,9 @@ public:
 
 private:
     bool pressed;
+
+protected:
+    WidgetType getType() const override;
 };
 
 
