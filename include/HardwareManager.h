@@ -38,6 +38,8 @@ private:
     uint8_t buttonStates[NUM_BUTTONS] = {0}; // Current button state (0 or 1)
     uint8_t prevButtonStates[NUM_BUTTONS] = {0}; // Previous button state
 
+    uint8_t ledstate;
+
     // button statuses
     bool bEncoderBtn = false;
     bool bPrevEncoderBtn = false;
@@ -70,7 +72,7 @@ private:
     void gatherPotentiometerValues(); // internal method called by gatherControlSettings()
     void setAddressPins(uint val);
     void updateEncoder();
-    void setLEDs(uint8_t data);
+    void writeLedRegistersToHardware();
     void sendParameter(uint8_t paramID, uint8_t value);
     static void onPG800ClockFall();
     void loadKnobs();
@@ -87,6 +89,7 @@ public:
     bool getEncoderSwitchStatus();
     long getEncoderValue();
     bool isButtonPressed(uint index);
+    void setButtonLights(uint buttonId, bool red, bool green);
 };
 
 extern HardwareManager hardware;

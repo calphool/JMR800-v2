@@ -9,12 +9,10 @@ PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : Kn
 }
 
 void PotentiometerKnobWidget::setValue(uint8_t v) {
-    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->setValue()");
     value = v;
 }
 
 void PotentiometerKnobWidget::setHighlighted(bool h) {
-    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->setHighlighted()");
     highlighted = h;
 }
 
@@ -51,8 +49,6 @@ void PotentiometerKnobWidget::draw() {
 }
 
 void PotentiometerKnobWidget::handleInput() {
-    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->handleInput()");
-
     if(knobId > NUM_KNOBS || knobId < 0) {
         char buf[128];
         sprintf(buf, "PotentiometerKnobWidget->handleInput() invoked with an invalid knobId: %d", knobId);

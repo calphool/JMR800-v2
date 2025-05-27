@@ -84,11 +84,8 @@ void DirectCommandScreen::onEnter() {
    -------------------------------------------------------------- */
 void DirectCommandScreen::onExit() {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->onExit()");
-    log(LOG_VERBOSE, "Inside DirectCommandScreen->destructor");
     for (Widget* w : widgets) {
         delete w;
     }
     widgets.clear();
 }
- 
- 
