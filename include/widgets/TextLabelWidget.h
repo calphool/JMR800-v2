@@ -1,7 +1,7 @@
 // TextLabelWidget.h
 #pragma once
 
-#include "Widget.h"
+#include "widgets/Widget.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
 
@@ -14,15 +14,13 @@ enum class LabelColor : uint8_t {
 
 class TextLabelWidget : public Widget {
 private:
-    Adafruit_SH1106G* display;
     String text;
-    int x, y;
     uint8_t fontSize;
     bool useTinyFont;
     LabelColor color;
 
 public:
-    TextLabelWidget(Adafruit_SH1106G* disp, const String& t, int xpos, int ypos,
+    TextLabelWidget(const String& t, int x, int y, 
                     uint8_t fs = 1, bool tiny = false, LabelColor color = LabelColor::WHITE);
 
     void draw() override;

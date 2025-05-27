@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Adafruit_SH110X.h>
-#include "Screen.h"
+#include "screens/Screen.h"
 
 class ScreenManager {
 private:

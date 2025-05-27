@@ -1,21 +1,21 @@
-#include "ConfigScreen.h"
+#include "screens/DirectCommandScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "RectangleWidget.h"
-#include "TextLabelWidget.h"
+#include "widgets/RectangleWidget.h"
+#include "widgets/TextLabelWidget.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
    -------------------------------------------------------------- */
-ConfigScreen::ConfigScreen() {
-    log(LOG_VERBOSE, "Inside ConfigScreen->constructor");
+DirectCommandScreen::DirectCommandScreen() {
+    log(LOG_VERBOSE, "Inside DirectCommandScreen->constructor");
 }
 
 /* --------------------------------------------------------------
    |  Destructor -- releases all dynamically allocated widgets    |
    -------------------------------------------------------------- */
-ConfigScreen::~ConfigScreen() {
-    log(LOG_VERBOSE, "Inside ConfigScreen->destructor");
+DirectCommandScreen::~DirectCommandScreen() {
+    log(LOG_VERBOSE, "Inside DirectCommandScreen->destructor");
 }
 
 
@@ -23,8 +23,8 @@ ConfigScreen::~ConfigScreen() {
    |  addWidget -- registers a new widget with this screen for   |
    |  coordinated input and draw operations                      |
    -------------------------------------------------------------- */
-void ConfigScreen::addWidget(Widget* w) {
-  log(LOG_VERBOSE, "Inside ConfigScreen->addWidget()");
+void DirectCommandScreen::addWidget(Widget* w) {
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->addWidget()");
   widgets.push_back(w);
 }
 
@@ -33,8 +33,8 @@ void ConfigScreen::addWidget(Widget* w) {
    |  draw -- renders each registered widget in order onto the   |
    |  current display buffer                                     |
    -------------------------------------------------------------- */
-void ConfigScreen::draw() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->draw()");
+void DirectCommandScreen::draw() {
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->draw()");
 
   for (Widget* w : widgets) {
         w->draw();
@@ -46,8 +46,8 @@ void ConfigScreen::draw() {
    |  handleInput -- passes control to each widget to handle     |
    |  input events such as knob movement or encoder clicks       |
    -------------------------------------------------------------- */
-void ConfigScreen::handleInput() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->handleInput()");
+void DirectCommandScreen::handleInput() {
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->handleInput()");
 
   for (Widget* w : widgets) {
      w->handleInput();
@@ -59,10 +59,10 @@ void ConfigScreen::handleInput() {
    |  onEnter -- called when the screen becomes active; used to  |
    |  reset or refresh dynamic elements                          |
    -------------------------------------------------------------- */
-void ConfigScreen::onEnter() {
+void DirectCommandScreen::onEnter() {
     // Optionally refresh data or reset states
-  log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
-  const char* labelText = "Config Mode";
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()");
+  const char* labelText = "Direct Command Mode";
 
   // Estimate width for centering using default font size 1 (6px/char approx)
   int textWidth = strlen(labelText) * 6;
@@ -70,8 +70,11 @@ void ConfigScreen::onEnter() {
   int y = 2;
   Widget* rectangle = new RectangleWidget(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false, RectColor::WHITE);
   addWidget(rectangle);
-  Widget* modeLabel = new TextLabelWidget(ScreenManager::getDisplay(), labelText, x, y, 1, false);
+  Widget* modeLabel = new TextLabelWidget(labelText, x, y, 1, false);
   addWidget(modeLabel);
+
+  //TODO: add code to create the two input text controls and buttons: command byte, data byte, send button 
+
 }
 
 
@@ -79,10 +82,13 @@ void ConfigScreen::onEnter() {
    |  onExit -- called when the screen is replaced or hidden;    |
    |  cleanup or persist transient state here                    |
    -------------------------------------------------------------- */
-void ConfigScreen::onExit() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->onExit()");
-  for (Widget* w : widgets) {
-      delete w;
-  }
-  widgets.clear();
+void DirectCommandScreen::onExit() {
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->onExit()");
+    log(LOG_VERBOSE, "Inside DirectCommandScreen->destructor");
+    for (Widget* w : widgets) {
+        delete w;
+    }
+    widgets.clear();
 }
+ 
+ 

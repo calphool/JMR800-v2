@@ -1,4 +1,4 @@
-#include "DirectCommandMode.h"
+#include "modes/DirectCommandMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 

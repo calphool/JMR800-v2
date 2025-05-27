@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "AppMode.h"
+#include "modes/AppMode.h"
 
 class ModeManager {
 private:

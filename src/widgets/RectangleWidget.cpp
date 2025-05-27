@@ -1,9 +1,9 @@
-#include "RectangleWidget.h"
+#include "widgets/RectangleWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 
-RectangleWidget::RectangleWidget(int xpos, int ypos, int w, int h, bool f, RectColor c)
-    : x(xpos), y(ypos), width(w), height(h), filled(f), color(c) {
+RectangleWidget::RectangleWidget(int x, int y, int w, int h, bool f, RectColor c) :
+  Widget(x, y), width(w), height(h), filled(f), color(c) {
   log(LOG_VERBOSE, "Inside RectangleWidget->constructor");
 }
 

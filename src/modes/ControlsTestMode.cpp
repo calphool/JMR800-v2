@@ -1,4 +1,4 @@
-#include "ControlsTestMode.h"
+#include "modes/ControlsTestMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 

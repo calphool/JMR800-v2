@@ -1,8 +1,8 @@
-#include "RunModeScreen.h"
+#include "screens/RunModeScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "RectangleWidget.h"
-#include "TextLabelWidget.h"
+#include "widgets/RectangleWidget.h"
+#include "widgets/TextLabelWidget.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
@@ -69,7 +69,7 @@ void RunModeScreen::onEnter() {
     int y = 2;
     Widget* rectangle = new RectangleWidget(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false, RectColor::WHITE);
     addWidget(rectangle);
-    Widget* modeLabel = new TextLabelWidget(ScreenManager::getDisplay(), labelText, x, y, 1, false);
+    Widget* modeLabel = new TextLabelWidget(labelText, x, y, 1, false);
     addWidget(modeLabel);
 }
 

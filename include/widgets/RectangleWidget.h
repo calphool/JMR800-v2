@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Widget.h"
+#include "widgets/Widget.h"
 #include <Adafruit_SH110X.h>
 
 enum class RectColor : uint8_t {
@@ -10,8 +10,6 @@ enum class RectColor : uint8_t {
 
 class RectangleWidget : public Widget {
 private:
-    Adafruit_SH1106G* display;
-    int x, y;
     int width, height;
     bool filled;
     RectColor color;

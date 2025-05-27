@@ -1,30 +1,32 @@
-#include "TextLabelWidget.h"
+#include "widgets/Widget.h"
+#include "widgets/TextLabelWidget.h"
 #include <Fonts/TomThumb.h>
 #include "Logging.h"
+#include "ScreenManager.h"
 
-TextLabelWidget::TextLabelWidget(Adafruit_SH1106G* disp,
-                                 const String& t,
-                                 int xpos,
-                                 int ypos,
+TextLabelWidget::TextLabelWidget(const String& t,
+                                 int x,
+                                 int y,
                                  uint8_t fs,
                                  bool tiny,
                                  LabelColor c)
-    : display(disp), text(t), x(xpos), y(ypos), fontSize(fs), useTinyFont(tiny), color(c) {
+                                 : Widget(x, y)
+    , text(t), fontSize(fs), useTinyFont(tiny), color(c)  {
     log(LOG_VERBOSE, "Inside TextLabelWidget->constructor");  
   }
 
 void TextLabelWidget::draw() {
     log(LOG_VERBOSE, "Inside TextLabelWidget->draw()");  
 
-    display->setCursor(x, y);
+    ScreenManager::getDisplay()->setCursor(x, y);
     if (useTinyFont) {
-        display->setFont(&TomThumb);
+        ScreenManager::getDisplay()->setFont(&TomThumb);
     } else {
-        display->setFont();
-        display->setTextSize(fontSize);
+        ScreenManager::getDisplay()->setFont();
+        ScreenManager::getDisplay()->setTextSize(fontSize);
     }
-    display->setTextColor(static_cast<uint16_t>(color));
-    display->print(text);
+    ScreenManager::getDisplay()->setTextColor(static_cast<uint16_t>(color));
+    ScreenManager::getDisplay()->print(text);
 }
 
 void TextLabelWidget::handleInput() {

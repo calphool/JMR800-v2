@@ -1,14 +1,14 @@
 #pragma once
 
-#include "AppMode.h"
-#include "ConfigScreen.h"
+#include "modes/AppMode.h"
+#include "screens/RunModeScreen.h"
 
-class ConfigMode : public AppMode {
+class RunMode : public AppMode {
 private:
-    ConfigScreen screen;
+    RunModeScreen screen;
 
 public:
-    const char* name() const override { return "System Config Mode"; }
+    const char* name() const override { return "Run Mode"; }
     Screen* getScreen() override { return &screen; }
     void onEnter() override;
     void onExit() override;

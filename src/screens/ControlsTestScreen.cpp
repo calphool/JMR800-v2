@@ -1,8 +1,11 @@
-#include "ControlsTestScreen.h"
+#include "screens/ControlsTestScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "RectangleWidget.h"
-#include "TextLabelWidget.h"
+#include "widgets/RectangleWidget.h"
+#include "widgets/TextLabelWidget.h"
+#include "widgets/PotentiometerKnobWidget.h"
+#include "widgets/EncoderKnobWidget.h"
+#include "widgets/ButtonWidget.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
@@ -63,16 +66,40 @@ void ControlsTestScreen::onEnter() {
     log(LOG_VERBOSE, "Inside ControlsTestScreen->onEnter()");
     const char* labelText = "Controls Test Mode";
 
-    // Estimate width for centering using default font size 1 (6px/char approx)
     int textWidth = strlen(labelText) * 6;
     int x = (SCREEN_WIDTH - textWidth) / 2;
-    int y = 2;
-    Widget* rectangle = new RectangleWidget(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false, RectColor::WHITE);
+    Widget* rectangle = new RectangleWidget(0, 9, SCREEN_WIDTH, 54, false, RectColor::WHITE);
     addWidget(rectangle);
-    Widget* modeLabel = new TextLabelWidget(ScreenManager::getDisplay(), labelText, x, y, 1, false);
+    Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
     addWidget(modeLabel);
+   
+    int iKnobID = 0;
+    for(int i=7; i<78;i=i+10) {
+      for(int j=14; j<62;j = j + 8) {
+         Widget* knob = new PotentiometerKnobWidget(iKnobID, i, j);
+         iKnobID++;
+         addWidget(knob);
+      }
+    }
 
-    //TODO: add code to create all the knob and button widgets, and put them in an array
+    for(int i=87; i < 98; i = i + 10) {                               // knobs on the right side
+      for(int j=30; j < 62; j = j + 8) {
+         Widget* knob = new PotentiometerKnobWidget(iKnobID, i, j);
+         iKnobID++;
+         addWidget(knob);
+      }
+    }
+
+    Widget* encoderKnob = new EncoderKnobWidget(109,18);
+    addWidget(encoderKnob);
+
+    Widget* miniScreen = new RectangleWidget(88, 15, 21, 11, false, RectColor::WHITE);
+    addWidget(miniScreen);
+
+    for(int j=30; j < 62; j = j + 8) {  
+      Widget* button = new ButtonWidget(109, j);
+      addWidget(button);
+    }
 }
 
 
