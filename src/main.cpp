@@ -20,7 +20,7 @@ ControlsTestMode testMode;
 DirectCommandMode directMode;
 ConfigMode configMode;
 
-                                                                                            // SDA = 18, SCL = 19
+                                                                                            
 void setup() {
   if(!Serial) {
     Serial.begin(9600);

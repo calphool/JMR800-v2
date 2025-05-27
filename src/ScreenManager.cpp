@@ -6,6 +6,7 @@ ScreenManager screenManager;
 
 // Define the static display instance
 Adafruit_SH1106G ScreenManager::display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+// SDA = 18, SCL = 19 for Teensy 4.1
 
 
 /* --------------------------------------------------------------
