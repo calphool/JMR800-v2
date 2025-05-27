@@ -18,25 +18,32 @@ void ModeManager::init() {
 }
 
 void ModeManager::loop() {
-    bool currentButton = hardware.isButtonPressed(3);  // Button 4 (index 3)
+    // Get current state of both buttons
+    bool button2 = hardware.isButtonPressed(2);  // Button 3 (index 2)
+    bool button3 = hardware.isButtonPressed(3);  // Button 4 (index 3)
 
-    if (currentButton && !prevButtonState && !modes.empty()) {
-      sprintf(buffer_64, "Cycling from %s to %s", modes[currentIndex]->name(), 
-        modes[(currentIndex + 1) % modes.size()]->name());
-      log(LOG_INFO, buffer_64);
+    // New condition: both must be pressed, and were not pressed together last time
+    bool currentCombo = button2 && button3;
 
-      modes[currentIndex]->onExit();
-      currentIndex = (currentIndex + 1) % modes.size();
-      modes[currentIndex]->onEnter();
-      modes[currentIndex]->showScreen();  // Let the mode present its screen
+    if (currentCombo && !prevButtonState && !modes.empty()) {
+        sprintf(buffer_64, "Cycling from %s to %s", modes[currentIndex]->name(), 
+            modes[(currentIndex + 1) % modes.size()]->name());
+        log(LOG_INFO, buffer_64);
+
+        modes[currentIndex]->onExit();
+        currentIndex = (currentIndex + 1) % modes.size();
+        modes[currentIndex]->onEnter();
+        modes[currentIndex]->showScreen();  // Let the mode present its screen
     }
 
-    prevButtonState = currentButton;
+    // Update previous button combination state
+    prevButtonState = currentCombo;
 
     if (!modes.empty()) {
         modes[currentIndex]->loop();
     }
 }
+
 
 AppMode* ModeManager::currentMode() const {
     return modes.empty() ? nullptr : modes[currentIndex];
