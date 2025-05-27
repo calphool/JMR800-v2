@@ -24,4 +24,7 @@ public:
     void setSize(int w, int h);
     void setFilled(bool f);
     void setColor(RectColor c);
+
+protected:
+    WidgetType getType() const override;
 };

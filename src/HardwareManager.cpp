@@ -244,6 +244,10 @@ void HardwareManager::updateEncoder() {
   }
 }
 
+long HardwareManager::getEncoderValue() {
+  return lastEncoderPosition;
+}
+
 
 /* --------------------------------------------------------------
    |  setLEDs -- shifts out a single 8-bit value to the button   |
@@ -331,4 +335,8 @@ void HardwareManager::onPG800ClockFall() {
     delayMicroseconds(10);
     digitalWrite(DATA_OUT_PIN, LOW);           // Idle state
   }
+}
+
+bool HardwareManager::getEncoderSwitchStatus() {
+  return bEncoderBtn;
 }

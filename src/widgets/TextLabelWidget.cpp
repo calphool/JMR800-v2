@@ -4,16 +4,14 @@
 #include "Logging.h"
 #include "ScreenManager.h"
 
-TextLabelWidget::TextLabelWidget(const String& t,
-                                 int x,
-                                 int y,
+TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
                                  uint8_t fs,
                                  bool tiny,
                                  LabelColor c)
                                  : Widget(x, y)
-    , text(t), fontSize(fs), useTinyFont(tiny), color(c)  {
-    log(LOG_VERBOSE, "Inside TextLabelWidget->constructor");  
-  }
+    , text(t), fontSize(fs), useTinyFont(tiny), color(c) {
+    log(LOG_VERBOSE, "Inside TextLabelWidget->constructor");
+}
 
 void TextLabelWidget::draw() {
     log(LOG_VERBOSE, "Inside TextLabelWidget->draw()");  
@@ -60,4 +58,8 @@ void TextLabelWidget::setColor(LabelColor c) {
     log(LOG_VERBOSE, "Inside TextLabelWidget->setColor()");  
 
     color = c;
+}
+
+WidgetType TextLabelWidget::getType() const {
+    return WidgetType::TextLabel;
 }

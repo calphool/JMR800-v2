@@ -84,6 +84,8 @@ public:
 
     // Accessors
     int getKnobValue(uint index);
+    bool getEncoderSwitchStatus();
+    long getEncoderValue();
     bool isButtonPressed(uint index);
 };
 

@@ -5,7 +5,7 @@
 
 class ButtonWidget : public Widget {
 public:
-    ButtonWidget(int x, int y);
+    ButtonWidget(int _buttonId, int x, int y);
 
     void setPressed(bool state);
     void setLEDs(bool bRed, bool bGreen);
@@ -16,6 +16,10 @@ private:
     bool pressed;
     bool red;
     bool green;
+    int buttonId;
+
+protected:
+    WidgetType getType() const override;
 };
 
 
