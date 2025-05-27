@@ -1,13 +1,24 @@
 #include "Logging.h"
+#include "HardwareManager.h"
 
+unsigned long lastSerialInitAttemptMillis = 0;
 
-/* --------------------------------------------------------------
-   |  log -- logs a message to the Serial console with the       |
-   |  given verbosity level (VERBOSE, INFO, WARNING, ERROR)      |
-   |  if it meets or exceeds the global LOG_LEVEL_THRESHOLD      |
-   -------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------- 
+   |  log -- logs a message to the Serial console with the given verbosity level (VERBOSE, INFO, WARNING, ERROR)      |
+   |  if it meets or exceeds the global LOG_LEVEL_THRESHOLD                                                           |
+   -------------------------------------------------------------------------------------------------------------------- */
 void log(LogLevel level, const String& message) {
     if (level < LOG_LEVEL_THRESHOLD) return;
+
+    if(!Serial) {                      // if we haven't initialized the Serial object, turn on the system's LEDs, 
+        unsigned long now = millis();  // initialize it, and then turn them off keep rechecking every 30 seconds if it remains undefined
+        if (now - lastSerialInitAttemptMillis >= 30000 || lastSerialInitAttemptMillis == 0) {
+            lastSerialInitAttemptMillis = now;
+            for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware.setButtonLights(i, true, true);
+            Serial.begin(9600);
+            for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware.setButtonLights(i, false, false);
+        }
+    }
 
     switch (level) {
         case LOG_VERBOSE:
@@ -35,4 +46,3 @@ void log(LogLevel level, const String& message) {
 void log(const String& message) {
     log(LOG_INFO, message);
 }
- 

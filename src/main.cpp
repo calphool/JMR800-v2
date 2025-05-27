@@ -22,10 +22,6 @@ ConfigMode configMode;
 
                                                                                             
 void setup() {
-  if(!Serial) {
-    Serial.begin(9600);
-    while (!Serial && millis() < 1000);  // wait for USB connection for 1 second
-  }
   log(LOG_VERBOSE, "Inside main->setup()");
 
   hardware.init();

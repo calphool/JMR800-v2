@@ -72,6 +72,8 @@ void HardwareManager::init() {
         }
     }
 
+    ledstate = 0b00000000;
+
     log(LOG_INFO, "Initialized.");
 }
 
@@ -253,7 +255,12 @@ long HardwareManager::getEncoderValue() {
    |  setLEDs -- shifts out a single 8-bit value to the button   |
    |  LED shift register to update their visual state            |
    -------------------------------------------------------------- */
-void HardwareManager::setLEDs(uint8_t data) {
+void HardwareManager::writeLedRegistersToHardware() {
+  // make sure to check Serial before doing any logging here.  This is a low level method that gets used 
+  // before we know that logging is available.
+
+  byte data = ledstate;
+
   digitalWrite(SHIFT_REG_RCLK, LOW);  // Start by disabling latch
 
   // Shift out 8 bits, MSB first
@@ -297,8 +304,8 @@ void HardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
   // Record this command
   recentCommands.push_back({paramID, value, now});
 
-  while (bitIndex != -1 && (millis() - now < 500) );  // Wait until previous transfer is complete
-  if(millis() - now >= 500) {
+  while (bitIndex != -1 && (millis() - now < 250) );  // Wait until previous transfer is complete
+  if(millis() - now >= 250) {
     log(LOG_ERROR, "problem waiting for bitIndex in sendParameter()");
     return;
   }
@@ -339,4 +346,25 @@ void HardwareManager::onPG800ClockFall() {
 
 bool HardwareManager::getEncoderSwitchStatus() {
   return bEncoderBtn;
+}
+
+void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
+  // all logging here must check whether Serial is defined because this 
+  // code gets used in the logging setup
+  if(buttonId >= NUM_BUTTONS) {
+    if(Serial) log(LOG_ERROR, "HardwareManager::setButtonLights() invoked with an invalid button id");
+    return;
+  }
+
+  int shift = buttonId * 2;
+
+  // Clear the two bits for this button
+  ledstate &= ~(0b11 << shift);
+
+  // Pack red (MSB) and green (LSB) into two bits
+  uint8_t bitsToSet = ((red ? 1 : 0) << 1) | (green ? 1 : 0);
+
+  // Set the new bits at the proper location
+  ledstate |= (bitsToSet << shift);
+  writeLedRegistersToHardware();
 }

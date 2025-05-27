@@ -17,32 +17,24 @@ void RectangleWidget::draw() {
 }
 
 void RectangleWidget::setPosition(int xpos, int ypos) {
-  log(LOG_VERBOSE, "Inside RectangleWidget->setPosition()");
-
     x = xpos;
     y = ypos;
 }
 
 void RectangleWidget::setSize(int w, int h) {
-  log(LOG_VERBOSE, "Inside RectangleWidget->setSize()");
     width = w;
     height = h;
 }
 
 void RectangleWidget::setFilled(bool f) {
-  log(LOG_VERBOSE, "Inside RectangleWidget->setFilled()");
-
     filled = f;
 }
 
 void RectangleWidget::setColor(RectColor c) {
-    log(LOG_VERBOSE, "Inside RectangleWidget->setColor()");
-
     color = c;
 }
 
 void RectangleWidget::handleInput() {
-  log(LOG_VERBOSE, "Inside RectangleWidget->handleInput()");
 }
 
 WidgetType RectangleWidget::getType() const {
