@@ -1,4 +1,4 @@
-#include "ConfigMode.h"
+#include "modes/ConfigMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 

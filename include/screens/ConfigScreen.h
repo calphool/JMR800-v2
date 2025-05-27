@@ -3,21 +3,21 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
 #include <vector>
-#include "Widget.h"
-#include "Screen.h"
+#include "widgets/Widget.h"
+#include "screens/Screen.h"
 
 /* -----------------------------------------------------------------
-   |  ControlsTestScreen -- shows all the controls and their state |
+   |  ConfigScreen -- manages the screen where settings are updated|
    |                                                               |
    ----------------------------------------------------------------- */
-class ControlsTestScreen : public Screen {
+class ConfigScreen : public Screen {
 
 private:
     std::vector<Widget*> widgets;
 
 public:
-    ControlsTestScreen();
-    ~ControlsTestScreen();  
+    ConfigScreen();
+    ~ConfigScreen();  
 
     void addWidget(Widget* w);
     void draw() override;

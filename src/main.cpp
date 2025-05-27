@@ -5,14 +5,14 @@
 #include "defines.h"
 #include "HardwareManager.h"
 #include "ScreenManager.h"
-#include "RunModeScreen.h"
+#include "screens/RunModeScreen.h"
 #include "Logging.h"
 
 #include "ModeManager.h"
-#include "RunMode.h"
-#include "ControlsTestMode.h"
-#include "DirectCommandMode.h"
-#include "ConfigMode.h"
+#include "modes/RunMode.h"
+#include "modes/ControlsTestMode.h"
+#include "modes/DirectCommandMode.h"
+#include "modes/ConfigMode.h"
 
 
 ModeManager modeManager;

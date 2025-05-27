@@ -3,8 +3,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
 #include <vector>
-#include "Widget.h"
-#include "Screen.h"
+#include "widgets/Widget.h"
+#include "screens/Screen.h"
 
 /* ----------------------------------------------------------------------
    |  DirectCommandScreen -- Allows the sending of commands directly    |

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Screen.h"
+#include "screens/Screen.h"
 
 class AppMode {
 public:

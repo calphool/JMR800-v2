@@ -1,7 +1,7 @@
 #pragma once
 
-#include "AppMode.h"
-#include "ControlsTestScreen.h"
+#include "modes/AppMode.h"
+#include "screens/ControlsTestScreen.h"
 
 class ControlsTestMode : public AppMode {
 private:

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "AppMode.h"
-#include "DirectCommandScreen.h"
+#include "modes/AppMode.h"
+#include "screens/DirectCommandScreen.h"
 
 class DirectCommandMode : public AppMode {
 private:
