@@ -186,6 +186,52 @@ void HardwareManager::gatherControlSettings() {
   this->updateEncoder();  
 }
 
+bool HardwareManager::redIsLit(uint buttonId) {
+  if(buttonId >= NUM_BUTTONS) {
+    log(LOG_ERROR, "invalid button number passed to HardwareManager::redIsLit()");
+    return false;
+  }
+  
+  buttonId = NUM_BUTTONS - 1 - buttonId;
+  uint bitPos = buttonId * 2; // Red LED bit
+  return (ledstate & (1 << bitPos)) != 0;
+}
+
+bool HardwareManager::greenIsLit(uint buttonId) {
+  if(buttonId >= NUM_BUTTONS) {
+    log(LOG_ERROR, "invalid button number passed to HardwareManager::greenIsLit()");
+    return false;
+  }
+
+  buttonId = NUM_BUTTONS - 1 - buttonId;
+  uint bitPos = buttonId * 2 + 1; // Green LED bit
+  return (ledstate & (1 << bitPos)) != 0;
+}
+
+bool HardwareManager::buttonStateChanged(uint index, bool upThenDown, bool clearFlag) {
+  if(index >= NUM_BUTTONS) {
+    log(LOG_ERROR, "invalid button number passed to HardwareManager::buttonStateChanged()");
+    return false;
+  }
+
+  if(buttonStates[index] != prevButtonStates[index]) {
+    if(upThenDown) {
+      if(buttonStates[index] == LOW && prevButtonStates[index] == HIGH) {
+        if(clearFlag) prevButtonStates[index] = buttonStates[index];
+        return true; 
+      }
+    }
+    else {
+      if(buttonStates[index] == HIGH && prevButtonStates[index] == LOW) {
+        if(clearFlag) prevButtonStates[index] = buttonStates[index];        
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 
 /* --------------------------------------------------------------
    |  gatherPotentiometerValues -- iterates through all MUX      |
@@ -348,6 +394,14 @@ bool HardwareManager::getEncoderSwitchStatus() {
   return bEncoderBtn;
 }
 
+void HardwareManager::saveLedState() {
+  prevLedState = ledstate;
+}
+
+void HardwareManager::restoreLedState() {
+  ledstate = prevLedState;
+}
+
 void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
   // all logging here must check whether Serial is defined because this 
   // code gets used in the logging setup
@@ -356,13 +410,15 @@ void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
     return;
   }
 
+  buttonId = NUM_BUTTONS - 1 - buttonId;
+
   int shift = buttonId * 2;
 
   // Clear the two bits for this button
   ledstate &= ~(0b11 << shift);
 
   // Pack red (MSB) and green (LSB) into two bits
-  uint8_t bitsToSet = ((red ? 1 : 0) << 1) | (green ? 1 : 0);
+  uint8_t bitsToSet = ((green ? 1 : 0) << 1) | (red ? 1 : 0);
 
   // Set the new bits at the proper location
   ledstate |= (bitsToSet << shift);

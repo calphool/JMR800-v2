@@ -39,6 +39,7 @@ private:
     uint8_t prevButtonStates[NUM_BUTTONS] = {0}; // Previous button state
 
     uint8_t ledstate;
+    uint8_t prevLedState;
 
     // button statuses
     bool bEncoderBtn = false;
@@ -89,7 +90,12 @@ public:
     bool getEncoderSwitchStatus();
     long getEncoderValue();
     bool isButtonPressed(uint index);
+    bool buttonStateChanged(uint index, bool bDirection, bool bClearFlag);
     void setButtonLights(uint buttonId, bool red, bool green);
+    bool greenIsLit(uint buttonId);
+    bool redIsLit(uint buttonId);
+    void restoreLedState();
+    void saveLedState();
 };
 
 extern HardwareManager hardware;

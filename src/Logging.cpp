@@ -11,12 +11,14 @@ void log(LogLevel level, const String& message) {
     if (level < LOG_LEVEL_THRESHOLD) return;
 
     if(!Serial) {                      // if we haven't initialized the Serial object, turn on the system's LEDs, 
-        unsigned long now = millis();  // initialize it, and then turn them off keep rechecking every 30 seconds if it remains undefined
-        if (now - lastSerialInitAttemptMillis >= 30000 || lastSerialInitAttemptMillis == 0) {
+        unsigned long now = millis();  // initialize it, and then turn them off keep rechecking every 300 seconds if it remains undefined
+        if (now - lastSerialInitAttemptMillis >= 300000 || lastSerialInitAttemptMillis == 0) {
             lastSerialInitAttemptMillis = now;
+            hardware.saveLedState();
             for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware.setButtonLights(i, true, true);
             Serial.begin(9600);
             for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware.setButtonLights(i, false, false);
+            hardware.restoreLedState();
         }
     }
 

@@ -1,7 +1,7 @@
 #include "modes/RunMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-
+#include "HardwareManager.h"
 
 void RunMode::onEnter() {
     log(LOG_VERBOSE, "Entering Run Mode");
