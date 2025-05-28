@@ -26,9 +26,9 @@ void ButtonWidget::draw() {
   if(pressed)
     ScreenManager::getDisplay()->fillRect(x+2, y+2, 6, 3, SH110X_BLACK);
 
-  if(green) 
+  if(red) 
     ScreenManager::getDisplay()->drawLine(x+2,y+1, x+3, y+1, SH110X_BLACK);
-  if(red)
+  if(green)
     ScreenManager::getDisplay()->drawLine(x+6,y+1, x+7, y+1, SH110X_BLACK);
 }
 
@@ -41,6 +41,7 @@ void ButtonWidget::handleInput() {
   }
 
   this->setPressed(hardware.isButtonPressed(buttonId));
+  this->setLEDs(hardware.redIsLit(buttonId), hardware.greenIsLit(buttonId));
 }
 
 WidgetType ButtonWidget::getType() const {
