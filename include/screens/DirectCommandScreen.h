@@ -5,6 +5,7 @@
 #include <vector>
 #include "widgets/Widget.h"
 #include "screens/Screen.h"
+#include "widgets/EncoderAttachedNumericWidget.h"
 
 /* ----------------------------------------------------------------------
    |  DirectCommandScreen -- Allows the sending of commands directly    |
@@ -14,6 +15,9 @@ class DirectCommandScreen : public Screen {
 
 private:
     std::vector<Widget*> widgets;
+    EncoderAttachedNumericWidget* cmdWidget;
+    EncoderAttachedNumericWidget* byteWidget;
+    char buff[20];
 
 public:
     DirectCommandScreen();
@@ -24,4 +28,5 @@ public:
     void handleInput() override;
     void onEnter() override;
     void onExit() override;
+    void advanceActiveControl();
 };

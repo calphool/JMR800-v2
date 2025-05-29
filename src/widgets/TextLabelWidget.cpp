@@ -8,13 +8,14 @@ TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
                                  uint8_t fs,
                                  bool tiny,
                                  LabelColor c)
-                                 : Widget(x, y)
+                                 : Widget(x, y, false)
     , text(t), fontSize(fs), useTinyFont(tiny), color(c) {
     log(LOG_VERBOSE, "Inside TextLabelWidget->constructor");
 }
 
 void TextLabelWidget::draw() {
-    log(LOG_VERBOSE, "Inside TextLabelWidget->draw()");  
+    log(LOG_VERBOSE, "Inside TextLabelWidget->draw()");
+    toggle = !toggle;
 
     ScreenManager::getDisplay()->setCursor(x, y);
     if (useTinyFont) {
@@ -25,6 +26,13 @@ void TextLabelWidget::draw() {
     }
     ScreenManager::getDisplay()->setTextColor(static_cast<uint16_t>(color));
     ScreenManager::getDisplay()->print(text);
+
+    if(bHighlighted) {
+        if(toggle)
+            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y+6, (uint16_t) LabelColor::WHITE);
+        else
+            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y+6, (uint16_t) LabelColor::BLACK);
+    }
 }
 
 void TextLabelWidget::handleInput() {

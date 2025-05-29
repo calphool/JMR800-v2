@@ -3,6 +3,7 @@
 #include "Logging.h"
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
+#include "widgets/EncoderAttachedNumericWidget.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
@@ -64,17 +65,42 @@ void DirectCommandScreen::onEnter() {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()");
   const char* labelText = "Direct Command Mode";
 
-  // Estimate width for centering using default font size 1 (6px/char approx)
-  int textWidth = strlen(labelText) * 6;
-  int x = (SCREEN_WIDTH - textWidth) / 2;
-  int y = 2;
-  Widget* rectangle = new RectangleWidget(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false, RectColor::WHITE);
-  addWidget(rectangle);
-  Widget* modeLabel = new TextLabelWidget(labelText, x, y, 1, false);
-  addWidget(modeLabel);
+  strcpy(buff, "%02x");
 
-  //TODO: add code to create the two input text controls and buttons: command byte, data byte, send button 
+   int textWidth = strlen(labelText) * 6;
+   int x = (SCREEN_WIDTH - textWidth) / 2;
+   Widget* rectangle = new RectangleWidget(0, 9, SCREEN_WIDTH, 54, false, RectColor::WHITE);
+   addWidget(rectangle);
+   Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
+   addWidget(modeLabel);
 
+   Widget* cmdLabel = new TextLabelWidget("CMD:    BYTE:   ", 12, 15);
+   addWidget(cmdLabel);
+
+  cmdWidget = new EncoderAttachedNumericWidget(42, 15, 0, 255, buff);
+  cmdWidget->attachToEncoder();
+  cmdWidget->setHighlighted(true);
+  addWidget(cmdWidget);
+  byteWidget = new EncoderAttachedNumericWidget(96, 15, 0, 255, buff);
+  byteWidget->detachFromEncoder();
+  byteWidget->setHighlighted(false);
+  addWidget(byteWidget);
+}
+
+void DirectCommandScreen::advanceActiveControl() {
+   if(cmdWidget && cmdWidget->isAttachedToEncoder()) {
+      cmdWidget->detachFromEncoder();
+      byteWidget->attachToEncoder();
+      cmdWidget->setHighlighted(false);
+      byteWidget->setHighlighted(true);
+   }
+   else
+   if(byteWidget && byteWidget->isAttachedToEncoder()) {
+      byteWidget->detachFromEncoder();
+      cmdWidget->attachToEncoder();
+      cmdWidget->setHighlighted(true);
+      byteWidget->setHighlighted(false);
+   }
 }
 
 

@@ -10,6 +10,8 @@ void ControlsTestMode::onEnter() {
 
 void ControlsTestMode::onExit() {
     log(LOG_VERBOSE, "Exiting Controls Test Mode");
+    for(int i=0; i < NUM_BUTTONS; i++)
+        hardware.setButtonLights(i, false, false);
 }
 
 void ControlsTestMode::loop() {
