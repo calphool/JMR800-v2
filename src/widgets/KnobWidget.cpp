@@ -4,7 +4,7 @@
 #include "Logging.h"
 
 KnobWidget::KnobWidget(int x, int y)
-    : Widget(x, y) {
+    : Widget(x, y, false) {
   log(LOG_VERBOSE, "Inside KnobWidget->constructor");
 }
 

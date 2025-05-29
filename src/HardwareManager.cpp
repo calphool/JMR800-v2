@@ -81,6 +81,18 @@ HardwareManager::~HardwareManager() {
   delete encoderKnob;
 }
 
+/* .------------------------------------------------------------------------------------------.
+   |  getEncoderZeroTo(x) - Returns a value from 0 to X based on encoder position             |
+   '------------------------------------------------------------------------------------------' */
+long HardwareManager::getEncoderZeroTo(long divisor) {
+    long i = (lastEncoderPosition>>2) % divisor; 
+    if(i < 0)
+      i = 0;
+    if(i > divisor)
+      i = divisor-1;
+    
+    return i;
+}
 
 /* .------------------------------------------------------------.
    |  loadKnobs() - loads knob settings from EEPROM             |

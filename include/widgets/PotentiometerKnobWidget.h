@@ -14,8 +14,6 @@ public:
 private:
     int knobId;
     uint8_t value;
-    bool highlighted;
-    bool blinkState;
 
 const int8_t arrow_dx[360] = {
   -1, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,

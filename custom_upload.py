@@ -1,12 +1,12 @@
 import subprocess
 import time
 import os
-Import("env")
+import sys
 
 MAX_RETRIES = 10
 RETRY_DELAY_SECONDS = 5
 
-firmware_path = os.path.join(env.subst("$BUILD_DIR"), "firmware.hex")
+firmware_path = sys.argv[1]
 mcu_type = "TEENSY41"
 
 def upload_with_retry():

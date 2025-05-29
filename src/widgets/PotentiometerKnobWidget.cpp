@@ -4,7 +4,7 @@
 #include "HardwareManager.h"
 
 PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : KnobWidget(x, y),
-      knobId(_knobId), value(0), highlighted(false), blinkState(false) {
+      knobId(_knobId), value(0) {
   log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor");
 }
 
@@ -13,7 +13,7 @@ void PotentiometerKnobWidget::setValue(uint8_t v) {
 }
 
 void PotentiometerKnobWidget::setHighlighted(bool h) {
-    highlighted = h;
+    bHighlighted = h;
 }
 
 void PotentiometerKnobWidget::drawArrow(int deg) {
@@ -33,12 +33,9 @@ void PotentiometerKnobWidget::drawArrow(int deg) {
 
 void PotentiometerKnobWidget::draw() {
     log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->draw()");
+    toggle = !toggle;
 
-    if (highlighted) {
-        blinkState = !blinkState;
-    }
-
-    bool fillBlack = highlighted && blinkState;
+    bool fillBlack = bHighlighted && toggle;
 
     drawBezel();
 
@@ -46,6 +43,21 @@ void PotentiometerKnobWidget::draw() {
     
     int deg = static_cast<int>((360.0f * value) / 255.0f);
     drawArrow(deg);
+
+    if(bHighlighted) {
+        if(toggle) {
+            int cx = x + 4;  // center x
+            int cy = y + 2;  // center y
+            int radius = 5;  // padding to fully enclose
+            ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_WHITE);
+        }
+        else {
+            int cx = x + 4;  // center x
+            int cy = y + 2;  // center y
+            int radius = 5;  // padding to fully enclose
+            ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_BLACK);
+        }
+    }
 }
 
 void PotentiometerKnobWidget::handleInput() {

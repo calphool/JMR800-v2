@@ -36,6 +36,19 @@ void RunModeScreen::addWidget(Widget* w) {
 void RunModeScreen::draw() {
   log(LOG_VERBOSE, "Inside RunModeScreen->draw()");
 
+   if(millis() < 10000) {
+        ScreenManager::getDisplay()->setCursor(10,0);
+        ScreenManager::getDisplay()->print("JMR-800 Controller");
+        ScreenManager::getDisplay()->setCursor(10,20);
+        ScreenManager::getDisplay()->print(__DATE__); 
+        ScreenManager::getDisplay()->setCursor(10,30);
+        ScreenManager::getDisplay()->print(__TIME__);;
+        ScreenManager::getDisplay()->setCursor(10,50);
+        ScreenManager::getDisplay()->print("Booting...");
+        ScreenManager::getDisplay()->display();
+        return;
+  }
+
   for (Widget* w : widgets) {
         w->draw();
   }
@@ -63,14 +76,12 @@ void RunModeScreen::onEnter() {
   log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()");
     const char* labelText = "Run Mode";
 
-    // Estimate width for centering using default font size 1 (6px/char approx)
-    int textWidth = strlen(labelText) * 6;
-    int x = (SCREEN_WIDTH - textWidth) / 2;
-    int y = 2;
-    Widget* rectangle = new RectangleWidget(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false, RectColor::WHITE);
-    addWidget(rectangle);
-    Widget* modeLabel = new TextLabelWidget(labelText, x, y, 1, false);
-    addWidget(modeLabel);
+   int textWidth = strlen(labelText) * 6;
+   int x = (SCREEN_WIDTH - textWidth) / 2;
+   Widget* rectangle = new RectangleWidget(0, 9, SCREEN_WIDTH, 54, false, RectColor::WHITE);
+   addWidget(rectangle);
+   Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
+   addWidget(modeLabel);
 }
 
 

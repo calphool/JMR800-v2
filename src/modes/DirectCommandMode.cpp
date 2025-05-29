@@ -1,6 +1,7 @@
 #include "modes/DirectCommandMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
+#include "HardwareManager.h"
 
 
 
@@ -13,7 +14,9 @@ void DirectCommandMode::onExit() {
 }
 
 void DirectCommandMode::loop() {
-    // Handle command queue or live text entry
+    if(hardware.buttonStateChanged(0, true, true)) {
+        screen.advanceActiveControl();
+    }
 }
 
 void DirectCommandMode::showScreen() {

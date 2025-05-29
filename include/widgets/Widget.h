@@ -8,18 +8,22 @@ enum class WidgetType {
     PotentiometerKnob,
     EncoderKnob,
     TextLabel,
-    Button
+    Button,
+    EncoderAttachedNumericWidget
 };
 
 class Widget {
 public:
-    Widget(int x, int y);
+    Widget(int x, int y, bool highlighted);
     virtual void draw() = 0;
     virtual void handleInput() = 0;
     virtual ~Widget() {}
     virtual WidgetType getType() const = 0;
+    void setHighlighted(bool b);
 
 protected:
     int x;
     int y;
+    bool bHighlighted;
+    bool toggle;
 };

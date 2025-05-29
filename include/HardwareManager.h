@@ -87,6 +87,7 @@ public:
 
     // Accessors
     int getKnobValue(uint index);
+    long getEncoderZeroTo(long divisor);
     bool getEncoderSwitchStatus();
     long getEncoderValue();
     bool isButtonPressed(uint index);

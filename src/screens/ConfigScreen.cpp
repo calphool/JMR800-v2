@@ -64,14 +64,12 @@ void ConfigScreen::onEnter() {
   log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
   const char* labelText = "Config Mode";
 
-  // Estimate width for centering using default font size 1 (6px/char approx)
-  int textWidth = strlen(labelText) * 6;
-  int x = (SCREEN_WIDTH - textWidth) / 2;
-  int y = 2;
-  Widget* rectangle = new RectangleWidget(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false, RectColor::WHITE);
-  addWidget(rectangle);
-  Widget* modeLabel = new TextLabelWidget(labelText, x, y, 1, false);
-  addWidget(modeLabel);
+   int textWidth = strlen(labelText) * 6;
+   int x = (SCREEN_WIDTH - textWidth) / 2;
+   Widget* rectangle = new RectangleWidget(0, 9, SCREEN_WIDTH, 54, false, RectColor::WHITE);
+   addWidget(rectangle);
+   Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
+   addWidget(modeLabel);
 }
 
 
