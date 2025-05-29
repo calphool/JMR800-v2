@@ -4,6 +4,12 @@
 #include "Logging.h"
 #include "ScreenManager.h"
 
+
+
+
+/* ------------------------------------------------------------------------------------------------
+   |  Constructor()                                                                               |
+   ------------------------------------------------------------------------------------------------ */
 TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
                                  uint8_t fs,
                                  bool tiny,
@@ -13,6 +19,10 @@ TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
     log(LOG_VERBOSE, "Inside TextLabelWidget->constructor");
 }
 
+
+/* ------------------------------------------------------------------------------------------------
+   |  draw() - draws the text of this label, sets font size, and draws the highlight if it is set |
+   ------------------------------------------------------------------------------------------------ */
 void TextLabelWidget::draw() {
     log(LOG_VERBOSE, "Inside TextLabelWidget->draw()");
     toggle = !toggle;
@@ -35,6 +45,9 @@ void TextLabelWidget::draw() {
     }
 }
 
+/* ------------------------------------------------------------------
+   |  handleInput() - text labels have no interaction with hardware |
+   ------------------------------------------------------------------ */
 void TextLabelWidget::handleInput() {
 }
 
