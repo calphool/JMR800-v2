@@ -16,16 +16,13 @@ void EncoderKnobWidget::draw() {
     drawBezel();
     ScreenManager::getDisplay()->fillRect(x+2, y+1, 6, 4, pressed ? SH110X_BLACK : SH110X_WHITE);
     if(bHighlighted) {
+        int cx = x + 4;  // center x
+        int cy = y + 2;  // center y
+        int radius = 5;  // padding to fully enclose
         if(toggle) {
-            int cx = x + 4;  // center x
-            int cy = y + 2;  // center y
-            int radius = 5;  // padding to fully enclose
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_WHITE);
         }
         else {
-            int cx = x + 4;  // center x
-            int cy = y + 2;  // center y
-            int radius = 5;  // padding to fully enclose
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_BLACK);
         }
     }

@@ -3,6 +3,11 @@
 #include "Logging.h"
 #include "HardwareManager.h"
 
+
+
+/* ------------------------------------------------------------------------------------------------
+   |  Constructor()                                                                               |
+   ------------------------------------------------------------------------------------------------ */
 PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : KnobWidget(x, y),
       knobId(_knobId), value(0) {
   log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor");
@@ -16,6 +21,9 @@ void PotentiometerKnobWidget::setHighlighted(bool h) {
     bHighlighted = h;
 }
 
+/* ------------------------------------------------------------------------------------------------
+   |  drawArrow() - draws the arrow on potentiometer knobs                                        |
+   ------------------------------------------------------------------------------------------------ */
 void PotentiometerKnobWidget::drawArrow(int deg) {
     log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->drawArrow()");
 
@@ -31,6 +39,10 @@ void PotentiometerKnobWidget::drawArrow(int deg) {
     ScreenManager::getDisplay()->drawLine(cx, cy, ex, ey, SH110X_BLACK);
 }
 
+
+/* ------------------------------------------------------------------------------------------------
+   |  draw() - draws the knob and highlights it if that is set                                    |
+   ------------------------------------------------------------------------------------------------ */
 void PotentiometerKnobWidget::draw() {
     log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->draw()");
     toggle = !toggle;
@@ -45,21 +57,21 @@ void PotentiometerKnobWidget::draw() {
     drawArrow(deg);
 
     if(bHighlighted) {
+        int cx = x + 4;  // center x
+        int cy = y + 2;  // center y
+        int radius = 5;  // padding to fully enclose
         if(toggle) {
-            int cx = x + 4;  // center x
-            int cy = y + 2;  // center y
-            int radius = 5;  // padding to fully enclose
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_WHITE);
         }
         else {
-            int cx = x + 4;  // center x
-            int cy = y + 2;  // center y
-            int radius = 5;  // padding to fully enclose
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_BLACK);
         }
     }
 }
 
+/* ------------------------------------------------------------------------------------------------
+   |  handleInput() - attaches this widget's value to the underlying hardware based on its knobId |
+   ------------------------------------------------------------------------------------------------ */
 void PotentiometerKnobWidget::handleInput() {
     if(knobId > NUM_KNOBS || knobId < 0) {
         char buf[128];

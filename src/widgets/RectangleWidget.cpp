@@ -2,11 +2,20 @@
 #include "ScreenManager.h"
 #include "Logging.h"
 
+
+
+/* ------------------------------------------------------------------------------------------------
+   |  Constructor()                                                                               |
+   ------------------------------------------------------------------------------------------------ */
 RectangleWidget::RectangleWidget(int x, int y, int w, int h, bool f, RectColor c) :
   Widget(x, y, false), width(w), height(h), filled(f), color(c) {
   log(LOG_VERBOSE, "Inside RectangleWidget->constructor");
 }
 
+
+/* ------------------------------------------------------------------------------------------------
+   |  draw() - draws this rectangle widget, and blinks its border if it is highlighted            |
+   ------------------------------------------------------------------------------------------------ */
 void RectangleWidget::draw() {
   log(LOG_VERBOSE, "Inside RectangleWidget->draw()");
   toggle = !toggle;
