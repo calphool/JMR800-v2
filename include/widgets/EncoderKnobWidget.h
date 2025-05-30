@@ -1,3 +1,5 @@
+#pragma once
+
 #include "widgets/KnobWidget.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
