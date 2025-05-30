@@ -65,7 +65,7 @@ void DirectCommandScreen::onEnter() {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()");
   const char* labelText = "Direct Command Mode";
 
-  strcpy(buff, "%02x");
+  strcpy(buff, "%02X");
 
    int textWidth = strlen(labelText) * 6;
    int x = (SCREEN_WIDTH - textWidth) / 2;

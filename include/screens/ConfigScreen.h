@@ -24,4 +24,5 @@ public:
     void handleInput() override;
     void onEnter() override;
     void onExit() override;
+    void setActiveKnob(int i);
 };
