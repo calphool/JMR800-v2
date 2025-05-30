@@ -13,6 +13,10 @@ EncoderAttachedNumericWidget::EncoderAttachedNumericWidget(int x, int y, int min
     control_value = 0;
 };
 
+uint EncoderAttachedNumericWidget::getValue() {
+    return control_value;
+}
+
 void EncoderAttachedNumericWidget::draw() {
     char buff[20];
     toggle = !toggle;
@@ -23,9 +27,9 @@ void EncoderAttachedNumericWidget::draw() {
 
     if(bHighlighted) {
         if(toggle) 
-            ScreenManager::getDisplay()->drawLine(x, y + 7, x + strlen(buff) * 6, y + 7, 0);
+            ScreenManager::getDisplay()->drawLine(x, y + 8, x + strlen(buff) * 5, y + 8, 0);
         else
-            ScreenManager::getDisplay()->drawLine(x, y + 7, x + strlen(buff) * 6, y + 7, 1);
+            ScreenManager::getDisplay()->drawLine(x, y + 8, x + strlen(buff) * 5, y + 8, 1);
     }
 }
 
@@ -40,6 +44,7 @@ bool EncoderAttachedNumericWidget::isAttachedToEncoder() {
 }
 
 void EncoderAttachedNumericWidget::attachToEncoder() {
+    hardware.resetEncoder(control_value*4);
     bIsAttachedToEncoder = true;
 }
 

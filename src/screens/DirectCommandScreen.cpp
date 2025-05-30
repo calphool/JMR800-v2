@@ -74,33 +74,82 @@ void DirectCommandScreen::onEnter() {
    Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
    addWidget(modeLabel);
 
-   Widget* cmdLabel = new TextLabelWidget("CMD:    BYTE:   ", 12, 15);
+   Widget* cmdLabel = new TextLabelWidget(" CMD:    BYTE:   ", 12, 20);
    addWidget(cmdLabel);
 
-  cmdWidget = new EncoderAttachedNumericWidget(42, 15, 0, 255, buff);
+  cmdWidget = new EncoderAttachedNumericWidget(48, 20, 0, 255, buff);
   cmdWidget->attachToEncoder();
   cmdWidget->setHighlighted(true);
   addWidget(cmdWidget);
-  byteWidget = new EncoderAttachedNumericWidget(96, 15, 0, 255, buff);
+  byteWidget = new EncoderAttachedNumericWidget(102, 20, 0, 255, buff);
   byteWidget->detachFromEncoder();
   byteWidget->setHighlighted(false);
   addWidget(byteWidget);
+
+  pushWidget = new PushButtonWidget("Send", 50, 40);
+  addWidget(pushWidget);
 }
 
 void DirectCommandScreen::advanceActiveControl() {
-   if(cmdWidget && cmdWidget->isAttachedToEncoder()) {
+   if(cmdWidget == NULL || byteWidget == NULL || pushWidget == NULL) {
+      log(LOG_ERROR, "undefined control in DirectCommandScreen::advanceActiveContr()");
+      return;
+   }
+   
+   if(cmdWidget->isAttachedToEncoder()) {
       cmdWidget->detachFromEncoder();
+      pushWidget->detachFromEncoder();
       byteWidget->attachToEncoder();
       cmdWidget->setHighlighted(false);
+      pushWidget->setHighlighted(false);
       byteWidget->setHighlighted(true);
    }
    else
-   if(byteWidget && byteWidget->isAttachedToEncoder()) {
+   if(byteWidget->isAttachedToEncoder()) {
+      cmdWidget->detachFromEncoder();
+      pushWidget->attachToEncoder();
       byteWidget->detachFromEncoder();
-      cmdWidget->attachToEncoder();
-      cmdWidget->setHighlighted(true);
+      cmdWidget->setHighlighted(false);
+      pushWidget->setHighlighted(true);
       byteWidget->setHighlighted(false);
    }
+   else { // we're on the pushButton and transitioning off of it
+      cmdWidget->attachToEncoder();
+      pushWidget->detachFromEncoder();
+      byteWidget->detachFromEncoder();
+      cmdWidget->setHighlighted(true);
+      pushWidget->setHighlighted(false);
+      byteWidget->setHighlighted(false);
+   }
+}
+
+uint DirectCommandScreen::getCmdValue() {
+   if(cmdWidget)
+      return cmdWidget->getValue();
+   
+   return 0;
+}
+
+
+uint DirectCommandScreen::getByteValue() {
+   if(cmdWidget)
+      return byteWidget->getValue();
+   
+   return 0;
+}
+
+
+Widget* DirectCommandScreen::getActiveWidget() {
+   if(cmdWidget->isAttachedToEncoder())
+      return cmdWidget;
+
+   if(pushWidget->isAttachedToEncoder())
+      return pushWidget;
+
+   if(byteWidget->isAttachedToEncoder())
+      return byteWidget;
+
+   return NULL;
 }
 
 

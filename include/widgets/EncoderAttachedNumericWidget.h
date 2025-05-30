@@ -18,6 +18,7 @@ public:
     void attachToEncoder();
     void detachFromEncoder();
     bool isAttachedToEncoder();
+    uint getValue();
 
 private:
     uint control_value;

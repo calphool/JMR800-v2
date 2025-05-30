@@ -39,9 +39,9 @@ void TextLabelWidget::draw() {
 
     if(bHighlighted) {
         if(toggle)
-            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y+6, (uint16_t) LabelColor::WHITE);
+            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y + 6, (uint16_t) LabelColor::WHITE);
         else
-            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y+6, (uint16_t) LabelColor::BLACK);
+            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y + 6, (uint16_t) LabelColor::BLACK);
     }
 }
 
