@@ -3,6 +3,7 @@
 #include "Logging.h"
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
+#include "screens/SharedControlScreenUtility.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
@@ -10,6 +11,7 @@
 ConfigScreen::ConfigScreen() {
     log(LOG_VERBOSE, "Inside ConfigScreen->constructor");
 }
+
 
 /* --------------------------------------------------------------
    |  Destructor -- releases all dynamically allocated widgets    |
@@ -64,12 +66,8 @@ void ConfigScreen::onEnter() {
   log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
   const char* labelText = "Config Mode";
 
-   int textWidth = strlen(labelText) * 6;
-   int x = (SCREEN_WIDTH - textWidth) / 2;
-   Widget* rectangle = new RectangleWidget(0, 9, SCREEN_WIDTH, 54, false, RectColor::WHITE);
-   addWidget(rectangle);
-   Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
-   addWidget(modeLabel);
+   TextLabelWidget* dummyBox = nullptr;
+   SharedControlScreenUtility::initializeControllerScreenLayout(widgets, labelText, dummyBox);
 }
 
 
