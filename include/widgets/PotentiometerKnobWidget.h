@@ -12,6 +12,7 @@ public:
     void setHighlighted(bool highlight);  // blinking only when highlighted
     void handleInput();
     void draw() override;
+    int getKnobId();
 
 private:
     int knobId;

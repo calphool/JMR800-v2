@@ -1,6 +1,7 @@
 #include "modes/ConfigMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
+#include "HardwareManager.h"
 
 
 void ConfigMode::onEnter() {
@@ -12,7 +13,9 @@ void ConfigMode::onExit() {
 }
 
 void ConfigMode::loop() {
-    // Background logic for config changes or timeouts
+    uint active_knob = hardware.getEncoderZeroTo(NUM_KNOBS);
+
+    screen.setActiveKnob(active_knob);
 }
 
 void ConfigMode::showScreen() {

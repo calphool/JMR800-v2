@@ -13,6 +13,10 @@ PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : Kn
   log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor");
 }
 
+int PotentiometerKnobWidget::getKnobId() {
+    return knobId;
+}
+
 void PotentiometerKnobWidget::setValue(uint8_t v) {
     value = v;
 }
@@ -59,7 +63,7 @@ void PotentiometerKnobWidget::draw() {
     if(bHighlighted) {
         int cx = x + 4;  // center x
         int cy = y + 2;  // center y
-        int radius = 5;  // padding to fully enclose
+        int radius = 4;  // padding to fully enclose
         if(toggle) {
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_WHITE);
         }

@@ -82,3 +82,15 @@ void ConfigScreen::onExit() {
   }
   widgets.clear();
 }
+
+void ConfigScreen::setActiveKnob(int knobix) {
+   for(Widget* w : widgets) {
+      if(w->getType() == WidgetType::PotentiometerKnob) {
+         PotentiometerKnobWidget* pkw = (PotentiometerKnobWidget*)w;
+         if(pkw->getKnobId() == knobix) 
+            pkw->setHighlighted(true);
+         else
+            pkw->setHighlighted(false);
+      }
+   }
+}
