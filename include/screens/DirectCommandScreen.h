@@ -6,6 +6,7 @@
 #include "widgets/Widget.h"
 #include "screens/Screen.h"
 #include "widgets/EncoderAttachedNumericWidget.h"
+#include "widgets/PushButtonWidget.h"
 
 /* ----------------------------------------------------------------------
    |  DirectCommandScreen -- Allows the sending of commands directly    |
@@ -17,6 +18,7 @@ private:
     std::vector<Widget*> widgets;
     EncoderAttachedNumericWidget* cmdWidget;
     EncoderAttachedNumericWidget* byteWidget;
+    PushButtonWidget* pushWidget;
     char buff[20];
 
 public:
@@ -29,4 +31,7 @@ public:
     void onEnter() override;
     void onExit() override;
     void advanceActiveControl();
+    Widget* getActiveWidget();
+    uint getCmdValue();
+    uint getByteValue();
 };

@@ -9,11 +9,13 @@ enum class WidgetType {
     EncoderKnob,
     TextLabel,
     Button,
-    EncoderAttachedNumericWidget
+    EncoderAttachedNumericWidget,
+    PushButton
 };
 
 class Widget {
 public:
+    Widget(int x, int y);
     Widget(int x, int y, bool highlighted);
     virtual void draw() = 0;
     virtual void handleInput() = 0;

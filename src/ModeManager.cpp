@@ -5,11 +5,16 @@
 
 ModeManager modeManager;
 
-
+/* --------------------------------------------------------------
+   |  addMode() -- adds another mode class to the mode manager  |
+   -------------------------------------------------------------- */
 void ModeManager::addMode(AppMode* mode) {
     modes.push_back(mode);
 }
 
+/* --------------------------------------------------------------
+   |  init() -- initializes the modeManager                     |
+   -------------------------------------------------------------- */
 void ModeManager::init() {
     if (!modes.empty()) {
       modes[0]->onEnter();
@@ -17,6 +22,10 @@ void ModeManager::init() {
     }
 }
 
+/* --------------------------------------------------------------------------------
+   |  loop() -- watches for button 3 and 4 pressed simultaneously                 |
+   |  if it sees that, it advances to the next mode                               |
+   -------------------------------------------------------------------------------- */
 void ModeManager::loop() {
     // Get current state of both buttons
     bool button2 = hardware.isButtonPressed(2);  // Button 3 (index 2)

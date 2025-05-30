@@ -74,7 +74,6 @@ private:
     void setAddressPins(uint val);
     void updateEncoder();
     void writeLedRegistersToHardware();
-    void sendParameter(uint8_t paramID, uint8_t value);
     static void onPG800ClockFall();
     void loadKnobs();
     void saveKnobs();
@@ -92,11 +91,15 @@ public:
     long getEncoderValue();
     bool isButtonPressed(uint index);
     bool buttonStateChanged(uint index, bool bDirection, bool bClearFlag);
+    bool encoderSwitchStateChanged(bool upThenDown, bool clearFlag);
     void setButtonLights(uint buttonId, bool red, bool green);
     bool greenIsLit(uint buttonId);
     bool redIsLit(uint buttonId);
     void restoreLedState();
     void saveLedState();
+    void sendParameter(uint8_t paramID, uint8_t value);
+    void resetEncoder(uint i);
+
 };
 
 extern HardwareManager hardware;

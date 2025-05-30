@@ -7,6 +7,8 @@
 Widget::Widget(int x, int y, bool highlighted)
     : x(x), y(y), bHighlighted(highlighted), toggle(false) {}
 
+Widget::Widget(int x, int y) : x(x), y(y), bHighlighted (false), toggle(false) {}
+
 /* -----------------------------------------------------------------
    |  setHighlighted() - indicates whether a widget is highlighted |
    ----------------------------------------------------------------- */

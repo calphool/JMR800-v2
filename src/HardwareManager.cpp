@@ -94,9 +94,9 @@ long HardwareManager::getEncoderZeroTo(long divisor) {
     return i;
 }
 
-/* .------------------------------------------------------------.
-   |  loadKnobs() - loads knob settings from EEPROM             |
-   '------------------------------------------------------------' */
+/* .-------------------------------------------------------------------.
+   |  loadKnobs() - loads knob settings from EEPROM                    |
+   '-------------------------------------------------------------------' */
 void HardwareManager::loadKnobs() {
   for (int i = 0; i < NUM_KNOBS; i++) {
     int addr = i * sizeof(knobConfig);
@@ -220,6 +220,24 @@ bool HardwareManager::greenIsLit(uint buttonId) {
   return (ledstate & (1 << bitPos)) != 0;
 }
 
+bool HardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag) {
+  if(bEncoderBtn != bPrevEncoderBtn) {
+    if(upThenDown) {
+      if(bEncoderBtn == LOW && bPrevEncoderBtn == HIGH) {
+        if(clearFlag) bPrevEncoderBtn = bEncoderBtn;
+        return true;
+      }
+    }
+    else {
+      if(bEncoderBtn == HIGH && bPrevEncoderBtn == LOW) {
+        if(clearFlag) bPrevEncoderBtn = bEncoderBtn;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 bool HardwareManager::buttonStateChanged(uint index, bool upThenDown, bool clearFlag) {
   if(index >= NUM_BUTTONS) {
     log(LOG_ERROR, "invalid button number passed to HardwareManager::buttonStateChanged()");
@@ -278,6 +296,11 @@ void HardwareManager::setAddressPins(uint val) {
   if(val & 0x04) digitalWrite(S2_PIN, HIGH); else digitalWrite(S2_PIN, LOW);
   if(val & 0x08) digitalWrite(S3_PIN, HIGH); else digitalWrite(S3_PIN, LOW);
   delayMicroseconds(5);
+}
+
+
+void HardwareManager::resetEncoder(uint i) {
+  encoderKnob->write(i);
 }
 
 
@@ -383,7 +406,7 @@ void HardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
 /* --------------------------------------------------------------
    |  onPG800ClockFall -- interrupt routine triggered by a       |
    |  falling clock edge, used to clock out serial bits one by   |
-   |  one to the JX-8P using inverted logic signaling             |
+   |  one to the JX-8P using inverted logic signaling            |
    -------------------------------------------------------------- */
 void HardwareManager::onPG800ClockFall() {
   if (bitIndex < 0) return;  // Not currently sending
@@ -436,3 +459,4 @@ void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
   ledstate |= (bitsToSet << shift);
   writeLedRegistersToHardware();
 }
+

@@ -2,6 +2,7 @@
 #include "ScreenManager.h"
 #include "Logging.h"
 #include "HardwareManager.h"
+#include "widgets/Widget.h"
 
 
 
@@ -16,6 +17,15 @@ void DirectCommandMode::onExit() {
 void DirectCommandMode::loop() {
     if(hardware.buttonStateChanged(0, true, true)) {
         screen.advanceActiveControl();
+    }
+
+    if(hardware.encoderSwitchStateChanged(true, true)) {
+        Widget* w = screen.getActiveWidget();
+        if(w != NULL) {
+            if(w->getType() == WidgetType::PushButton) {
+                hardware.sendParameter(screen.getCmdValue(), screen.getByteValue());
+            }
+        }
     }
 }
 
