@@ -39,8 +39,11 @@ void ModeManager::loop() {
             modes[(currentIndex + 1) % modes.size()]->name());
         log(LOG_INFO, buffer_64);
 
+
         modes[currentIndex]->onExit();
         currentIndex = (currentIndex + 1) % modes.size();
+        hardware.loadKnobs(); // might make this conditional based on mode
+
         modes[currentIndex]->onEnter();
         modes[currentIndex]->showScreen();  // Let the mode present its screen
     }

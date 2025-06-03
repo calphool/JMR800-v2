@@ -4,6 +4,7 @@
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
 #include "screens/SharedControlScreenUtility.h"
+#include "screens/KnobConfigDialog.h"
 
 /* --------------------------------------------------------------
    |  Constructor -- initializes internal state of the run screen |
@@ -38,6 +39,11 @@ void ConfigScreen::addWidget(Widget* w) {
 void ConfigScreen::draw() {
   log(LOG_VERBOSE, "Inside ConfigScreen->draw()");
 
+   if (knobConfigDialog && !knobConfigDialog->isDone()) {
+         knobConfigDialog->draw();
+         return; // If dialog is active, skip other widgets
+   }
+
   for (Widget* w : widgets) {
         w->draw();
   }
@@ -51,6 +57,11 @@ void ConfigScreen::draw() {
 void ConfigScreen::handleInput() {
   log(LOG_VERBOSE, "Inside ConfigScreen->handleInput()");
 
+   if (knobConfigDialog && !knobConfigDialog->isDone()) {
+         knobConfigDialog->handleInput();
+         return; // If dialog is active, skip other widgets
+   }
+
   for (Widget* w : widgets) {
      w->handleInput();
   }
@@ -62,7 +73,6 @@ void ConfigScreen::handleInput() {
    |  reset or refresh dynamic elements                          |
    -------------------------------------------------------------- */
 void ConfigScreen::onEnter() {
-    // Optionally refresh data or reset states
   log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
   const char* labelText = "Config Mode";
 
@@ -77,13 +87,21 @@ void ConfigScreen::onEnter() {
    -------------------------------------------------------------- */
 void ConfigScreen::onExit() {
   log(LOG_VERBOSE, "Inside ConfigScreen->onExit()");
+
+   if (knobConfigDialog) {
+         knobConfigDialog->onExit();
+         delete knobConfigDialog;
+         knobConfigDialog = nullptr;
+   }
+
   for (Widget* w : widgets) {
       delete w;
   }
   widgets.clear();
 }
 
-void ConfigScreen::setActiveKnob(int knobix) {
+
+void ConfigScreen::highlightActiveKnob(int knobix) {
    for(Widget* w : widgets) {
       if(w->getType() == WidgetType::PotentiometerKnob) {
          PotentiometerKnobWidget* pkw = (PotentiometerKnobWidget*)w;
@@ -93,4 +111,11 @@ void ConfigScreen::setActiveKnob(int knobix) {
             pkw->setHighlighted(false);
       }
    }
+}
+
+
+void ConfigScreen::changeScreenMode(uint knobid) {
+   active_knob = knobid;
+   knobConfigDialog = new KnobConfigDialog(20, 8, 108, 56, active_knob); // Adjust dimensions as needed
+   knobConfigDialog->onEnter();
 }

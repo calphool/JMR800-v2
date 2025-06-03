@@ -437,6 +437,15 @@ void HardwareManager::restoreLedState() {
   ledstate = prevLedState;
 }
 
+knobConfig HardwareManager::getKnobConfiguration(uint index) {
+  if(index >= NUM_KNOBS) {
+    log(LOG_ERROR, "HardwareManager::getKnobConfiguration() invoked with an invalid knob index");
+    return knobConfigurations[NUM_KNOBS % index];
+  }
+  return knobConfigurations[index];
+}
+
+
 void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
   // all logging here must check whether Serial is defined because this 
   // code gets used in the logging setup
