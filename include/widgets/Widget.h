@@ -10,7 +10,8 @@ enum class WidgetType {
     TextLabel,
     Button,
     EncoderAttachedNumericWidget,
-    PushButton
+    PushButton,
+    TextInputWidget
 };
 
 class Widget {

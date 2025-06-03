@@ -5,6 +5,7 @@
 #include <vector>
 #include "widgets/Widget.h"
 #include "screens/Screen.h"
+#include "screens/KnobConfigDialog.h"
 
 /* -----------------------------------------------------------------
    |  ConfigScreen -- manages the screen where settings are updated|
@@ -14,6 +15,8 @@ class ConfigScreen : public Screen {
 
 private:
     std::vector<Widget*> widgets;
+    int active_knob = -1;
+    KnobConfigDialog* knobConfigDialog = nullptr; // Pointer to the dialog for knob configuration
 
 public:
     ConfigScreen();
@@ -24,5 +27,6 @@ public:
     void handleInput() override;
     void onEnter() override;
     void onExit() override;
-    void setActiveKnob(int i);
+    void highlightActiveKnob(int i);
+    void changeScreenMode(uint knobIndex);
 };

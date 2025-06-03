@@ -75,8 +75,6 @@ private:
     void updateEncoder();
     void writeLedRegistersToHardware();
     static void onPG800ClockFall();
-    void loadKnobs();
-    void saveKnobs();
     bool knobChanged(int i);
 
 public:
@@ -84,7 +82,9 @@ public:
     void loop();      // Called every cycle, but throttled
     ~HardwareManager();
 
-    // Accessors
+    void loadKnobs();
+    void saveKnobs();
+
     int getKnobValue(uint index);
     long getEncoderZeroTo(long divisor);
     bool getEncoderSwitchStatus();
@@ -99,6 +99,7 @@ public:
     void saveLedState();
     void sendParameter(uint8_t paramID, uint8_t value);
     void resetEncoder(uint i);
+    knobConfig getKnobConfiguration(uint i);
 
 };
 

@@ -15,9 +15,13 @@ void ConfigMode::onExit() {
 void ConfigMode::loop() {
     uint active_knob = hardware.getEncoderZeroTo(NUM_KNOBS);
 
-    screen.setActiveKnob(active_knob);
+    theConfigScreen.highlightActiveKnob(active_knob);
+
+    if(hardware.encoderSwitchStateChanged(true, true )) {
+        theConfigScreen.changeScreenMode(active_knob);
+    }
 }
 
 void ConfigMode::showScreen() {
-    screenManager.setScreen(&screen);
+    screenManager.setScreen(&theConfigScreen);
 }

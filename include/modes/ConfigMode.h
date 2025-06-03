@@ -5,11 +5,11 @@
 
 class ConfigMode : public AppMode {
 private:
-    ConfigScreen screen;
+    ConfigScreen theConfigScreen;;
 
 public:
     const char* name() const override { return "System Config Mode"; }
-    Screen* getScreen() override { return &screen; }
+    Screen* getScreen() override { return &theConfigScreen; }
     void onEnter() override;
     void onExit() override;
     void loop() override;
