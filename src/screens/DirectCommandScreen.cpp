@@ -1,3 +1,11 @@
+/**
+ * @file DirectCommandScreen.cpp
+ * @brief Implements a screen for sending raw parameter/value commands to the synthesizer.
+ *
+ * This screen allows the user to manipulate two numeric inputs (command and value) and a push button
+ * to transmit them. Encoder-based navigation allows toggling between controls.
+ */
+
 #include "screens/DirectCommandScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
@@ -5,35 +13,39 @@
 #include "widgets/TextLabelWidget.h"
 #include "widgets/EncoderAttachedNumericWidget.h"
 
-/* --------------------------------------------------------------
-   |  Constructor -- initializes internal state of the run screen |
-   -------------------------------------------------------------- */
+/**
+ * @brief Constructor for DirectCommandScreen.
+ *
+ * Initializes the internal widget list and logs screen creation.
+ */
 DirectCommandScreen::DirectCommandScreen() {
     log(LOG_VERBOSE, "Inside DirectCommandScreen->constructor");
 }
 
-/* --------------------------------------------------------------
-   |  Destructor -- releases all dynamically allocated widgets    |
-   -------------------------------------------------------------- */
+/**
+ * @brief Destructor for DirectCommandScreen.
+ *
+ * Frees all dynamically allocated widgets upon screen teardown.
+ */
 DirectCommandScreen::~DirectCommandScreen() {
     log(LOG_VERBOSE, "Inside DirectCommandScreen->destructor");
 }
 
 
-/* --------------------------------------------------------------
-   |  addWidget -- registers a new widget with this screen for   |
-   |  coordinated input and draw operations                      |
-   -------------------------------------------------------------- */
+/**
+ * @brief Adds a widget to the screen's managed widget list.
+ *
+ * @param w Pointer to the widget to add.
+ */
 void DirectCommandScreen::addWidget(Widget* w) {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->addWidget()");
   widgets.push_back(w);
 }
 
 
-/* --------------------------------------------------------------
-   |  draw -- renders each registered widget in order onto the   |
-   |  current display buffer                                     |
-   -------------------------------------------------------------- */
+/**
+ * @brief Renders all registered widgets to the OLED display.
+ */
 void DirectCommandScreen::draw() {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->draw()");
 
@@ -43,10 +55,9 @@ void DirectCommandScreen::draw() {
 }
 
 
-/* --------------------------------------------------------------
-   |  handleInput -- passes control to each widget to handle     |
-   |  input events such as knob movement or encoder clicks       |
-   -------------------------------------------------------------- */
+/**
+ * @brief Dispatches input handling to all widgets in the screen.
+ */
 void DirectCommandScreen::handleInput() {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->handleInput()");
 
@@ -56,10 +67,11 @@ void DirectCommandScreen::handleInput() {
 }
 
 
-/* --------------------------------------------------------------
-   |  onEnter -- called when the screen becomes active; used to  |
-   |  reset or refresh dynamic elements                          |
-   -------------------------------------------------------------- */
+/**
+ * @brief Called when the screen is activated.
+ *
+ * Initializes and arranges all UI components and attaches the encoder to the first input.
+ */
 void DirectCommandScreen::onEnter() {
     // Optionally refresh data or reset states
   log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()");
@@ -90,6 +102,10 @@ void DirectCommandScreen::onEnter() {
   addWidget(pushWidget);
 }
 
+
+/**
+ * @brief Advances encoder focus between the command box, byte box, and send button.
+ */
 void DirectCommandScreen::advanceActiveControl() {
    if(cmdWidget == NULL || byteWidget == NULL || pushWidget == NULL) {
       log(LOG_ERROR, "undefined control in DirectCommandScreen::advanceActiveContr()");
@@ -123,6 +139,11 @@ void DirectCommandScreen::advanceActiveControl() {
    }
 }
 
+
+/**
+ * @brief Retrieves the numeric value from the command input field.
+ * @return The current command value (0–255).
+ */
 uint DirectCommandScreen::getCmdValue() {
    if(cmdWidget)
       return cmdWidget->getValue();
@@ -131,6 +152,10 @@ uint DirectCommandScreen::getCmdValue() {
 }
 
 
+/**
+ * @brief Retrieves the numeric value from the byte input field.
+ * @return The current byte value (0–255).
+ */
 uint DirectCommandScreen::getByteValue() {
    if(cmdWidget)
       return byteWidget->getValue();
@@ -139,6 +164,10 @@ uint DirectCommandScreen::getByteValue() {
 }
 
 
+/**
+ * @brief Returns a pointer to the currently encoder-attached widget.
+ * @return Active widget pointer or nullptr if none attached.
+ */
 Widget* DirectCommandScreen::getActiveWidget() {
    if(cmdWidget->isAttachedToEncoder())
       return cmdWidget;
@@ -153,10 +182,11 @@ Widget* DirectCommandScreen::getActiveWidget() {
 }
 
 
-/* --------------------------------------------------------------
-   |  onExit -- called when the screen is replaced or hidden;    |
-   |  cleanup or persist transient state here                    |
-   -------------------------------------------------------------- */
+/**
+ * @brief Called when the screen is deactivated or replaced.
+ *
+ * Cleans up all dynamic widgets.
+ */
 void DirectCommandScreen::onExit() {
   log(LOG_VERBOSE, "Inside DirectCommandScreen->onExit()");
     for (Widget* w : widgets) {

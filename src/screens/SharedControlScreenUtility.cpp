@@ -1,6 +1,23 @@
+/**
+ * @file SharedControlScreenUtility.cpp
+ * @brief Provides layout helper utilities for constructing shared UI control screens.
+ */
+
 #include "screens/SharedControlScreenUtility.h"
 #include "HardwareManager.h"
 
+
+/**
+ * @brief Initializes a default controller screen layout using a variety of widgets.
+ *
+ * This method populates a widget list with a standard arrangement of knobs, buttons,
+ * labels, and decorative rectangles. It positions widgets based on a fixed pixel grid
+ * and prepares the output pointer `outNumBox` for later dynamic value display.
+ *
+ * @param widgets Reference to a vector of Widget pointers to populate.
+ * @param labelText A centered label string to display at the top of the screen.
+ * @param outNumBox Reference to a pointer that will be assigned a `TextLabelWidget` representing a numeric display box.
+ */
 void SharedControlScreenUtility::initializeControllerScreenLayout(std::vector<Widget*>& widgets, const char* labelText, TextLabelWidget*& outNumBox) {
     log(LOG_VERBOSE, "Inside WidgetLayoutHelper::initializeTestScreenLayout()");
 

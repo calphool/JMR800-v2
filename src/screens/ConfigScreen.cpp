@@ -1,3 +1,10 @@
+/**
+ * @file ConfigScreen.cpp
+ * @brief Implements the configuration screen for knob mapping and diagnostics.
+ *
+ * This screen supports a modal dialog for per-knob configuration and uses the shared control layout.
+ */
+
 #include "screens/ConfigScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
@@ -6,36 +13,39 @@
 #include "screens/SharedControlScreenUtility.h"
 #include "screens/KnobConfigDialog.h"
 
-/* --------------------------------------------------------------
-   |  Constructor -- initializes internal state of the run screen |
-   -------------------------------------------------------------- */
+/**
+ * @brief Constructor for ConfigScreen.
+ *
+ * Initializes the configuration screen's internal state.
+ */
 ConfigScreen::ConfigScreen() {
     log(LOG_VERBOSE, "Inside ConfigScreen->constructor");
 }
 
 
-/* --------------------------------------------------------------
-   |  Destructor -- releases all dynamically allocated widgets    |
-   -------------------------------------------------------------- */
+/**
+ * @brief Destructor for ConfigScreen.
+ *
+ * Cleans up all dynamically allocated widgets and dialogs.
+ */
 ConfigScreen::~ConfigScreen() {
     log(LOG_VERBOSE, "Inside ConfigScreen->destructor");
 }
 
 
-/* --------------------------------------------------------------
-   |  addWidget -- registers a new widget with this screen for   |
-   |  coordinated input and draw operations                      |
-   -------------------------------------------------------------- */
+/**
+ * @brief Adds a widget to the screen’s list for coordinated rendering and input handling.
+ * @param w Pointer to a dynamically allocated Widget.
+ */
 void ConfigScreen::addWidget(Widget* w) {
   log(LOG_VERBOSE, "Inside ConfigScreen->addWidget()");
   widgets.push_back(w);
 }
 
 
-/* --------------------------------------------------------------
-   |  draw -- renders each registered widget in order onto the   |
-   |  current display buffer                                     |
-   -------------------------------------------------------------- */
+/**
+ * @brief Renders all widgets or the modal knob configuration dialog if active.
+ */
 void ConfigScreen::draw() {
   log(LOG_VERBOSE, "Inside ConfigScreen->draw()");
 
@@ -50,10 +60,9 @@ void ConfigScreen::draw() {
 }
 
 
-/* --------------------------------------------------------------
-   |  handleInput -- passes control to each widget to handle     |
-   |  input events such as knob movement or encoder clicks       |
-   -------------------------------------------------------------- */
+/**
+ * @brief Passes control to either the modal dialog or each registered widget to handle input.
+ */
 void ConfigScreen::handleInput() {
   log(LOG_VERBOSE, "Inside ConfigScreen->handleInput()");
 
@@ -68,10 +77,11 @@ void ConfigScreen::handleInput() {
 }
 
 
-/* --------------------------------------------------------------
-   |  onEnter -- called when the screen becomes active; used to  |
-   |  reset or refresh dynamic elements                          |
-   -------------------------------------------------------------- */
+/**
+ * @brief Called when this screen becomes the active screen.
+ *
+ * Populates the widget list using the shared layout utility.
+ */
 void ConfigScreen::onEnter() {
   log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
   const char* labelText = "Config Mode";
@@ -81,10 +91,11 @@ void ConfigScreen::onEnter() {
 }
 
 
-/* --------------------------------------------------------------
-   |  onExit -- called when the screen is replaced or hidden;    |
-   |  cleanup or persist transient state here                    |
-   -------------------------------------------------------------- */
+/**
+ * @brief Called when the screen is hidden or replaced.
+ *
+ * Cleans up modal dialogs and all dynamically allocated widgets.
+ */
 void ConfigScreen::onExit() {
   log(LOG_VERBOSE, "Inside ConfigScreen->onExit()");
 
@@ -100,7 +111,10 @@ void ConfigScreen::onExit() {
   widgets.clear();
 }
 
-
+/**
+ * @brief Highlights a single potentiometer knob by ID and unhighlights all others.
+ * @param knobix Index of the knob to highlight.
+ */
 void ConfigScreen::highlightActiveKnob(int knobix) {
    for(Widget* w : widgets) {
       if(w->getType() == WidgetType::PotentiometerKnob) {
@@ -113,7 +127,10 @@ void ConfigScreen::highlightActiveKnob(int knobix) {
    }
 }
 
-
+/**
+ * @brief Initiates modal dialog for configuring the selected knob.
+ * @param knobid Index of the knob to configure.
+ */
 void ConfigScreen::changeScreenMode(uint knobid) {
    active_knob = knobid;
    knobConfigDialog = new KnobConfigDialog(20, 8, 108, 56, active_knob); // Adjust dimensions as needed

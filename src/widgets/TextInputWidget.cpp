@@ -1,13 +1,33 @@
 
+/**
+ * @file TextInputWidget.cpp
+ * @brief Implements the TextInputWidget class, allowing user-editable text display with cursor navigation.
+ *
+ * This widget provides interactive text input through button-based navigation and character replacement.
+ * It supports cursor animation and optional external navigation handlers for moving between widgets.
+ */
+
 #include "widgets/TextInputWidget.h"
 #include "widgets/Widget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 #include "HardwareManager.h"
+#include "IWidgetNavHandler.h"
 
 
-
-TextInputWidget::TextInputWidget(char* _text, int x, int y, int w) : Widget(x, y, true) {
+/**
+ * @brief Constructs a TextInputWidget at a specified position with an editable character buffer.
+ *
+ * Pads the input string to fit the specified pixel width and ensures it fits the screen.
+ * Optionally registers a navigation handler to signal when the cursor exits the widget.
+ *
+ * @param _text Editable character buffer to be displayed and modified.
+ * @param x X-coordinate of the widget's top-left corner.
+ * @param y Y-coordinate of the widget's top-left corner.
+ * @param w Pixel width allocated for text display.
+ * @param handler Optional navigation handler to notify on left/right exit.
+ */
+TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHandler* handler) : Widget(x, y, true), navHandler(handler) {
     currentPosition = 0;
     strcpy(text, _text);
     width = w;
@@ -15,23 +35,28 @@ TextInputWidget::TextInputWidget(char* _text, int x, int y, int w) : Widget(x, y
     this->x = x;
     this->y = y;
     
-    
-    while(strlen(text) < numChars) {
+    while(((int)strlen(text)) < numChars) {
         strcat(text, " ");
     }
 
-    if(strlen(text) * 6 > w) {
+    if(((int)strlen(text) * 6) > w) {
         log(LOG_WARNING, "TextInputWidget: text is too long for the given width, truncating to fit");
-        while(strlen(text) * 6 > w && strlen(text) > 0) 
+        while(((int)strlen(text) * 6) > w && strlen(text) > 0) 
             text[strlen(text) - 1] = '\0'; 
     }
 }
 
 
+/**
+ * @brief Renders the text input field and animated cursor.
+ *
+ * Draws each character at fixed spacing, adds an underline below each,
+ * and toggles the cursor animation below the active character.
+ */
 void TextInputWidget::draw() {
     toggle = !toggle;
 
-    for(int i = 0; i < strlen(text); i++) {
+    for(int i = 0; i < (int)strlen(text); i++) {
         uint xpos = x + (i * 6);
         ScreenManager::getDisplay()->setCursor(xpos, y);
         ScreenManager::getDisplay()->print(text[i]);
@@ -46,37 +71,65 @@ void TextInputWidget::draw() {
 }
 
 
+/**
+ * @brief Advances the cursor to the next character or invokes the navigation handler on overflow.
+ */
 void TextInputWidget::advanceCurrentPosition() {
     currentPosition++;
-    if(currentPosition >= strlen(text)) {
-        currentPosition = 0;
+    if(currentPosition >= (int)strlen(text)) {
+        if(navHandler) {
+            navHandler->onLeavingWidgetRight();
+        } 
+        currentPosition = 0; 
     }
 }
 
+
+/**
+ * @brief Moves the cursor to the previous character or invokes the navigation handler on underflow.
+ */
 void TextInputWidget::backtrackCurrentPosition() {
     currentPosition--;
     if(currentPosition < 0) {
+        if(navHandler) {
+            navHandler->onLeavingWidgetLeft();
+        }
         currentPosition = strlen(text) - 1;
     }
 }
 
+
+/**
+ * @brief Sets the character at the current cursor position.
+ *
+ * @param c Character to insert.
+ */
 void TextInputWidget::setCharAtCurrentPosition(char c) {
-    if(currentPosition < 0 || currentPosition >= strlen(text)) {
+    if(currentPosition < 0 || currentPosition >= (int)strlen(text)) {
         log(LOG_ERROR, "TextInputWidget: current position out of bounds");
         return;
     }
-    text[currentPosition] = c;
+    text[currentPosition] = c; 
     text[strlen(text)] = '\0'; // Ensure null termination
 }
 
+/**
+ * @brief Handles hardware input for left/right button presses to navigate the cursor.
+ */
 void TextInputWidget::handleInput() {
-    if(hardware.isButtonPressed(0)) { // Assuming button 0 is the advance button
+    if(hardware.buttonStateChanged(0, true, true)) { 
         advanceCurrentPosition();
-    } else if(hardware.isButtonPressed(1)) { // Assuming button 1 is the backtrack button
+    } else if(hardware.buttonStateChanged(1, true, true)) {
         backtrackCurrentPosition();
     }
 }
 
+
+/**
+ * @brief Returns the type of widget for use in screen management or polymorphism.
+ *
+ * @return WidgetType::TextInputWidget
+ */
 WidgetType TextInputWidget::getType() const {
     return WidgetType::TextInputWidget;
 }

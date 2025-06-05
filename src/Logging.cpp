@@ -1,12 +1,28 @@
+/**
+ * @file Logging.cpp
+ * @brief Implements a simple logging utility for emitting serial debug messages with verbosity filtering.
+ *
+ * Supports verbosity levels (VERBOSE, INFO, WARNING, ERROR) and defers serial initialization
+ * to avoid early startup issues. Also uses visual feedback via LEDs if serial is unavailable.
+ */
+
 #include "Logging.h"
 #include "HardwareManager.h"
 
+/// Global timestamp of the last attempt to initialize the Serial interface.
 unsigned long lastSerialInitAttemptMillis = 0;
 
-/* -------------------------------------------------------------------------------------------------------------------- 
-   |  log -- logs a message to the Serial console with the given verbosity level (VERBOSE, INFO, WARNING, ERROR)      |
-   |  if it meets or exceeds the global LOG_LEVEL_THRESHOLD                                                           |
-   -------------------------------------------------------------------------------------------------------------------- */
+
+/**
+ * @brief Logs a message to the serial console with a specified verbosity level.
+ *
+ * If the verbosity level is equal to or higher than `LOG_LEVEL_THRESHOLD`, the message is formatted
+ * with a prefix (e.g., `[INFO]`) and printed to the Serial console. If Serial is not yet initialized,
+ * the method attempts to initialize it every 300 seconds and provides LED-based feedback.
+ *
+ * @param level LogLevel to categorize the message (e.g., LOG_INFO, LOG_ERROR).
+ * @param message The message to be logged.
+ */
 void log(LogLevel level, const String& message) {
     if (level < LOG_LEVEL_THRESHOLD) return;
 
@@ -41,10 +57,11 @@ void log(LogLevel level, const String& message) {
 }
 
 
-/* --------------------------------------------------------------
-   |  log -- convenience overload that logs a message at the     |
-   |  default LOG_INFO level                                     |
-   -------------------------------------------------------------- */
+/**
+ * @brief Convenience overload to log a message at the default `LOG_INFO` level.
+ *
+ * @param message The message to be logged.
+ */
 void log(const String& message) {
     log(LOG_INFO, message);
 }
