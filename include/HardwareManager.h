@@ -21,9 +21,9 @@
  * @brief Represents a parameter-value pair sent to external hardware along with a timestamp.
  */
 struct SentCommand {
-  uint8_t paramID;
-  uint8_t value;
-  unsigned long timestamp;
+  uint8_t paramID; ///< PG-800 parameter ID
+  uint8_t value; ///< Value associated with the parameter
+  unsigned long timestamp; ///< Timestamp when the command was sent
 };
 
 /**
@@ -46,15 +46,15 @@ private:
     uint8_t buttonStates[NUM_BUTTONS] = {0}; ///< Current digital button states
     uint8_t prevButtonStates[NUM_BUTTONS] = {0}; ///< Previous digital button states
 
-    uint8_t ledstate;
-    uint8_t prevLedState;
+    uint8_t ledstate;    ///< Bitfield representing current LED state
+    uint8_t prevLedState;///< Bitfield representing previous LED state
 
     // button statuses
-    bool bEncoderBtn = false;
-    bool bPrevEncoderBtn = false;
+    bool bEncoderBtn = false;     ///< Current encoder button state
+    bool bPrevEncoderBtn = false; ///< Previous encoder button state
 
     // encoder position
-    long lastEncoderPosition = 0;
+    long lastEncoderPosition = 0; ///< Last recorded rotary encoder position
 
     long lastPotScanTime = 0;
 
@@ -65,20 +65,20 @@ private:
     const uint8_t buttonPins[NUM_BUTTONS] = {PUSH_BTN_SW1_PIN,PUSH_BTN_SW2_PIN,PUSH_BTN_SW3_PIN,PUSH_BTN_SW4_PIN }; ///< GPIO pin numbers for each digital button
 
     std::vector<SentCommand> recentCommands;  ///< Rolling log of recently sent PG-800 commands
-    static volatile int bitIndex;
-    static volatile uint16_t sendBuffer;
+    static volatile int bitIndex; ///< Serial transmission bit index
+    static volatile uint16_t sendBuffer; ///< Serial transmission buffer
     knobConfig knobConfigurations[NUM_KNOBS];  ///< Current knob-to-parameter mapping
     knobConfig knobConfigurations_bkup[NUM_KNOBS]; ///< Backup mapping
     knobConfig lastKnobConfig; ///< Most recent configuration state
 
 
-    void gatherControlSettings(); // internal method that reads hardware and sets internal hardware structures
-    void gatherPotentiometerValues(); // internal method called by gatherControlSettings()
-    void setAddressPins(uint val);
-    void updateEncoder();
-    void writeLedRegistersToHardware();
-    static void onPG800ClockFall();
-    bool knobChanged(int i);
+    void gatherControlSettings(); ///< Reads all analog and digital inputs
+    void gatherPotentiometerValues(); ///< Reads and stores current potentiometer values
+    void setAddressPins(uint val); ///< Sets the MUX address lines
+    void updateEncoder(); ///< Reads and updates encoder state
+    void writeLedRegistersToHardware(); ///< Pushes current LED state to shift registers
+    static void onPG800ClockFall(); ///< ISR for clocking out serial bits
+    bool knobChanged(int i); ///< Detects change in knob value
 
 public:
     /**
@@ -114,6 +114,8 @@ public:
     
     /**
      * @brief Returns a normalized encoder value in range [0, divisor).
+     * @param divisor Maximum value for wrapping
+     * @return Normalized encoder count
      */
     long getEncoderZeroTo(long divisor);
 
@@ -129,6 +131,8 @@ public:
 
     /**
      * @brief Returns true if the specified button is currently pressed.
+     * @param index Button index (0 to NUM_BUTTONS-1)
+     * @return True if pressed
      */
     bool isButtonPressed(uint index);
 
@@ -142,21 +146,31 @@ public:
 
     /**
      * @brief Detects state changes on encoder button.
+     * @param upThenDown If true, require a full press/release cycle
+     * @param clearFlag If true, clear the change flag after detection
+     * @return True if the encoder button changed state
      */
     bool encoderSwitchStateChanged(bool upThenDown, bool clearFlag);
 
     /**
      * @brief Sets the LED colors for a button.
+     * @param buttonId Button index
+     * @param red Set red LED on/off
+     * @param green Set green LED on/off
      */
     void setButtonLights(uint buttonId, bool red, bool green);
 
     /**
      * @brief Checks if the green LED is lit for a given button.
+     * @param buttonId Button index
+     * @return True if green LED is on
      */
     bool greenIsLit(uint buttonId);
 
     /**
      * @brief Checks if the red LED is lit for a given button.
+     * @param buttonId Button index
+     * @return True if red LED is on
      */
     bool redIsLit(uint buttonId);
 
@@ -173,17 +187,20 @@ public:
     /**
      * @brief Sends a parameter command over the serial protocol.
      * @param paramID PG-800 parameter ID
-     * @param value Value to send
+     * @param value Value to send (0–127)
      */
     void sendParameter(uint8_t paramID, uint8_t value);
 
     /**
      * @brief Resets the encoder’s internal count to a specific value.
+     * @param i New count value
      */
     void resetEncoder(uint i);
 
     /**
      * @brief Retrieves the configuration associated with a given knob.
+     * @param i Knob index
+     * @return knobConfig structure
      */
     knobConfig getKnobConfiguration(uint i);
 
