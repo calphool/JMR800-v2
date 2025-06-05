@@ -1,7 +1,14 @@
-#pragma once
+/**
+ * @file defines.h
+ * @brief Hardware pin definitions and global constants for JMR800-V2.
+ *
+ * This header centralizes all board-level hardware definitions, including
+ * pin assignments for buttons, encoders, multiplexer select lines, and
+ * serial communication lines. It also defines constants for display geometry,
+ * button counts, and PG-800 command timing.
+ */
 
-#ifndef DEFINES_h
-#define DEFINES_h
+#pragma once
 
 
 // MUX enable pins
@@ -57,16 +64,16 @@
 #define OLED_RESET -1
 
 // used in send command functionality
-#define COMMAND_TIMEOUT  250
+#define COMMAND_TIMEOUT  250 
 
 #define NUM_KNOBS 56
 
-// knob configuration structure
+/**
+ * @typedef knobConfig
+ * @brief Structure representing a single knob’s control configuration.
+ */
 typedef struct {
-  char name[15];
-  uint8_t cmdbyte;
-  uint8_t typecode;
+  char name[15];  ///< Human-readable label (e.g., "VCA Level")
+  uint8_t cmdbyte; ///< Command byte to send to PG-800 (analogous to a Midi CC)
+  uint8_t typecode; ///< Reserved field or control type classification
 } knobConfig;
-
-
-#endif
