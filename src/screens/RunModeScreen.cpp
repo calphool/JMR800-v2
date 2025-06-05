@@ -1,38 +1,50 @@
+/**
+ * @file RunModeScreen.cpp
+ * @brief Implements the screen for displaying and managing widgets during normal controller operation.
+ *
+ * The RunModeScreen class is responsible for managing a collection of widgets that are rendered
+ * and updated when the controller is in "run" mode. It handles widget drawing, input forwarding,
+ * and dynamic screen layout.
+ */
+
 #include "screens/RunModeScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
 
-/* --------------------------------------------------------------
-   |  Constructor -- initializes internal state of the run screen |
-   -------------------------------------------------------------- */
+/**
+ * @brief Constructs a RunModeScreen instance and initializes internal state.
+ */
 RunModeScreen::RunModeScreen() {
   log(LOG_VERBOSE, "Inside RunModeScreen->constructor");
 }
 
-/* --------------------------------------------------------------
-   |  Destructor -- releases all dynamically allocated widgets    |
-   -------------------------------------------------------------- */
+/**
+ * @brief Destructor for RunModeScreen, which cleans up dynamically allocated widgets.
+ */
 RunModeScreen::~RunModeScreen() {
   log(LOG_VERBOSE, "Inside RunModeScreen->destructor");
 }
 
 
-/* --------------------------------------------------------------
-   |  addWidget -- registers a new widget with this screen for   |
-   |  coordinated input and draw operations                      |
-   -------------------------------------------------------------- */
+/**
+ * @brief Adds a new widget to the screen for coordinated management.
+ *
+ * @param w Pointer to a dynamically allocated Widget to register with this screen.
+ */
 void RunModeScreen::addWidget(Widget* w) {
   log(LOG_VERBOSE, "Inside RunModeScreen->addWidget()");
   widgets.push_back(w);
 }
 
 
-/* --------------------------------------------------------------
-   |  draw -- renders each registered widget in order onto the   |
-   |  current display buffer                                     |
-   -------------------------------------------------------------- */
+/**
+ * @brief Draws the screen contents, including all registered widgets.
+ *
+ * If the system has been running for fewer than 10 seconds, displays a boot screen.
+ * Otherwise, delegates rendering to each widget in order.
+ */
 void RunModeScreen::draw() {
   log(LOG_VERBOSE, "Inside RunModeScreen->draw()");
 
@@ -55,10 +67,11 @@ void RunModeScreen::draw() {
 }
 
 
-/* --------------------------------------------------------------
-   |  handleInput -- passes control to each widget to handle     |
-   |  input events such as knob movement or encoder clicks       |
-   -------------------------------------------------------------- */
+/**
+ * @brief Forwards input handling to all registered widgets.
+ *
+ * Called repeatedly in the main loop to process UI interaction.
+ */
 void RunModeScreen::handleInput() {
   log(LOG_VERBOSE, "Inside RunModeScreen->handleInput()");
 
@@ -68,10 +81,11 @@ void RunModeScreen::handleInput() {
 }
 
 
-/* --------------------------------------------------------------
-   |  onEnter -- called when the screen becomes active; used to  |
-   |  reset or refresh dynamic elements                          |
-   -------------------------------------------------------------- */
+/**
+ * @brief Called when this screen becomes the active screen.
+ *
+ * Sets up a minimal layout, including a screen title label and a decorative rectangle.
+ */
 void RunModeScreen::onEnter() {
   log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()");
     const char* labelText = "Run Mode";
@@ -85,10 +99,11 @@ void RunModeScreen::onEnter() {
 }
 
 
-/* --------------------------------------------------------------
-   |  onExit -- called when the screen is replaced or hidden;    |
-   |  cleanup or persist transient state here                    |
-   -------------------------------------------------------------- */
+/**
+ * @brief Called when the screen is exited or replaced.
+ *
+ * Responsible for deallocating all dynamic widgets and clearing the widget list.
+ */
 void RunModeScreen::onExit() {
   log(LOG_VERBOSE, "Inside RunModeScreen->onExit()");
 

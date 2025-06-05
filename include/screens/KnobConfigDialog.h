@@ -2,8 +2,9 @@
 #include <vector>
 #include "widgets/Widget.h"
 #include "screens/ModalDialog.h"
+#include "IWidgetNavHandler.h"
 
-class KnobConfigDialog : public ModalDialog {
+class KnobConfigDialog : public ModalDialog, public IWidgetNavHandler {
 
 private:
     std::vector<Widget*> widgets;
@@ -21,4 +22,6 @@ public:
     void onEnter() override;
     void onExit() override;
     void handleInput() override;
+    void onLeavingWidgetRight() override ;
+    void onLeavingWidgetLeft() override; 
 };

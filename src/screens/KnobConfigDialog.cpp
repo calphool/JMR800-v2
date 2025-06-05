@@ -18,6 +18,14 @@
         done = false;
     }
 
+    void KnobConfigDialog::onLeavingWidgetRight() {
+        hardware.setButtonLights(3, true, false);
+    }
+
+    void KnobConfigDialog::onLeavingWidgetLeft() {
+        hardware.setButtonLights(3, false, true);
+    }
+
 
     void KnobConfigDialog::draw() {
         for (Widget* w : widgets) {
@@ -32,11 +40,11 @@
     void KnobConfigDialog::onEnter() {
         char buf[8];
         strcpy(buf,"02x");
-        Widget* rectangle = new RectangleWidget(xoffset, yoffset, width, height, false, RectColor::WHITE); // outside boundary of this
+        Widget* rectangle = new RectangleWidget(xoffset, yoffset, width, height, false, RectColor::WHITE); 
         widgets.push_back(rectangle);
         Widget* textLabel = new TextLabelWidget("Knob Name:", xoffset + 2, yoffset + 2, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel);
-        Widget* textInputWidget = new TextInputWidget(hardware.getKnobConfiguration(0).name, xoffset + 2, yoffset + 10, width - 4);
+        Widget* textInputWidget = new TextInputWidget(hardware.getKnobConfiguration(0).name, xoffset + 2, yoffset + 10, width - 4, this);
         widgets.push_back(textInputWidget);
         Widget* textLabel2 = new TextLabelWidget("Command Byte:", xoffset + 2, yoffset + 20, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel2);
@@ -46,9 +54,9 @@
         widgets.push_back(textLabel3);
         Widget* eanw2 = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 30, 0, 255, buf);
         widgets.push_back(eanw2);
-        PushButtonWidget* b1 = new PushButtonWidget("Ok", xoffset + 2, yoffset + height - 20);
+        PushButtonWidget* b1 = new PushButtonWidget("Ok", xoffset + 2, yoffset + height - 10);
         widgets.push_back(b1);
-        PushButtonWidget* b2 = new PushButtonWidget("Cancel", xoffset + width - 50, yoffset + height - 20);
+        PushButtonWidget* b2 = new PushButtonWidget("Cancel", xoffset + width - 50, yoffset + height - 10);
         widgets.push_back(b2);
     }
  

@@ -1,3 +1,11 @@
+/**
+ * @file HardwareManager.cpp
+ * @brief Implements the HardwareManager class which controls all low-level hardware interfaces.
+ * 
+ * This includes initialization of ADC, encoder, digital buttons, shift registers, MUX selection logic,
+ * EEPROM configuration storage, and serial parameter transmission to the Roland JX-8P synthesizer.
+ */
+
 #include <EEPROM.h>
 #include "HardwareManager.h"
 #include "defines.h"
@@ -11,10 +19,12 @@ volatile int HardwareManager::bitIndex = -1;
 volatile uint16_t HardwareManager::sendBuffer = 0;
 
 
-/* --------------------------------------------------------------
-   |  init -- performs one-time initialization of all hardware   |
-   |  subsystems: ADC, encoder, buttons, shift registers, MUXes |
-   -------------------------------------------------------------- */
+/**
+ * @brief Initializes all hardware subsystems.
+ * 
+ * Configures pin modes, initializes the encoder, sets up ADC parameters, and attaches necessary interrupts.
+ * Also initializes the MUX channel state and LED register system.
+ */
 void HardwareManager::init() {
     log(LOG_VERBOSE, "Entering HardwareManager->init()");
     
@@ -77,13 +87,19 @@ void HardwareManager::init() {
     log(LOG_INFO, "Initialized.");
 }
 
+/**
+ * @brief Destructor for HardwareManager, responsible for freeing allocated memory.
+ */
 HardwareManager::~HardwareManager() {
   delete encoderKnob;
 }
 
-/* .------------------------------------------------------------------------------------------.
-   |  getEncoderZeroTo(x) - Returns a value from 0 to X based on encoder position             |
-   '------------------------------------------------------------------------------------------' */
+/**
+ * @brief Retrieves the encoder position as an integer scaled to a 0..divisor range.
+ * 
+ * @param divisor Maximum number for the scaled value.
+ * @return long Scaled encoder position.
+ */
 long HardwareManager::getEncoderZeroTo(long divisor) {
     long i = (lastEncoderPosition>>2) % divisor; 
     if(i < 0)
@@ -94,9 +110,11 @@ long HardwareManager::getEncoderZeroTo(long divisor) {
     return i;
 }
 
-/* .-------------------------------------------------------------------.
-   |  loadKnobs() - loads knob settings from EEPROM                    |
-   '-------------------------------------------------------------------' */
+/**
+ * @brief Loads knob configuration data from EEPROM.
+ * 
+ * Restores knob mappings and names from persistent storage, padding names if necessary.
+ */
 void HardwareManager::loadKnobs() {
   for (int i = 0; i < NUM_KNOBS; i++) {
     int addr = i * sizeof(knobConfig);
@@ -108,9 +126,9 @@ void HardwareManager::loadKnobs() {
   memcpy(knobConfigurations_bkup, knobConfigurations, sizeof(knobConfigurations));
 }
 
-/* .-------------------------------------------------------------------.
-   |  saveKnobs() - saves knob settings to EEPROM if they have changed |
-   '-------------------------------------------------------------------' */
+/**
+ * @brief Saves knob configurations to EEPROM only if modified.
+ */
 void HardwareManager::saveKnobs() {
   for (int i = 0; i < NUM_KNOBS; i++) {
     while(strlen(knobConfigurations[i].name) < 14)
@@ -128,16 +146,21 @@ void HardwareManager::saveKnobs() {
   memcpy(knobConfigurations_bkup, knobConfigurations, sizeof(knobConfigurations));
 }
 
-// check if the knobconfiguration has changed at this location
+
+/**
+ * @brief Compares current and backup knob configurations to detect changes.
+ * 
+ * @param i Index of the knob configuration to compare.
+ * @return true if the configuration has changed.
+ */
 bool HardwareManager::knobChanged(int i) {
   return memcmp(&knobConfigurations[i], &knobConfigurations_bkup[i], sizeof(knobConfig)) != 0;
 }
 
 
-/* --------------------------------------------------------------
-   |  loop -- periodically invokes control polling logic         |
-   |  according to the configured polling interval               |
-   -------------------------------------------------------------- */
+/**
+ * @brief Main loop that periodically polls input states.
+ */
 void HardwareManager::loop() {
     if (millis() - lastPollTime < hardwareManagerPollIntervalMS) return;
     lastPollTime = millis();
@@ -154,10 +177,12 @@ static const uint knobXformer[] = {
 };
 
 
-/* --------------------------------------------------------------
-   |  getKnobValue -- returns a smoothed ADC value for the       |
-   |  specified logical knob index, transformed through wiring   |
-   -------------------------------------------------------------- */
+/**
+ * @brief Returns a transformed and smoothed ADC value for the specified knob.
+ * 
+ * @param knobIX Logical knob index.
+ * @return int Smoothed value from 0-255.
+ */
 int HardwareManager::getKnobValue(uint knobIX) {
   knobIX = knobXformer[knobIX];              // transform this index (necessary because of wiring) 
   uint mux = knobIX >> 4;
@@ -166,10 +191,12 @@ int HardwareManager::getKnobValue(uint knobIX) {
   return 255-(this->AnalogValues[mux_ix][mux]);
 }
 
-/* --------------------------------------------------------------
-   |  isButtonPressed -- returns debounced state of a button     |
-   |  specified by logical index (0 through NUM_BUTTONS - 1)     |
-   -------------------------------------------------------------- */
+/**
+ * @brief Checks whether a specified button is currently pressed.
+ * 
+ * @param index Button index.
+ * @return true if pressed, false otherwise.
+ */
 bool HardwareManager::isButtonPressed(uint index) {
     if(index >= NUM_BUTTONS) {
       log(LOG_ERROR, "HardwareManager::isButtonPressed() invoked with index larger than number of defined buttons.");
@@ -180,10 +207,15 @@ bool HardwareManager::isButtonPressed(uint index) {
 }
 
 
-/* --------------------------------------------------------------
-   |  gatherControlSettings -- performs a full scan of           |
-   |  potentiometers, buttons, and encoder state for UI polling  |
-   -------------------------------------------------------------- */
+/**
+ * @brief  Polls all control surfaces: knobs, buttons, encoder - performs a full scan of potentiometers, buttons, and 
+ * encoder state for UI polling
+ * 
+ * This method reads the current state of all buttons, the encoder switch, and the potentiometer values.
+ * It updates the internal state variables accordingly, including previous states for change detection.
+ * It also updates the encoder position and checks for any changes in button states.
+ * This method is typically called periodically to gather the latest control settings.
+ */
 void HardwareManager::gatherControlSettings() {
   this->gatherPotentiometerValues();
 
@@ -198,6 +230,13 @@ void HardwareManager::gatherControlSettings() {
   this->updateEncoder();  
 }
 
+
+/**
+ * @brief Returns true if the red LED is currently lit for the given button.
+ * 
+ * @param buttonId Logical button ID.
+ * @return true if lit.
+ */
 bool HardwareManager::redIsLit(uint buttonId) {
   if(buttonId >= NUM_BUTTONS) {
     log(LOG_ERROR, "invalid button number passed to HardwareManager::redIsLit()");
@@ -209,6 +248,13 @@ bool HardwareManager::redIsLit(uint buttonId) {
   return (ledstate & (1 << bitPos)) != 0;
 }
 
+
+/**
+ * @brief Returns true if the green LED is currently lit for the given button.
+ * 
+ * @param buttonId Logical button ID.
+ * @return true if lit.
+ */
 bool HardwareManager::greenIsLit(uint buttonId) {
   if(buttonId >= NUM_BUTTONS) {
     log(LOG_ERROR, "invalid button number passed to HardwareManager::greenIsLit()");
@@ -220,6 +266,14 @@ bool HardwareManager::greenIsLit(uint buttonId) {
   return (ledstate & (1 << bitPos)) != 0;
 }
 
+
+/**
+ * @brief Checks if the encoder switch changed state in the specified direction.
+ * 
+ * @param upThenDown Whether to detect a falling or rising edge.
+ * @param clearFlag Whether to reset internal edge-tracking state.
+ * @return true if state change matches the condition.
+ */
 bool HardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag) {
   if(bEncoderBtn != bPrevEncoderBtn) {
     if(upThenDown) {
@@ -238,6 +292,15 @@ bool HardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag)
   return false;
 }
 
+
+/**
+ * @brief Checks if a specified button changed state in the given direction.
+ * 
+ * @param index Button index.
+ * @param upThenDown Detect up->down or down->up transition.
+ * @param clearFlag Whether to clear the state-tracking flag.
+ * @return true if transition occurred.
+ */
 bool HardwareManager::buttonStateChanged(uint index, bool upThenDown, bool clearFlag) {
   if(index >= NUM_BUTTONS) {
     log(LOG_ERROR, "invalid button number passed to HardwareManager::buttonStateChanged()");
@@ -263,10 +326,14 @@ bool HardwareManager::buttonStateChanged(uint index, bool upThenDown, bool clear
 }
 
 
-/* --------------------------------------------------------------
-   |  gatherPotentiometerValues -- iterates through all MUX      |
-   |  channels to update smoothed ADC values for each knob       |
-   -------------------------------------------------------------- */
+/**
+ * @brief Scans all multiplexer channels and updates smoothed analog values.
+ * 
+ * iterates through all MUX channels to update smoothed ADC values for each knob
+ * This method is called periodically to gather the latest potentiometer values.
+ * It reads each channel, applies smoothing, and stores the results in AnalogValues.
+ * It also maintains a backup of the last values for comparison.
+ */
 void HardwareManager::gatherPotentiometerValues() {
   iGatherCtr++;
   lastPotScanTime = millis();
@@ -286,10 +353,12 @@ void HardwareManager::gatherPotentiometerValues() {
   }
 }
 
-/* --------------------------------------------------------------
-   |  setAddressPins -- writes a 4-bit address to the MUX        |
-   |  selector pins to select an analog channel                  |
-   -------------------------------------------------------------- */
+
+/**
+ * @brief Writes a 4-bit address to the MUX selector pins to select an analog channel
+ * 
+ * @param val 4-bit address.
+ */
 void HardwareManager::setAddressPins(uint val) {
   if(val & 0x01) digitalWrite(S0_PIN, HIGH); else digitalWrite(S0_PIN, LOW);
   if(val & 0x02) digitalWrite(S1_PIN, HIGH); else digitalWrite(S1_PIN, LOW);
@@ -298,16 +367,19 @@ void HardwareManager::setAddressPins(uint val) {
   delayMicroseconds(5);
 }
 
-
+/**
+ * @brief Resets the encoder to a specified position.
+ * 
+ * @param i New encoder value.
+ */
 void HardwareManager::resetEncoder(uint i) {
   encoderKnob->write(i);
 }
 
 
-/* --------------------------------------------------------------
-   |  updateEncoder -- reads and normalizes the encoder position |
-   |  and logs directional movement (CW / CCW) if changed        |
-   -------------------------------------------------------------- */
+/**
+ * @brief Reads and updates the encoder position, logs movement.
+ */
 void HardwareManager::updateEncoder() {
   long newPosition = encoderKnob->read();
 
@@ -327,15 +399,19 @@ void HardwareManager::updateEncoder() {
   }
 }
 
+/**
+ * @brief Gets the raw encoder value.
+ * 
+ * @return long Internal encoder position.
+ */
 long HardwareManager::getEncoderValue() {
   return lastEncoderPosition;
 }
 
 
-/* --------------------------------------------------------------
-   |  setLEDs -- shifts out a single 8-bit value to the button   |
-   |  LED shift register to update their visual state            |
-   -------------------------------------------------------------- */
+/**
+ * @brief Sends LED register data to the hardware shift register.
+ */
 void HardwareManager::writeLedRegistersToHardware() {
   // make sure to check Serial before doing any logging here.  This is a low level method that gets used 
   // before we know that logging is available.
@@ -358,11 +434,13 @@ void HardwareManager::writeLedRegistersToHardware() {
 }
 
 
-/* --------------------------------------------------------------
-   |  sendParameter -- encodes and queues a PG-800-style message |
-   |  for bit-serialized transmission to the JX-8P synth         |
-   |  with deduplication and timeout control                     |
-   -------------------------------------------------------------- */
+
+/**
+ * @brief encodes and queues a PG-800-style message for bit-serialized transmission to the JX-8P synth with deduplication and timeout control
+ * 
+ * @param paramID JX-8P parameter ID.
+ * @param value Parameter value.
+ */
 void HardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
   unsigned long now = millis();
 
@@ -403,11 +481,15 @@ void HardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
   interrupts();
 }
 
-/* --------------------------------------------------------------
-   |  onPG800ClockFall -- interrupt routine triggered by a       |
-   |  falling clock edge, used to clock out serial bits one by   |
-   |  one to the JX-8P using inverted logic signaling            |
-   -------------------------------------------------------------- */
+
+/**
+ * @brief interrupt routine triggered by a falling clock edge, used to clock out serial bits one by one to the JX-8P using inverted logic signaling
+ * 
+ * This function is called when the clock pin goes low, indicating that the next bit should be sent.
+ * It shifts out the next bit from the sendBuffer and updates the DATA_OUT_PIN accordingly.
+ * If all bits have been sent, it resets the bitIndex and sets the READYOUT_PIN low to indicate the end of transmission.
+ * This function is designed to be called in an interrupt context, so it should be as fast as possible.
+ */
 void HardwareManager::onPG800ClockFall() {
   if (bitIndex < 0) return;  // Not currently sending
 
@@ -425,18 +507,33 @@ void HardwareManager::onPG800ClockFall() {
   }
 }
 
+/**
+ * @brief Returns the current state of the encoder switch.
+ */
 bool HardwareManager::getEncoderSwitchStatus() {
   return bEncoderBtn;
 }
 
+/**
+ * @brief Saves the current LED state to a backup register.
+ */
 void HardwareManager::saveLedState() {
   prevLedState = ledstate;
 }
 
+/**
+ * @brief Restores the LED state from the previously saved value.
+ */
 void HardwareManager::restoreLedState() {
   ledstate = prevLedState;
 }
 
+/**
+ * @brief Retrieves the configuration of a knob at a given index.
+ * 
+ * @param index Knob index.
+ * @return knobConfig Copy of the configuration struct.
+ */
 knobConfig HardwareManager::getKnobConfiguration(uint index) {
   if(index >= NUM_KNOBS) {
     log(LOG_ERROR, "HardwareManager::getKnobConfiguration() invoked with an invalid knob index");
@@ -445,7 +542,13 @@ knobConfig HardwareManager::getKnobConfiguration(uint index) {
   return knobConfigurations[index];
 }
 
-
+/**
+ * @brief Sets the red and green lights of a button by index.
+ * 
+ * @param buttonId Logical ID of the button.
+ * @param red Whether to turn on the red LED.
+ * @param green Whether to turn on the green LED.
+ */
 void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
   // all logging here must check whether Serial is defined because this 
   // code gets used in the logging setup

@@ -1,3 +1,11 @@
+/**
+ * @file PotentiometerKnobWidget.cpp
+ * @brief Implements the PotentiometerKnobWidget class, which visualizes a physical knob's current state.
+ *
+ * This widget provides a circular knob display with an arrow indicating value.
+ * It supports visual highlighting and links to actual analog knob input on the hardware.
+ */
+
 #include "widgets/PotentiometerKnobWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
@@ -5,29 +13,55 @@
 
 
 
-/* ------------------------------------------------------------------------------------------------
-   |  Constructor()                                                                               |
-   ------------------------------------------------------------------------------------------------ */
+/**
+ * @brief Constructs a PotentiometerKnobWidget instance for a specific knob.
+ *
+ * @param _knobId Hardware knob index this widget reflects.
+ * @param x X-coordinate of the widget.
+ * @param y Y-coordinate of the widget.
+ */
 PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : KnobWidget(x, y),
       knobId(_knobId), value(0) {
   log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor");
 }
 
+
+/**
+ * @brief Returns the ID of the knob this widget is linked to.
+ *
+ * @return int The knob ID.
+ */
 int PotentiometerKnobWidget::getKnobId() {
     return knobId;
 }
 
+
+/**
+ * @brief Sets the value shown by the widget.
+ *
+ * @param v A value between 0 and 255 representing the knob's current position.
+ */
 void PotentiometerKnobWidget::setValue(uint8_t v) {
     value = v;
 }
 
+
+/**
+ * @brief Sets whether this widget is visually highlighted.
+ *
+ * @param h true to highlight, false to display normally.
+ */
 void PotentiometerKnobWidget::setHighlighted(bool h) {
     bHighlighted = h;
 }
 
-/* ------------------------------------------------------------------------------------------------
-   |  drawArrow() - draws the arrow on potentiometer knobs                                        |
-   ------------------------------------------------------------------------------------------------ */
+
+
+/**
+ * @brief Draws an arrow on the knob indicating position in degrees.
+ *
+ * @param deg Angle in degrees (0–359) used to compute arrow direction.
+ */
 void PotentiometerKnobWidget::drawArrow(int deg) {
     log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->drawArrow()");
 
@@ -44,9 +78,11 @@ void PotentiometerKnobWidget::drawArrow(int deg) {
 }
 
 
-/* ------------------------------------------------------------------------------------------------
-   |  draw() - draws the knob and highlights it if that is set                                    |
-   ------------------------------------------------------------------------------------------------ */
+/**
+ * @brief Draws the full potentiometer knob on the display.
+ *
+ * Includes bezel, fill, and optional highlight circle. Arrow angle reflects value.
+ */
 void PotentiometerKnobWidget::draw() {
     log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->draw()");
     toggle = !toggle;
@@ -73,9 +109,11 @@ void PotentiometerKnobWidget::draw() {
     }
 }
 
-/* ------------------------------------------------------------------------------------------------
-   |  handleInput() - attaches this widget's value to the underlying hardware based on its knobId |
-   ------------------------------------------------------------------------------------------------ */
+/**
+ * @brief Updates the widget value from the actual hardware knob.
+ *
+ * Reads analog value via HardwareManager and maps it to the 0–255 range.
+ */
 void PotentiometerKnobWidget::handleInput() {
     if(knobId > NUM_KNOBS || knobId < 0) {
         char buf[128];
@@ -87,6 +125,11 @@ void PotentiometerKnobWidget::handleInput() {
     setValue(hardware.getKnobValue(knobId));
 }
 
+/**
+ * @brief Returns the widget type identifier.
+ *
+ * @return WidgetType::PotentiometerKnob
+ */
 WidgetType PotentiometerKnobWidget::getType() const {
     return WidgetType::PotentiometerKnob;
 }
