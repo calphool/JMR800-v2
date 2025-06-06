@@ -1,0 +1,5 @@
+<map id="PushButtonWidget" name="PushButtonWidget">
+<area shape="rect" id="Node000001" title="On&#45;screen momentary button with press state and optional encoder focus (like an OK or Cancel button)." alt="" coords="5,79,136,105"/>
+<area shape="rect" id="Node000002" href="$class_widget.html" title="Base class for all on&#45;screen widgets." alt="" coords="39,5,102,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,46,73,79,68,79,68,46"/>
+</map>

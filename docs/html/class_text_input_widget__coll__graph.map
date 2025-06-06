@@ -1,0 +1,7 @@
+<map id="TextInputWidget" name="TextInputWidget">
+<area shape="rect" id="Node000001" title="Widget that displays and allows editing of a fixed&#45;length text string." alt="" coords="40,102,156,128"/>
+<area shape="rect" id="Node000002" href="$class_widget.html" title="Base class for all on&#45;screen widgets." alt="" coords="5,5,68,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,43,92,100,88,103,50,46"/>
+<area shape="rect" id="Node000003" href="$class_i_widget_nav_handler.html" title="Interface for responding to widget navigation events." alt="" coords="92,5,227,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,46,108,103,103,100,141,43"/>
+</map>

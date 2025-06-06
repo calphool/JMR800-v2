@@ -1,0 +1,5 @@
+<map id="HardwareManager::updateEncoder" name="HardwareManager::updateEncoder">
+<area shape="rect" id="Node000001" title="Reads and updates encoder state." alt="" coords="5,5,228,31"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="276,5,314,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,16,260,16,260,21,228,21"/>
+</map>

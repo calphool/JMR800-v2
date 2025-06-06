@@ -1,0 +1,5 @@
+<map id="ConfigScreen::~ConfigScreen" name="ConfigScreen::~ConfigScreen">
+<area shape="rect" id="Node000001" title="Destructor." alt="" coords="5,5,201,31"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="249,5,287,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,16,233,16,233,21,201,21"/>
+</map>

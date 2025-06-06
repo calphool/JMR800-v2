@@ -1,0 +1,5 @@
+<map id="ControlsTestScreen::ControlsTestScreen" name="ControlsTestScreen::ControlsTestScreen">
+<area shape="rect" id="Node000001" title="Constructs a new ControlsTestScreen instance." alt="" coords="5,5,150,46"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="198,13,236,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,23,182,23,182,28,150,28"/>
+</map>

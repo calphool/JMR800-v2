@@ -1,0 +1,5 @@
+<map id="HardwareManager::gatherPotentiometerValues" name="HardwareManager::gatherPotentiometerValues">
+<area shape="rect" id="Node000001" title="Reads and stores current potentiometer values." alt="" coords="5,5,258,46"/>
+<area shape="rect" id="Node000002" href="$class_hardware_manager.html#aef067455e10624433ddd360794012151" title="Sets the MUX address lines." alt="" coords="306,13,533,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,23,290,23,290,28,258,28"/>
+</map>

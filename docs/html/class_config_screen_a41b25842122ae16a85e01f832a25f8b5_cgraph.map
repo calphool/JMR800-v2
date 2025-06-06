@@ -1,0 +1,5 @@
+<map id="ConfigScreen::draw" name="ConfigScreen::draw">
+<area shape="rect" id="Node000001" title="Draws all widgets and active dialogs." alt="" coords="5,5,142,31"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="190,5,228,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,174,16,174,21,142,21"/>
+</map>

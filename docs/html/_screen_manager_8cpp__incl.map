@@ -1,0 +1,16 @@
+<map id="src/ScreenManager.cpp" name="src/ScreenManager.cpp">
+<area shape="rect" id="Node000001" title="Implements the ScreenManager class for managing the OLED display and screen lifecycle." alt="" coords="256,5,414,31"/>
+<area shape="rect" id="Node000002" href="$_screen_manager_8h.html" title="Declares the ScreenManager class responsible for UI screen control on the OLED display." alt="" coords="163,79,285,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="317,34,257,73,254,68,314,29"/>
+<area shape="rect" id="Node000005" href="$defines_8h.html" title="Hardware pin definitions and global constants for JMR800&#45;V2." alt="" coords="310,153,384,178"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="338,31,347,137,342,137,333,32"/>
+<area shape="rect" id="Node000006" href="$_logging_8h.html" title="Lightweight logging utility for serial output in the JMR800&#45;V2 project." alt="" coords="372,79,449,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="349,30,389,66,385,70,346,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,139,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="199,108,113,148,111,143,197,103"/>
+<area shape="rect" id="Node000004" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="162,153,286,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="227,105,227,137,221,137,221,105"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="402,107,369,143,365,139,398,103"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="408,153,485,178"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="419,104,436,138,431,140,414,106"/>
+</map>

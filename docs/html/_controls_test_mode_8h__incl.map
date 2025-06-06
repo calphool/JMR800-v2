@@ -1,0 +1,23 @@
+<map id="include/modes/ControlsTestMode.h" name="include/modes/ControlsTestMode.h">
+<area shape="rect" id="Node000001" title="Application mode for verifying control inputs in real&#45;time." alt="" coords="72,5,256,46"/>
+<area shape="rect" id="Node000002" href="$_app_mode_8h.html" title="Abstract interface for application mode behavior." alt="" coords="5,94,136,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,48,98,86,95,82,139,44"/>
+<area shape="rect" id="Node000004" href="$_controls_test_screen_8h.html" title="Diagnostic screen for visualizing the state of all physical controls." alt="" coords="160,94,357,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="189,44,234,82,231,86,186,48"/>
+<area shape="rect" id="Node000003" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="9,168,132,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="73,120,73,152,68,152,68,120"/>
+<area shape="poly" id="edge12_Node000004_Node000003" title=" " alt="" coords="228,123,118,164,116,159,226,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="151,241,262,267"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="240,122,216,142,197,169,193,198,198,226,193,227,187,198,192,167,212,138,237,118"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="317,241,450,267"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="344,118,426,137,459,150,481,166,486,177,487,188,476,207,456,223,431,237,428,232,453,219,472,203,481,186,481,178,476,169,457,155,424,142,343,123"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="207,168,264,193"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="257,121,247,153,242,152,252,119"/>
+<area shape="rect" id="Node000008" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="487,241,609,267"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="358,112,432,130,468,145,502,166,526,194,542,225,537,228,522,197,498,170,466,150,430,135,357,117"/>
+<area shape="rect" id="Node000009" href="$_text_label_widget_8h.html" title="Displays static or dynamic text labels on the OLED UI." alt="" coords="288,168,466,193"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="280,118,345,157,343,162,277,122"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="349,196,250,237,248,233,347,191"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="381,193,384,226,379,226,376,194"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="407,191,506,233,504,237,405,196"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="ModalDialog" name="ModalDialog">
+<area shape="rect" id="Node000001" title="Base class for modal overlays requiring user dismissal or confirmation." alt="" coords="22,79,115,105"/>
+<area shape="rect" id="Node000003" href="$class_knob_config_dialog.html" title="Modal dialog for configuring a knob’s control parameters." alt="" coords="5,153,132,178"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="71,120,71,152,66,152,66,120"/>
+<area shape="rect" id="Node000002" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="37,5,100,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,46,71,79,66,79,66,46"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="RectangleWidget::draw" name="RectangleWidget::draw">
+<area shape="rect" id="Node000001" title="Draws the rectangle on the display." alt="" coords="5,31,163,56"/>
+<area shape="rect" id="Node000002" href="$class_screen_manager.html#a218ba351496671649bed8c17be7910b1" title="Provides access to the static OLED display instance." alt="" coords="211,5,393,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,32,195,28,195,33,163,37"/>
+<area shape="rect" id="Node000003" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="441,31,479,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="163,41,426,41,426,46,163,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,29,426,35,425,41,386,34"/>
+</map>

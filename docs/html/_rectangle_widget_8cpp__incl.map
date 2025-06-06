@@ -1,0 +1,20 @@
+<map id="src/widgets/RectangleWidget.cpp" name="src/widgets/RectangleWidget.cpp">
+<area shape="rect" id="Node000001" title="Implements the RectangleWidget class for drawing rectangular shapes with optional fill and highlight ..." alt="" coords="262,5,479,31"/>
+<area shape="rect" id="Node000002" href="$_rectangle_widget_8h.html" title="Displays a static rectangle, optionally filled, as part of the OLED UI." alt="" coords="104,79,285,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="342,34,239,75,237,70,340,29"/>
+<area shape="rect" id="Node000005" href="$_screen_manager_8h.html" title="Declares the ScreenManager class responsible for UI screen control on the OLED display." alt="" coords="309,79,432,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="373,31,373,63,368,63,368,31"/>
+<area shape="rect" id="Node000007" href="$_logging_8h.html" title="Lightweight logging utility for serial output in the JMR800&#45;V2 project." alt="" coords="456,79,533,105"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="393,29,462,69,459,73,390,34"/>
+<area shape="rect" id="Node000003" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="5,153,128,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="174,108,103,147,100,142,171,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="152,153,285,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="201,104,212,137,207,139,196,106"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="346,108,259,148,257,143,344,103"/>
+<area shape="rect" id="Node000006" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="309,153,432,178"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="373,105,373,137,368,137,368,105"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="456,153,533,178"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="497,105,497,137,492,137,492,105"/>
+<area shape="rect" id="Node000009" href="$defines_8h.html" title="Hardware pin definitions and global constants for JMR800&#45;V2." alt="" coords="557,153,632,178"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="513,103,567,141,564,145,510,107"/>
+</map>

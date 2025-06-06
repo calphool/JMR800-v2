@@ -1,0 +1,14 @@
+<map id="include/widgets/ButtonWidget.h" name="include/widgets/ButtonWidget.h">
+<area shape="rect" id="Node000001" title="Represents an on&#45;screen button widget with LED state indicators." alt="" coords="393,5,599,31"/>
+<area shape="rect" id="Node000002" href="$_shared_control_screen_utility_8h.html" title="Provides utility functions for initializing common screen layouts." alt="" coords="244,79,444,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="461,40,383,81,380,76,459,36"/>
+<area shape="rect" id="Node000004" href="$_controls_test_screen_8cpp.html" title="Implements a screen for testing all physical controls: knobs, buttons, and encoder." alt="" coords="427,168,594,208"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="501,46,512,167,506,168,496,47"/>
+<area shape="rect" id="Node000006" href="$_button_widget_8cpp.html" title="Implements the ButtonWidget class, representing a physical button with LED indicators." alt="" coords="534,86,730,112"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="531,37,612,84,610,88,528,41"/>
+<area shape="rect" id="Node000003" href="$_config_screen_8cpp.html" title="Implements the configuration screen for knob mapping and diagnostics." alt="" coords="5,175,203,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,128,139,177,137,172,274,123"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="396,125,474,165,472,170,394,129"/>
+<area shape="rect" id="Node000005" href="$_shared_control_screen_utility_8cpp.html" title="Provides layout helper utilities for constructing shared UI control screens." alt="" coords="226,168,403,208"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="335,135,324,168,319,166,330,134"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="include/widgets/KnobWidget.h" name="include/widgets/KnobWidget.h">
+<area shape="rect" id="Node000001" title="Base class for knob&#45;style widgets in the JMR800&#45;V2 interface." alt="" coords="44,5,241,31"/>
+<area shape="rect" id="Node000002" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="5,79,128,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,33,92,70,88,66,128,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="152,79,285,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,30,197,66,193,70,154,33"/>
+</map>

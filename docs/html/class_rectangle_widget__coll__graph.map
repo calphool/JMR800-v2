@@ -1,0 +1,5 @@
+<map id="RectangleWidget" name="RectangleWidget">
+<area shape="rect" id="Node000001" title="Renders a static rectangle on the OLED screen." alt="" coords="5,79,127,105"/>
+<area shape="rect" id="Node000002" href="$class_widget.html" title="Base class for all on&#45;screen widgets." alt="" coords="35,5,97,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,46,69,79,63,79,63,46"/>
+</map>

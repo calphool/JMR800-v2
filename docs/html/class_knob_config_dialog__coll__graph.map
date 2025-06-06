@@ -1,0 +1,9 @@
+<map id="KnobConfigDialog" name="KnobConfigDialog">
+<area shape="rect" id="Node000001" title="Modal dialog for configuring a knob’s control parameters." alt="" coords="58,153,184,178"/>
+<area shape="rect" id="Node000002" href="$class_modal_dialog.html" title="Base class for modal overlays requiring user dismissal or confirmation." alt="" coords="5,79,99,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,114,112,150,108,154,72,117"/>
+<area shape="rect" id="Node000003" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="21,5,83,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="55,46,55,79,49,79,49,46"/>
+<area shape="rect" id="Node000004" href="$class_i_widget_nav_handler.html" title="Interface for responding to widget navigation events." alt="" coords="123,79,258,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="171,117,135,154,131,150,167,114"/>
+</map>

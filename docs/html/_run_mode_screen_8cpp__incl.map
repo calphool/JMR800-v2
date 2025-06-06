@@ -1,0 +1,34 @@
+<map id="src/screens/RunModeScreen.cpp" name="src/screens/RunModeScreen.cpp">
+<area shape="rect" id="Node000001" title="Implements the screen for displaying and managing widgets during normal controller operation." alt="" coords="336,5,552,31"/>
+<area shape="rect" id="Node000002" href="$_run_mode_screen_8h.html" title="Represents the active runtime screen for interacting with control widgets." alt="" coords="152,79,331,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="410,34,291,76,289,71,409,29"/>
+<area shape="rect" id="Node000008" href="$_screen_manager_8h.html" title="Declares the ScreenManager class responsible for UI screen control on the OLED display." alt="" coords="5,79,128,105"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="380,34,143,79,142,73,379,29"/>
+<area shape="rect" id="Node000009" href="$_logging_8h.html" title="Lightweight logging utility for serial output in the JMR800&#45;V2 project." alt="" coords="762,79,840,105"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="510,29,747,76,746,81,509,34"/>
+<area shape="rect" id="Node000012" href="$_rectangle_widget_8h.html" title="Displays a static rectangle, optionally filled, as part of the OLED UI." alt="" coords="557,79,738,105"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="479,29,600,71,598,76,478,34"/>
+<area shape="rect" id="Node000013" href="$_text_label_widget_8h.html" title="Displays static or dynamic text labels on the OLED UI." alt="" coords="355,79,533,105"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="446,31,446,63,441,63,441,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="239,153,350,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="252,103,278,138,274,142,248,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="374,153,508,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="276,103,394,144,392,150,274,108"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="158,153,215,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="234,107,207,142,203,139,230,103"/>
+<area shape="rect" id="Node000006" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="532,153,654,178"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="302,103,519,146,518,152,301,108"/>
+<area shape="rect" id="Node000007" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="9,153,132,178"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="213,108,114,149,112,144,211,103"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="128,102,363,147,362,152,127,107"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="70,105,72,137,66,137,64,105"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="820,153,897,178"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="813,103,841,139,837,142,809,107"/>
+<area shape="rect" id="Node000011" href="$defines_8h.html" title="Hardware pin definitions and global constants for JMR800&#45;V2." alt="" coords="721,153,796,178"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="796,106,776,141,771,138,792,104"/>
+<area shape="poly" id="edge15_Node000012_Node000004" title=" " alt="" coords="614,108,491,150,490,145,612,103"/>
+<area shape="poly" id="edge14_Node000012_Node000006" title=" " alt="" coords="641,107,614,142,609,139,637,103"/>
+<area shape="poly" id="edge18_Node000013_Node000003" title=" " alt="" coords="420,108,335,148,332,143,417,103"/>
+<area shape="poly" id="edge19_Node000013_Node000004" title=" " alt="" coords="446,105,445,137,440,137,441,105"/>
+<area shape="poly" id="edge17_Node000013_Node000006" title=" " alt="" coords="470,103,555,143,553,148,468,108"/>
+</map>

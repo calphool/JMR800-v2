@@ -1,0 +1,13 @@
+<map id="HardwareManager::loop" name="HardwareManager::loop">
+<area shape="rect" id="Node000001" title="Main polling loop, throttled to a fixed interval." alt="" coords="5,42,165,68"/>
+<area shape="rect" id="Node000002" href="$class_hardware_manager.html#a4a7cab7ae0b5071b0557905000f46806" title="Reads all analog and digital inputs." alt="" coords="213,35,426,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,52,197,52,197,58,165,58"/>
+<area shape="rect" id="Node000003" href="$class_hardware_manager.html#ab2810a18f676cb33b5696d59a61caf1b" title="Reads and stores current potentiometer values." alt="" coords="474,5,726,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="426,41,458,38,459,43,427,46"/>
+<area shape="rect" id="Node000005" href="$class_hardware_manager.html#a04393ce5c07558f919f4473049543260" title="Reads and updates encoder state." alt="" coords="489,70,711,96"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="427,63,474,68,473,73,426,68"/>
+<area shape="rect" id="Node000004" href="$class_hardware_manager.html#aef067455e10624433ddd360794012151" title="Sets the MUX address lines." alt="" coords="774,13,1002,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="727,23,758,23,758,28,727,28"/>
+<area shape="rect" id="Node000006" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="869,70,907,96"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="712,80,853,80,853,86,712,86"/>
+</map>

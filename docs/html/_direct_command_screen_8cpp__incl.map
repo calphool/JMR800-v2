@@ -1,0 +1,45 @@
+<map id="src/screens/DirectCommandScreen.cpp" name="src/screens/DirectCommandScreen.cpp">
+<area shape="rect" id="Node000001" title="Implements a screen for sending raw parameter/value commands to the synthesizer." alt="" coords="740,5,929,46"/>
+<area shape="rect" id="Node000002" href="$_direct_command_screen_8h.html" title="UI screen for manually sending raw commands to the synthesizer interface." alt="" coords="569,94,788,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="797,49,717,89,715,84,794,44"/>
+<area shape="rect" id="Node000008" href="$_encoder_attached_numeric_widget_8h.html" title="Widget for displaying and adjusting numeric values using an encoder." alt="" coords="232,168,451,208"/>
+<area shape="poly" id="edge28_Node000001_Node000008" title=" " alt="" coords="740,48,651,69,558,97,472,129,396,163,394,158,470,124,556,91,650,64,739,43"/>
+<area shape="rect" id="Node000010" href="$_screen_manager_8h.html" title="Declares the ScreenManager class responsible for UI screen control on the OLED display." alt="" coords="872,94,994,120"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="861,44,908,82,905,86,857,48"/>
+<area shape="rect" id="Node000011" href="$_logging_8h.html" title="Lightweight logging utility for serial output in the JMR800&#45;V2 project." alt="" coords="1275,94,1352,120"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="930,40,1259,94,1259,99,929,45"/>
+<area shape="rect" id="Node000014" href="$_rectangle_widget_8h.html" title="Displays a static rectangle, optionally filled, as part of the OLED UI." alt="" coords="1069,175,1251,201"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="893,44,949,66,1008,92,1075,129,1131,164,1129,169,1072,133,1005,96,947,71,891,49"/>
+<area shape="rect" id="Node000015" href="$_text_label_widget_8h.html" title="Displays static or dynamic text labels on the OLED UI." alt="" coords="29,175,208,201"/>
+<area shape="poly" id="edge24_Node000001_Node000015" title=" " alt="" coords="740,46,486,97,318,137,178,173,177,168,317,132,485,91,739,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="175,256,286,282"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="569,113,413,118,240,128,94,145,45,156,19,170,9,186,11,201,23,214,42,226,99,244,161,256,160,262,97,249,40,231,19,218,6,203,4,185,15,166,43,151,93,140,240,123,413,113,569,107"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="671,256,804,282"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="740,118,780,136,797,149,812,166,819,188,812,210,796,232,775,250,772,246,792,229,807,207,813,188,807,169,794,153,777,140,738,123"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="739,175,797,201"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="694,118,745,163,741,167,690,122"/>
+<area shape="rect" id="Node000006" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="427,256,549,282"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="600,123,554,140,533,153,515,169,504,186,497,204,491,241,485,240,492,203,500,183,511,166,530,149,552,136,598,118"/>
+<area shape="rect" id="Node000007" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="872,175,995,201"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="719,118,881,168,879,173,717,123"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="627,123,441,166,440,161,626,118"/>
+<area shape="rect" id="Node000009" href="$_push_button_widget_8h.html" title="Represents an interactive on&#45;screen push button for the JMR800&#45;V2 UI." alt="" coords="525,175,715,201"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="672,122,640,164,636,161,668,118"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="316,211,262,249,259,245,312,207"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="441,206,662,250,661,255,440,212"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="379,207,454,246,451,251,377,211"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="561,204,302,256,301,251,559,199"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="639,199,708,245,705,250,636,203"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="601,204,523,250,520,246,599,199"/>
+<area shape="poly" id="edge16_Node000010_Node000004" title=" " alt="" coords="959,118,986,138,1009,166,1016,189,1015,199,1009,210,996,221,979,230,931,245,876,256,820,263,819,258,875,251,930,240,977,225,993,216,1005,207,1010,197,1011,189,1004,169,983,142,956,122"/>
+<area shape="poly" id="edge17_Node000010_Node000007" title=" " alt="" coords="936,120,936,159,931,159,931,120"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1275,175,1351,201"/>
+<area shape="poly" id="edge19_Node000011_Node000012" title=" " alt="" coords="1316,120,1316,159,1311,159,1311,120"/>
+<area shape="rect" id="Node000013" href="$defines_8h.html" title="Hardware pin definitions and global constants for JMR800&#45;V2." alt="" coords="1376,175,1450,201"/>
+<area shape="poly" id="edge20_Node000011_Node000013" title=" " alt="" coords="1330,118,1388,163,1385,167,1327,122"/>
+<area shape="poly" id="edge23_Node000014_Node000004" title=" " alt="" coords="1095,204,818,256,817,250,1094,199"/>
+<area shape="poly" id="edge22_Node000014_Node000006" title=" " alt="" coords="1069,203,1007,211,565,262,564,257,1006,206,1068,198"/>
+<area shape="poly" id="edge26_Node000015_Node000003" title=" " alt="" coords="137,199,203,245,200,250,134,203"/>
+<area shape="poly" id="edge27_Node000015_Node000004" title=" " alt="" coords="180,199,220,206,457,237,655,258,655,263,456,242,220,211,179,204"/>
+<area shape="poly" id="edge25_Node000015_Node000006" title=" " alt="" coords="176,199,417,250,416,255,175,204"/>
+</map>

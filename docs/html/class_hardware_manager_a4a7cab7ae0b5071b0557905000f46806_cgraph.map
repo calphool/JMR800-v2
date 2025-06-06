@@ -1,0 +1,11 @@
+<map id="HardwareManager::gatherControlSettings" name="HardwareManager::gatherControlSettings">
+<area shape="rect" id="Node000001" title="Reads all analog and digital inputs." alt="" coords="5,35,219,75"/>
+<area shape="rect" id="Node000002" href="$class_hardware_manager.html#ab2810a18f676cb33b5696d59a61caf1b" title="Reads and stores current potentiometer values." alt="" coords="267,5,519,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,41,251,38,251,43,220,46"/>
+<area shape="rect" id="Node000004" href="$class_hardware_manager.html#a04393ce5c07558f919f4473049543260" title="Reads and updates encoder state." alt="" coords="282,70,504,96"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="220,63,267,68,266,73,219,68"/>
+<area shape="rect" id="Node000003" href="$class_hardware_manager.html#aef067455e10624433ddd360794012151" title="Sets the MUX address lines." alt="" coords="567,13,794,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="520,23,551,23,551,28,520,28"/>
+<area shape="rect" id="Node000005" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="661,70,700,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="504,80,646,80,646,86,504,86"/>
+</map>
