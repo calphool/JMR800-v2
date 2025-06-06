@@ -1,0 +1,12 @@
+<map id="ConfigScreen" name="ConfigScreen">
+<area shape="rect" id="Node000001" title="User interface screen for updating device configuration settings." alt="" coords="5,252,106,278"/>
+<area shape="rect" id="Node000002" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="19,5,81,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,47,58,252,53,252,48,47"/>
+<area shape="rect" id="Node000004" href="$class_modal_dialog.html" title="Base class for modal overlays requiring user dismissal or confirmation." alt="" coords="72,80,165,106"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="74,41,109,78,105,82,70,44"/>
+<area shape="rect" id="Node000003" href="$class_knob_config_dialog.html" title="Modal dialog for configuring a knob’s control parameters." alt="" coords="71,155,197,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="117,195,68,253,64,250,112,191"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="127,121,134,155,129,156,122,122"/>
+<area shape="rect" id="Node000005" href="$class_i_widget_nav_handler.html" title="Interface for responding to widget navigation events." alt="" coords="189,80,324,106"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="225,116,156,157,153,153,222,112"/>
+</map>

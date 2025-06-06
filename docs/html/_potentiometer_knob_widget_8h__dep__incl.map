@@ -1,0 +1,14 @@
+<map id="include/widgets/PotentiometerKnobWidget.h" name="include/widgets/PotentiometerKnobWidget.h">
+<area shape="rect" id="Node000001" title="Visual representation of a physical potentiometer for the OLED UI." alt="" coords="398,5,594,46"/>
+<area shape="rect" id="Node000002" href="$_shared_control_screen_utility_8h.html" title="Provides utility functions for initializing common screen layouts." alt="" coords="244,94,444,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="450,56,380,96,377,91,447,51"/>
+<area shape="rect" id="Node000004" href="$_controls_test_screen_8cpp.html" title="Implements a screen for testing all physical controls: knobs, buttons, and encoder." alt="" coords="427,183,594,223"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="502,61,512,182,506,182,496,62"/>
+<area shape="rect" id="Node000006" href="$_potentiometer_knob_widget_8cpp.html" title="Implements the PotentiometerKnobWidget class, which visualizes a physical knob&#39;s current state." alt="" coords="533,94,707,135"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="538,53,593,91,590,96,535,57"/>
+<area shape="rect" id="Node000003" href="$_config_screen_8cpp.html" title="Implements the configuration screen for knob mapping and diagnostics." alt="" coords="5,190,203,216"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,143,139,192,137,187,274,138"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="396,140,474,180,472,185,394,144"/>
+<area shape="rect" id="Node000005" href="$_shared_control_screen_utility_8cpp.html" title="Provides layout helper utilities for constructing shared UI control screens." alt="" coords="226,183,403,223"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="335,150,324,183,319,181,330,149"/>
+</map>

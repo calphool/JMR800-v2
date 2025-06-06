@@ -1,0 +1,12 @@
+<map id="include/widgets/EncoderKnobWidget.h" name="include/widgets/EncoderKnobWidget.h">
+<area shape="rect" id="Node000001" title="Represents a virtual knob controlled by an encoder input." alt="" coords="122,5,315,46"/>
+<area shape="rect" id="Node000002" href="$_knob_widget_8h.html" title="Base class for knob&#45;style widgets in the JMR800&#45;V2 interface." alt="" coords="29,94,181,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,49,136,87,133,83,189,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="152,168,285,193"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="221,46,221,152,216,152,216,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="256,94,368,120"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="243,44,287,82,284,86,240,48"/>
+<area shape="rect" id="Node000003" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="5,168,128,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,121,83,155,78,153,96,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="126,118,188,157,185,161,123,122"/>
+</map>

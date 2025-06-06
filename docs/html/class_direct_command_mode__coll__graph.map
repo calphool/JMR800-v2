@@ -1,0 +1,16 @@
+<map id="DirectCommandMode" name="DirectCommandMode">
+<area shape="rect" id="Node000001" title="Mode for direct interaction with PG&#45;800&#45;style command interface." alt="" coords="5,294,154,320"/>
+<area shape="rect" id="Node000002" href="$class_app_mode.html" title="Base class for defining behavior of application modes." alt="" coords="20,197,96,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,238,79,293,74,294,62,239"/>
+<area shape="rect" id="Node000003" href="$class_direct_command_screen.html" title="UI screen for direct entry and sending of PG&#45;800&#45;style commands." alt="" coords="121,197,278,223"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,234,97,295,93,291,171,230"/>
+<area shape="rect" id="Node000004" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="7,80,69,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,113,184,195,181,199,65,117"/>
+<area shape="rect" id="Node000005" href="$class_encoder_attached_numeric_widget.html" title="Numeric display widget controlled by rotary encoder input." alt="" coords="94,80,305,106"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="202,122,202,197,197,197,197,122"/>
+<area shape="rect" id="Node000006" href="$class_widget.html" title="Base class for all on&#45;screen widgets." alt="" coords="264,5,327,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="269,43,217,82,213,78,266,38"/>
+<area shape="rect" id="Node000007" href="$class_push_button_widget.html" title="On&#45;screen momentary button with press state and optional encoder focus (like an OK or Cancel button)." alt="" coords="329,80,459,106"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="326,38,379,78,376,82,323,43"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="368,118,328,146,281,176,231,199,229,194,278,171,325,142,365,113"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="DirectCommandMode" name="DirectCommandMode">
+<area shape="rect" id="Node000001" title="Mode for direct interaction with PG&#45;800&#45;style command interface." alt="" coords="5,79,154,105"/>
+<area shape="rect" id="Node000002" href="$class_app_mode.html" title="Base class for defining behavior of application modes." alt="" coords="41,5,118,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,46,82,79,77,79,77,46"/>
+</map>

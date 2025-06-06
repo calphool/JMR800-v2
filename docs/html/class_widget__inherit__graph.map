@@ -1,0 +1,21 @@
+<map id="Widget" name="Widget">
+<area shape="rect" id="Node000001" title="Base class for all on&#45;screen widgets." alt="" coords="5,153,68,179"/>
+<area shape="rect" id="Node000002" href="$class_button_widget.html" title="A UI element that represents a hardware button and its LED status." alt="" coords="171,5,272,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,138,71,87,90,62,114,40,141,26,170,19,171,24,143,31,117,44,94,65,76,90,50,140"/>
+<area shape="rect" id="Node000003" href="$class_encoder_attached_numeric_widget.html" title="Numeric display widget controlled by rotary encoder input." alt="" coords="116,55,327,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="56,139,82,113,114,89,140,78,142,83,117,94,85,117,59,143"/>
+<area shape="rect" id="Node000004" href="$class_knob_widget.html" title="Shared base class for rotary&#45;style knob widgets." alt="" coords="175,104,268,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="82,148,115,138,174,124,175,129,116,143,84,153"/>
+<area shape="rect" id="Node000007" href="$class_push_button_widget.html" title="On&#45;screen momentary button with press state and optional encoder focus (like an OK or Cancel button)." alt="" coords="156,153,286,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="83,164,156,164,156,169,83,169"/>
+<area shape="rect" id="Node000008" href="$class_rectangle_widget.html" title="Renders a static rectangle on the OLED screen." alt="" coords="161,203,282,228"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="84,179,116,189,161,200,160,205,115,194,82,184"/>
+<area shape="rect" id="Node000009" href="$class_text_input_widget.html" title="Widget that displays and allows editing of a fixed&#45;length text string." alt="" coords="163,252,280,278"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="59,189,85,216,117,238,164,255,162,260,114,243,82,220,56,193"/>
+<area shape="rect" id="Node000010" href="$class_text_label_widget.html" title="Widget for displaying text labels with optional font size and style." alt="" coords="162,301,280,327"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="50,192,76,242,94,267,117,288,139,299,163,307,161,312,137,304,114,292,90,271,71,245,45,195"/>
+<area shape="rect" id="Node000005" href="$class_encoder_knob_widget.html" title="A knob&#45;style widget driven by encoder input rather than analog voltage." alt="" coords="392,80,532,106"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="283,108,391,97,391,102,283,113"/>
+<area shape="rect" id="Node000006" href="$class_potentiometer_knob_widget.html" title="Widget for displaying and interacting with a hardware potentiometer." alt="" coords="375,129,548,155"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="283,121,375,130,374,136,283,126"/>
+</map>

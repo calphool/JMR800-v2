@@ -1,0 +1,24 @@
+<map id="include/IWidgetNavHandler.h" name="include/IWidgetNavHandler.h">
+<area shape="rect" id="Node000001" title="Interface for handling horizontal navigation events between UI widgets." alt="" coords="508,5,698,31"/>
+<area shape="rect" id="Node000002" href="$_knob_config_dialog_8h.html" title="Modal dialog for editing knob assignments and configuration parameters." alt="" coords="293,79,478,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="556,39,441,81,439,76,554,34"/>
+<area shape="rect" id="Node000009" href="$_text_input_widget_8h.html" title="Editable text input field for alphanumeric data entry on the OLED interface." alt="" coords="518,79,688,120"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="606,46,606,79,600,79,600,46"/>
+<area shape="rect" id="Node000010" href="$_text_input_widget_8cpp.html" title="Implements the TextInputWidget class, allowing user&#45;editable text display with cursor navigation." alt="" coords="637,168,849,193"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="647,36,676,54,702,77,718,100,730,125,743,167,738,168,725,127,713,103,698,81,673,58,644,41"/>
+<area shape="rect" id="Node000003" href="$_config_screen_8h.html" title="Screen for accessing and modifying configuration settings." alt="" coords="109,168,315,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="329,129,240,170,238,165,327,124"/>
+<area shape="rect" id="Node000007" href="$_config_screen_8cpp.html" title="Implements the configuration screen for knob mapping and diagnostics." alt="" coords="254,241,451,267"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="381,135,357,241,352,240,375,134"/>
+<area shape="rect" id="Node000008" href="$_knob_config_dialog_8cpp.html" title=" " alt="" coords="390,168,613,193"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="428,126,485,165,482,169,425,131"/>
+<area shape="rect" id="Node000004" href="$_config_mode_8h.html" title="Application mode for accessing and modifying system configuration." alt="" coords="40,241,230,267"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,206,150,243,146,239,186,202"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="251,198,330,238,327,243,248,203"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Entry point for the JMR800&#45;V2 firmware." alt="" coords="5,315,102,341"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="111,279,69,317,65,313,108,275"/>
+<area shape="rect" id="Node000006" href="$_config_mode_8cpp.html" title="Implements the System Configuration Mode for knob setup." alt="" coords="126,315,307,341"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="162,275,204,313,201,317,158,279"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="568,131,519,169,515,165,564,127"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="652,125,723,165,720,169,650,130"/>
+</map>

@@ -1,0 +1,28 @@
+<map id="include/modes/DirectCommandMode.h" name="include/modes/DirectCommandMode.h">
+<area shape="rect" id="Node000001" title="Application mode for sending direct parameter/value commands." alt="" coords="169,5,373,46"/>
+<area shape="rect" id="Node000002" href="$_app_mode_8h.html" title="Abstract interface for application mode behavior." alt="" coords="107,94,238,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,48,201,86,198,82,245,44"/>
+<area shape="rect" id="Node000004" href="$_direct_command_screen_8h.html" title="UI screen for manually sending raw commands to the synthesizer interface." alt="" coords="284,94,503,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="303,44,364,83,361,88,300,49"/>
+<area shape="rect" id="Node000003" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="5,175,129,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="158,122,97,168,93,164,155,118"/>
+<area shape="poly" id="edge8_Node000004_Node000003" title=" " alt="" coords="344,123,133,174,131,168,343,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="481,256,592,282"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="443,118,483,136,502,149,518,166,529,184,535,203,540,240,535,241,530,204,524,186,514,169,499,153,481,141,441,123"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="246,256,379,282"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="321,123,243,142,212,155,193,169,186,188,193,207,217,231,247,248,244,253,213,236,189,210,181,188,189,166,209,150,242,137,320,118"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="446,175,504,201"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="408,118,453,162,450,166,404,122"/>
+<area shape="rect" id="Node000008" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="616,256,739,282"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="504,107,585,112,667,122,737,139,764,151,782,166,789,177,791,188,783,210,761,235,733,252,730,248,757,231,778,207,785,187,784,179,778,169,761,156,736,144,666,127,584,117,503,112"/>
+<area shape="rect" id="Node000009" href="$_encoder_attached_numeric_widget_8h.html" title="Widget for displaying and adjusting numeric values using an encoder." alt="" coords="203,168,422,208"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="383,122,345,159,341,155,379,118"/>
+<area shape="rect" id="Node000010" href="$_push_button_widget_8h.html" title="Represents an interactive on&#45;screen push button for the JMR800&#45;V2 UI." alt="" coords="578,175,769,201"/>
+<area shape="poly" id="edge13_Node000004_Node000010" title=" " alt="" coords="438,118,617,168,615,173,436,123"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="369,206,489,248,487,253,367,211"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="315,209,315,241,310,241,310,209"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="404,206,607,250,606,255,403,212"/>
+<area shape="poly" id="edge15_Node000010_Node000005" title=" " alt="" coords="654,204,572,251,569,246,651,199"/>
+<area shape="poly" id="edge16_Node000010_Node000006" title=" " alt="" coords="619,204,384,255,382,250,617,199"/>
+<area shape="poly" id="edge14_Node000010_Node000008" title=" " alt="" coords="677,201,679,241,674,241,672,201"/>
+</map>

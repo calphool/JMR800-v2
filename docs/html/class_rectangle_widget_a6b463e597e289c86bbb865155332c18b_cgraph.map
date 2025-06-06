@@ -1,0 +1,7 @@
+<map id="RectangleWidget::RectangleWidget" name="RectangleWidget::RectangleWidget">
+<area shape="rect" id="Node000001" title="Constructs a rectangle widget with position, size, and style." alt="" coords="5,23,194,64"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="278,5,317,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,29,262,20,263,25,194,34"/>
+<area shape="rect" id="Node000003" href="$class_widget.html#a5726db3aa94844c547974fb48594a305" title="Constructs a widget at a specified screen location." alt="" coords="242,55,353,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,52,227,56,226,62,194,58"/>
+</map>

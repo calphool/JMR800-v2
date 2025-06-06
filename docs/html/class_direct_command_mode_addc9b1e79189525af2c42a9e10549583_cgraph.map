@@ -1,0 +1,5 @@
+<map id="DirectCommandMode::loop" name="DirectCommandMode::loop">
+<area shape="rect" id="Node000001" title="Executes logic that should run continuously during the mode." alt="" coords="5,5,186,31"/>
+<area shape="rect" id="Node000002" href="$class_widget.html#ad38e6a786fd27d2e17a008a6f8515b58" title="Returns the widget type for runtime introspection." alt="" coords="234,5,350,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,16,218,16,218,21,186,21"/>
+</map>

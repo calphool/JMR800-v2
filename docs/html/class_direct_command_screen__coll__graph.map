@@ -1,0 +1,12 @@
+<map id="DirectCommandScreen" name="DirectCommandScreen">
+<area shape="rect" id="Node000001" title="UI screen for direct entry and sending of PG&#45;800&#45;style commands." alt="" coords="119,197,276,223"/>
+<area shape="rect" id="Node000002" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="5,80,68,106"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,113,183,195,179,199,64,117"/>
+<area shape="rect" id="Node000003" href="$class_encoder_attached_numeric_widget.html" title="Numeric display widget controlled by rotary encoder input." alt="" coords="92,80,304,106"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,122,200,197,195,197,195,122"/>
+<area shape="rect" id="Node000004" href="$class_widget.html" title="Base class for all on&#45;screen widgets." alt="" coords="263,5,325,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="268,43,215,82,212,78,264,38"/>
+<area shape="rect" id="Node000005" href="$class_push_button_widget.html" title="On&#45;screen momentary button with press state and optional encoder focus (like an OK or Cancel button)." alt="" coords="327,80,458,106"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="324,38,378,78,375,82,321,43"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="367,118,326,146,279,176,230,199,227,194,277,171,323,142,364,113"/>
+</map>

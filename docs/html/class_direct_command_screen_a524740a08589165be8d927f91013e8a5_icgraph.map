@@ -1,0 +1,5 @@
+<map id="DirectCommandScreen::addWidget" name="DirectCommandScreen::addWidget">
+<area shape="rect" id="Node000001" title="Adds a widget to the screen layout." alt="" coords="211,5,368,46"/>
+<area shape="rect" id="Node000002" href="$class_direct_command_screen.html#a010e775e05f6303e769a237a649c0779" title="Called when this screen becomes the active UI." alt="" coords="5,5,163,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,28,163,28,163,23,195,23"/>
+</map>

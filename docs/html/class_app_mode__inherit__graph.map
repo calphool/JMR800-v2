@@ -1,0 +1,11 @@
+<map id="AppMode" name="AppMode">
+<area shape="rect" id="Node000001" title="Base class for defining behavior of application modes." alt="" coords="226,5,302,31"/>
+<area shape="rect" id="Node000002" href="$class_config_mode.html" title="Mode that enables editing of system configuration parameters." alt="" coords="5,79,97,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,39,88,81,87,76,213,34"/>
+<area shape="rect" id="Node000003" href="$class_controls_test_mode.html" title="Mode used for debugging and validating physical control input." alt="" coords="121,79,248,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,43,199,81,196,77,238,39"/>
+<area shape="rect" id="Node000004" href="$class_direct_command_mode.html" title="Mode for direct interaction with PG&#45;800&#45;style command interface." alt="" coords="272,79,420,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="291,39,334,77,330,81,288,43"/>
+<area shape="rect" id="Node000005" href="$class_run_mode.html" title="Application mode for normal runtime operation." alt="" coords="444,79,522,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="317,34,447,76,445,81,315,39"/>
+</map>

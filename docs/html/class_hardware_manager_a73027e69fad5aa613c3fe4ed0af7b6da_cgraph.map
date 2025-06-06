@@ -1,0 +1,5 @@
+<map id="HardwareManager::buttonStateChanged" name="HardwareManager::buttonStateChanged">
+<area shape="rect" id="Node000001" title="Detects state changes on buttons." alt="" coords="5,5,208,46"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="256,13,294,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,23,240,23,240,28,208,28"/>
+</map>

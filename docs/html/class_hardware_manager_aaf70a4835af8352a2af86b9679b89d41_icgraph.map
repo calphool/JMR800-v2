@@ -1,0 +1,5 @@
+<map id="HardwareManager::loadKnobs" name="HardwareManager::loadKnobs">
+<area shape="rect" id="Node000001" title="Loads the knob configuration from EEPROM or persistent storage." alt="" coords="206,5,402,31"/>
+<area shape="rect" id="Node000002" href="$class_hardware_manager.html#acbee566327ea9e237566823f46dfcac5" title="Initializes hardware peripherals: GPIO, ADC, encoder, etc." alt="" coords="5,5,158,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,21,158,21,158,16,190,16"/>
+</map>

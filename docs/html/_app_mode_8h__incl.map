@@ -1,0 +1,5 @@
+<map id="include/modes/AppMode.h" name="include/modes/AppMode.h">
+<area shape="rect" id="Node000001" title="Abstract interface for application mode behavior." alt="" coords="5,5,181,31"/>
+<area shape="rect" id="Node000002" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="31,79,155,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,31,96,63,90,63,90,31"/>
+</map>

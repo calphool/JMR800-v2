@@ -1,0 +1,7 @@
+<map id="HardwareManager::setButtonLights" name="HardwareManager::setButtonLights">
+<area shape="rect" id="Node000001" title="Sets the LED colors for a button." alt="" coords="5,27,197,68"/>
+<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="318,5,356,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,33,302,20,303,25,198,38"/>
+<area shape="rect" id="Node000003" href="$class_hardware_manager.html#a69487280dacad30fc7fa1fd58e9e48ca" title="Pushes current LED state to shift registers." alt="" coords="245,55,429,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,56,229,60,229,65,197,62"/>
+</map>

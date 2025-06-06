@@ -1,0 +1,5 @@
+<map id="ButtonWidget::setLEDs" name="ButtonWidget::setLEDs">
+<area shape="rect" id="Node000001" title="Sets the red and green LED states." alt="" coords="229,5,388,31"/>
+<area shape="rect" id="Node000002" href="$class_button_widget.html#a45693524823554821c6114ba84614b98" title="Handles user interaction (encoder press, etc.)." alt="" coords="5,5,181,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,21,181,21,181,16,213,16"/>
+</map>

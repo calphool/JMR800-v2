@@ -1,0 +1,7 @@
+<map id="include/modes/ControlsTestMode.h" name="include/modes/ControlsTestMode.h">
+<area shape="rect" id="Node000001" title="Application mode for verifying control inputs in real&#45;time." alt="" coords="52,5,236,46"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title="Entry point for the JMR800&#45;V2 firmware." alt="" coords="5,94,102,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,58,69,95,66,91,109,54"/>
+<area shape="rect" id="Node000003" href="$_controls_test_mode_8cpp.html" title="Implements the Controls Test Mode for button interaction diagnostics." alt="" coords="126,94,344,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,54,223,91,219,95,176,58"/>
+</map>
