@@ -106,7 +106,8 @@ void RectangleWidget::handleInput() {
 
 
 /**
- * @brief Handles input. RectangleWidget has no input behavior.
+ * @brief Returns the widget type as `WidgetType::Rectangle`.
+ * @return WidgetType Enumeration value representing a Rectangle
  */
 WidgetType RectangleWidget::getType() const {
     return WidgetType::Rectangle;
