@@ -24,9 +24,10 @@
  * @param _printFormat C-style format string used to render the numeric value.
  */
 EncoderAttachedNumericWidget::EncoderAttachedNumericWidget(int x, int y, int min, int max, char* _printFormat) : Widget(x,y, false), 
-    min(min), max(max), printFormat(_printFormat)    
+    min(min), max(max)    
 {
     control_value = 0;
+    strcpy(printFormat, _printFormat);
 };
 
 
@@ -37,6 +38,10 @@ EncoderAttachedNumericWidget::EncoderAttachedNumericWidget(int x, int y, int min
  */
 uint EncoderAttachedNumericWidget::getValue() {
     return control_value;
+}
+
+void EncoderAttachedNumericWidget::setValue(int x) {
+    control_value = x;
 }
 
 

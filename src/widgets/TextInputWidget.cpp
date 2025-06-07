@@ -60,12 +60,12 @@ void TextInputWidget::draw() {
         uint xpos = x + (i * 6);
         ScreenManager::getDisplay()->setCursor(xpos, y);
         ScreenManager::getDisplay()->print(text[i]);
-            ScreenManager::getDisplay()->drawLine(xpos, y + 8,  xpos + 5, y + 8, SH110X_WHITE);
+        ScreenManager::getDisplay()->drawLine(xpos, y + 8,  xpos + 4, y + 8, SH110X_WHITE);
         if(currentPosition == i) {
             if(toggle) 
-                ScreenManager::getDisplay()->drawLine(xpos, y + 10, xpos + 5, y + 10, SH110X_WHITE);
+                ScreenManager::getDisplay()->drawLine(xpos, y + 9, xpos + 4, y + 9, SH110X_WHITE);
             else 
-                ScreenManager::getDisplay()->drawLine(xpos, y + 10, xpos + 5, y + 10, SH110X_BLACK);
+                ScreenManager::getDisplay()->drawLine(xpos, y + 9, xpos + 4, y + 9, SH110X_BLACK);
         }
     }
 }

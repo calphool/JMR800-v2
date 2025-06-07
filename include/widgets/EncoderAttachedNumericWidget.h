@@ -80,6 +80,11 @@ public:
      */
     WidgetType getType() const override;
 
+    /**
+     * @brief Set the control's value
+     */
+    void setValue(int x);
+
 private:
     String text;                    ///< Rendered text based on current value
     uint8_t fontSize;               ///< Font size multiplier for display
@@ -87,5 +92,5 @@ private:
     bool bIsAttachedToEncoder;      ///< True if widget has input focus
     int min;                        ///< Minimum allowed value
     int max;                        ///< Maximum allowed value
-    char* printFormat;              ///< Format string for numeric display
+    char printFormat[8];              ///< Format string for numeric display
 };

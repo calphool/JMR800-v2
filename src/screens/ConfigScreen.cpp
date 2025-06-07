@@ -49,14 +49,13 @@ void ConfigScreen::addWidget(Widget* w) {
 void ConfigScreen::draw() {
   log(LOG_VERBOSE, "Inside ConfigScreen->draw()");
 
-   if (knobConfigDialog && !knobConfigDialog->isDone()) {
-         knobConfigDialog->draw();
-         return; // If dialog is active, skip other widgets
-   }
-
   for (Widget* w : widgets) {
         w->draw();
   }
+
+  if (knobConfigDialog && !knobConfigDialog->isDone()) {
+         knobConfigDialog->draw();
+   }
 }
 
 
@@ -133,6 +132,6 @@ void ConfigScreen::highlightActiveKnob(int knobix) {
  */
 void ConfigScreen::changeScreenMode(uint knobid) {
    active_knob = knobid;
-   knobConfigDialog = new KnobConfigDialog(20, 8, 108, 56, active_knob); // Adjust dimensions as needed
+   knobConfigDialog = new KnobConfigDialog(7, 4, 112, 58, active_knob); // Adjust dimensions as needed
    knobConfigDialog->onEnter();
 }
