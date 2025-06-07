@@ -12,6 +12,7 @@
 #include "Logging.h"
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
+#include "widgets/StarFieldWidget.h"
 
 /**
  * @brief Constructs a RunModeScreen instance and initializes internal state.
@@ -90,11 +91,10 @@ void RunModeScreen::onEnter() {
   log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()");
     const char* labelText = "Run Mode";
 
-   int textWidth = strlen(labelText) * 6;
-   int x = (SCREEN_WIDTH - textWidth) / 2;
-   Widget* rectangle = new RectangleWidget(0, 9, SCREEN_WIDTH, 54, false, RectColor::WHITE);
-   addWidget(rectangle);
-   Widget* modeLabel = new TextLabelWidget(labelText, x, 0, 1, false);
+   Widget* w = new StarFieldWidget(0,0,SCREEN_WIDTH,64);
+   addWidget(w);
+
+   Widget* modeLabel = new TextLabelWidget(labelText, (SCREEN_WIDTH - (strlen(labelText) * 6)) / 2, 0, 1, false);
    addWidget(modeLabel);
 }
 
