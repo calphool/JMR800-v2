@@ -37,3 +37,7 @@ Widget::Widget(int x, int y) : x(x), y(y), bHighlighted (false), toggle(false) {
 void Widget::setHighlighted(bool b) {
     bHighlighted = b;
 }
+
+bool Widget::getHighlightedStatus() {
+    return bHighlighted;
+}
