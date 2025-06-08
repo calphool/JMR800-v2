@@ -12,6 +12,9 @@
 #include "widgets/Widget.h"
 #include "screens/ModalDialog.h"
 #include "IWidgetNavHandler.h"
+#include "widgets/TextInputWidget.h"
+#include "widgets/PushButtonWidget.h"
+#include "widgets/EncoderAttachedNumericWidget.h"
 
 /**
  * @class KnobConfigDialog
@@ -30,6 +33,12 @@ private:
     int height;                             ///< Height of the dialog 
     bool done;                              ///< Whether the dialog is complete
     int active_knob;                        ///< ID of the knob being configured
+
+    TextInputWidget* knobNameInputWidget = nullptr;
+    EncoderAttachedNumericWidget* cmdByteWidget = nullptr;
+    EncoderAttachedNumericWidget* typeCodeWidget = nullptr;
+    PushButtonWidget* okButtonWidget = nullptr;
+    PushButtonWidget* cancelButtonWidget = nullptr;
 
 public:
 

@@ -8,6 +8,8 @@ StarFieldWidget::StarFieldWidget(int x, int y, int w, int h) :
   Widget(x, y, false), width(w), height(h) {
   log(LOG_VERBOSE, "Inside StarFieldWidget->constructor");
 
+  half_width = width / 2;
+  half_height = height / 2;
   for (int i = 0; i < NUM_STARS; i++) {
     resetStar(stars[i]);
   }
@@ -20,8 +22,8 @@ void StarFieldWidget::resetStar(Star &s) {
 
   s.dx = cos(angle) * speed;
   s.dy = sin(angle) * speed;
-  s.x = x+(width/2);
-  s.y = y+(height/2);
+  s.x = x+(half_width);
+  s.y = y+(half_height);
   s.speedMult = 1.01 + (random(5) / 100.0); // subtle growth per frame
 }
 

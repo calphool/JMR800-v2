@@ -16,6 +16,8 @@ class StarFieldWidget : public Widget {
 private:
     int width;      ///< Rectangle width in pixels
     int height;     ///< Rectangle height in pixels
+    int half_width;
+    int half_height;
 
     Star stars[NUM_STARS];
 

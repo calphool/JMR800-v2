@@ -376,6 +376,11 @@ void HardwareManager::resetEncoder(uint i) {
   encoderKnob->write(i);
 }
 
+int HardwareManager::AsciiToEncoder(char c) {
+  int v = ((((int)c) - 65) * 4) + 132;
+  return v;
+}
+
 
 /**
  * @brief Reads and updates the encoder position, logs movement.
@@ -406,6 +411,17 @@ void HardwareManager::updateEncoder() {
  */
 long HardwareManager::getEncoderValue() {
   return lastEncoderPosition;
+}
+
+
+long HardwareManager::getEncoderModdedBy(long divisor) {
+    long i = (lastEncoderPosition>>2) % divisor; 
+    if(i < 0)
+      i = 0;
+    if(i > divisor)
+      i = divisor-1;
+    
+    return i;
 }
 
 
