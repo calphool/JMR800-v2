@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include <Arduino.h>
 #include "widgets/Widget.h"
 #include "IWidgetNavHandler.h"
 
@@ -72,6 +73,10 @@ public:
     void attachToEncoder();
 
     void detachFromEncoder();
+
+    void setCurrentPosition(uint i);
+
+    uint getEndPosition();
 
     /**
      * @brief Returns the widget type as WidgetType::TextInputWidget.

@@ -84,6 +84,12 @@ public:
      */
     virtual WidgetType getType() const = 0;
 
+    /**
+     * @brief Returns the widget highlight status
+     * @return the widget highlight status
+     */
+    bool getHighlightedStatus();
+
 protected:
     int x; ///< Horizontal position in pixels
     int y; ///< Vertical position in pixels

@@ -20,8 +20,7 @@
 
     void KnobConfigDialog::onLeavingWidgetRight() {
         if(knobNameInputWidget && cmdByteWidget) {
-            knobNameInputWidget->detachFromEncoder();
-            knobNameInputWidget->setHighlighted(false);
+            detachAllWidgets();
             cmdByteWidget->attachToEncoder();
             cmdByteWidget->setHighlighted(true);
         }
@@ -29,8 +28,7 @@
 
     void KnobConfigDialog::onLeavingWidgetLeft() {
         if(knobNameInputWidget && cancelButtonWidget) {
-            knobNameInputWidget->detachFromEncoder();
-            knobNameInputWidget->setHighlighted(false);
+            detachAllWidgets();
             cancelButtonWidget->attachToEncoder();
             cancelButtonWidget->setHighlighted(true);
         }
@@ -50,30 +48,40 @@
     void KnobConfigDialog::onEnter() {
         char buf[8];
         strcpy(buf,"%02x");
+
         Widget* blank = new RectangleWidget(xoffset, yoffset, width, height, true, RectColor::BLACK);
         widgets.push_back(blank);
+
         Widget* rectangle = new RectangleWidget(xoffset, yoffset, width, height, false, RectColor::WHITE); 
         widgets.push_back(rectangle);
+
         Widget* textLabel = new TextLabelWidget("Knob Name", (xoffset + (width/2))-27, yoffset + 2, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel);
+
         knobNameInputWidget = new TextInputWidget(hardware.getKnobConfiguration(active_knob).name, xoffset + 2, yoffset + 12, width - 4, this);
         knobNameInputWidget->attachToEncoder();
         knobNameInputWidget->setHighlighted(true);
         widgets.push_back(knobNameInputWidget);
+
         Widget* textLabel2 = new TextLabelWidget(" Command Byte:", xoffset + 2, yoffset + 23, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel2);
+
         cmdByteWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 23, 0, 255, buf);
         cmdByteWidget->setValue(hardware.getKnobConfiguration(active_knob).cmdbyte);
         cmdByteWidget->detachFromEncoder();
         widgets.push_back(cmdByteWidget);
+
         Widget* textLabel3 = new TextLabelWidget(" Type Code:", xoffset + 2, yoffset + 33, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel3);
-        EncoderAttachedNumericWidget* typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
+
+        typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
         typeCodeWidget->setValue(hardware.getKnobConfiguration(active_knob).typecode);
         typeCodeWidget->detachFromEncoder();
         widgets.push_back(typeCodeWidget);
+
         okButtonWidget = new PushButtonWidget("Ok", xoffset + 14, yoffset + height - 12);
         widgets.push_back(okButtonWidget);
+
         cancelButtonWidget = new PushButtonWidget("Cancel", xoffset + width - 50, yoffset + height - 12);
         widgets.push_back(cancelButtonWidget);
     }
@@ -86,16 +94,73 @@
         done = true;
     }
 
+    void KnobConfigDialog::detachAllWidgets() {
+        knobNameInputWidget->detachFromEncoder();
+        cmdByteWidget->detachFromEncoder();
+        typeCodeWidget->detachFromEncoder();
+        okButtonWidget->detachFromEncoder();
+        cancelButtonWidget->detachFromEncoder();
+        knobNameInputWidget->setHighlighted(false);
+        cmdByteWidget->setHighlighted(false);
+        typeCodeWidget->setHighlighted(false);
+        okButtonWidget->setHighlighted(false);
+        cancelButtonWidget->setHighlighted(false);
+    }
+
     void KnobConfigDialog::handleInput() {
-        
-        /*
-        if(hardware.buttonStateChanged(0, true, true)) {
-            //TODO: code to handle moving backward
+        if(hardware.buttonStateChanged(1, true, true)) {  // moving right
+            if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
+                knobNameInputWidget->advanceCurrentPosition();
+                return;
+            } else if (cmdByteWidget && cmdByteWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                typeCodeWidget->setHighlighted(true);
+                typeCodeWidget->attachToEncoder();
+                return;
+            } else if (typeCodeWidget && typeCodeWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                okButtonWidget->setHighlighted(true);
+                okButtonWidget->attachToEncoder();
+                return;
+            } else if (okButtonWidget && okButtonWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                cancelButtonWidget->setHighlighted(true);
+                cancelButtonWidget->attachToEncoder();
+                return;
+            } else if (cancelButtonWidget && cancelButtonWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                knobNameInputWidget->setHighlighted(true);
+                knobNameInputWidget->setCurrentPosition(0);
+                knobNameInputWidget->attachToEncoder();
+                return;
+            }
+        } else if(hardware.buttonStateChanged(0, true, true)) { // moving left
+            if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
+                knobNameInputWidget->backtrackCurrentPosition();
+                return;
+            } else if (cmdByteWidget && cmdByteWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                knobNameInputWidget->setHighlighted(true);
+                knobNameInputWidget->setCurrentPosition(knobNameInputWidget->getEndPosition());
+                knobNameInputWidget->attachToEncoder();
+                return;
+            } else if(typeCodeWidget && typeCodeWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                cmdByteWidget->setHighlighted(true);
+                cmdByteWidget->attachToEncoder();
+                return;
+            } else if(okButtonWidget && okButtonWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                typeCodeWidget->setHighlighted(true);
+                typeCodeWidget->attachToEncoder();       
+                return;         
+            } else if(cancelButtonWidget && cancelButtonWidget->getHighlightedStatus()) {
+                detachAllWidgets();
+                okButtonWidget->setHighlighted(true);
+                okButtonWidget->attachToEncoder();
+                return;
+            }
         }
-        if(hardware.buttonStateChanged(1, true, true)) {
-            //TODO: code to handle moving forward
-        }
-        */
 
         for (Widget* widget : widgets) {
             widget->handleInput();

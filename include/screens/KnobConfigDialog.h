@@ -87,4 +87,7 @@ public:
      * @brief Handles leftward navigation beyond current widget.
      */
     void onLeavingWidgetLeft() override; 
+
+
+    void detachAllWidgets();
 };

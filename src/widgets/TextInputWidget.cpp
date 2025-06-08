@@ -6,7 +6,7 @@
  * This widget provides interactive text input through button-based navigation and character replacement.
  * It supports cursor animation and optional external navigation handlers for moving between widgets.
  */
-
+#include <Arduino.h>
 #include "widgets/TextInputWidget.h"
 #include "widgets/Widget.h"
 #include "ScreenManager.h"
@@ -134,18 +134,20 @@ void TextInputWidget::detachFromEncoder() {
  * @brief Handles hardware input for left/right button presses to navigate the cursor.
  */
 void TextInputWidget::handleInput() {
-    if(hardware.buttonStateChanged(1, true, true)) { 
-        advanceCurrentPosition();
-    } else if(hardware.buttonStateChanged(0, true, true)) {
-        backtrackCurrentPosition();
-    }
-
     if(bIsAttachedToEncoder) {
         char charEncoderValue = hardware.getEncoderModdedBy(96) + 32;
         text[currentPosition] = charEncoderValue;
     }
 }
 
+
+void TextInputWidget::setCurrentPosition(uint i) {
+    currentPosition = i;
+}
+
+uint TextInputWidget::getEndPosition() {
+    return strlen(text) - 1;
+}
 
 /**
  * @brief Returns the type of widget for use in screen management or polymorphism.
