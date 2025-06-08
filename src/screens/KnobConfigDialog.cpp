@@ -19,11 +19,21 @@
     }
 
     void KnobConfigDialog::onLeavingWidgetRight() {
-        hardware.setButtonLights(3, false, true);
+        if(knobNameInputWidget && cmdByteWidget) {
+            knobNameInputWidget->detachFromEncoder();
+            knobNameInputWidget->setHighlighted(false);
+            cmdByteWidget->attachToEncoder();
+            cmdByteWidget->setHighlighted(true);
+        }
     }
 
     void KnobConfigDialog::onLeavingWidgetLeft() {
-        hardware.setButtonLights(3, true, false);
+        if(knobNameInputWidget && cancelButtonWidget) {
+            knobNameInputWidget->detachFromEncoder();
+            knobNameInputWidget->setHighlighted(false);
+            cancelButtonWidget->attachToEncoder();
+            cancelButtonWidget->setHighlighted(true);
+        }
     }
 
 
@@ -46,24 +56,26 @@
         widgets.push_back(rectangle);
         Widget* textLabel = new TextLabelWidget("Knob Name", (xoffset + (width/2))-27, yoffset + 2, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel);
-        Widget* textInputWidget = new TextInputWidget(hardware.getKnobConfiguration(active_knob).name, xoffset + 2, yoffset + 12, width - 4, this);
-        widgets.push_back(textInputWidget);
+        knobNameInputWidget = new TextInputWidget(hardware.getKnobConfiguration(active_knob).name, xoffset + 2, yoffset + 12, width - 4, this);
+        knobNameInputWidget->attachToEncoder();
+        knobNameInputWidget->setHighlighted(true);
+        widgets.push_back(knobNameInputWidget);
         Widget* textLabel2 = new TextLabelWidget(" Command Byte:", xoffset + 2, yoffset + 23, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel2);
-        EncoderAttachedNumericWidget* eanw = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 23, 0, 255, buf);
-        eanw->setValue(hardware.getKnobConfiguration(active_knob).cmdbyte);
-        eanw->detachFromEncoder();
-        widgets.push_back(eanw);
+        cmdByteWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 23, 0, 255, buf);
+        cmdByteWidget->setValue(hardware.getKnobConfiguration(active_knob).cmdbyte);
+        cmdByteWidget->detachFromEncoder();
+        widgets.push_back(cmdByteWidget);
         Widget* textLabel3 = new TextLabelWidget(" Type Code:", xoffset + 2, yoffset + 33, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel3);
-        EncoderAttachedNumericWidget* eanw2 = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
-        eanw2->setValue(hardware.getKnobConfiguration(active_knob).typecode);
-        eanw2->detachFromEncoder();
-        widgets.push_back(eanw2);
-        PushButtonWidget* b1 = new PushButtonWidget("Ok", xoffset + 14, yoffset + height - 12);
-        widgets.push_back(b1);
-        PushButtonWidget* b2 = new PushButtonWidget("Cancel", xoffset + width - 50, yoffset + height - 12);
-        widgets.push_back(b2);
+        EncoderAttachedNumericWidget* typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
+        typeCodeWidget->setValue(hardware.getKnobConfiguration(active_knob).typecode);
+        typeCodeWidget->detachFromEncoder();
+        widgets.push_back(typeCodeWidget);
+        okButtonWidget = new PushButtonWidget("Ok", xoffset + 14, yoffset + height - 12);
+        widgets.push_back(okButtonWidget);
+        cancelButtonWidget = new PushButtonWidget("Cancel", xoffset + width - 50, yoffset + height - 12);
+        widgets.push_back(cancelButtonWidget);
     }
  
     void KnobConfigDialog::onExit() {
@@ -75,6 +87,16 @@
     }
 
     void KnobConfigDialog::handleInput() {
+        
+        /*
+        if(hardware.buttonStateChanged(0, true, true)) {
+            //TODO: code to handle moving backward
+        }
+        if(hardware.buttonStateChanged(1, true, true)) {
+            //TODO: code to handle moving forward
+        }
+        */
+
         for (Widget* widget : widgets) {
             widget->handleInput();
         }

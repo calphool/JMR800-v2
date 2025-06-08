@@ -48,8 +48,9 @@ void RunModeScreen::addWidget(Widget* w) {
  */
 void RunModeScreen::draw() {
   log(LOG_VERBOSE, "Inside RunModeScreen->draw()");
+  long m = millis();
 
-   if(millis() < 10000) {
+   if(m < 10000) {
         ScreenManager::getDisplay()->setCursor(10,0);
         ScreenManager::getDisplay()->print("JMR-800 Controller");
         ScreenManager::getDisplay()->setCursor(10,20);
@@ -58,6 +59,11 @@ void RunModeScreen::draw() {
         ScreenManager::getDisplay()->print(__TIME__);;
         ScreenManager::getDisplay()->setCursor(10,50);
         ScreenManager::getDisplay()->print("Booting...");
+        if(m % 4 == 0) ScreenManager::getDisplay()->print("|");     
+        if(m % 4 == 1) ScreenManager::getDisplay()->print("/");
+        if(m % 4 == 2) ScreenManager::getDisplay()->print("-");
+        if(m % 4 == 3) ScreenManager::getDisplay()->print("\\");
+
         ScreenManager::getDisplay()->display();
         return;
   }

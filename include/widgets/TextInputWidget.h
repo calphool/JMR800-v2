@@ -27,6 +27,7 @@ private:
     int currentPosition;        ///< Cursor position within the buffer
     int width;                  ///< Visible field width (in pixels)
     IWidgetNavHandler* navHandler = nullptr;  ///< Optional handler for left/right navigation out of field
+    bool bIsAttachedToEncoder;
 
 public:
 
@@ -66,7 +67,13 @@ public:
      */
     void setCharAtCurrentPosition(char c);
 
-        /**
+    char getCharAtCurrentPosition();
+
+    void attachToEncoder();
+
+    void detachFromEncoder();
+
+    /**
      * @brief Returns the widget type as WidgetType::TextInputWidget.
      * @return WidgetType enum value
      */

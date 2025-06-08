@@ -29,6 +29,7 @@
  */
 TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHandler* handler) : Widget(x, y, true), navHandler(handler) {
     currentPosition = 0;
+    bIsAttachedToEncoder = false;
     strcpy(text, _text);
     width = w;
     int numChars = w / 6;
@@ -44,6 +45,8 @@ TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHan
         while(((int)strlen(text) * 6) > w && strlen(text) > 0) 
             text[strlen(text) - 1] = '\0'; 
     }
+
+    hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -61,7 +64,7 @@ void TextInputWidget::draw() {
         ScreenManager::getDisplay()->setCursor(xpos, y);
         ScreenManager::getDisplay()->print(text[i]);
         ScreenManager::getDisplay()->drawLine(xpos, y + 8,  xpos + 4, y + 8, SH110X_WHITE);
-        if(currentPosition == i) {
+        if(currentPosition == i && bHighlighted) {
             if(toggle) 
                 ScreenManager::getDisplay()->drawLine(xpos, y + 9, xpos + 4, y + 9, SH110X_WHITE);
             else 
@@ -82,6 +85,7 @@ void TextInputWidget::advanceCurrentPosition() {
         } 
         currentPosition = 0; 
     }
+    hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -96,6 +100,7 @@ void TextInputWidget::backtrackCurrentPosition() {
         }
         currentPosition = strlen(text) - 1;
     }
+    hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -113,14 +118,31 @@ void TextInputWidget::setCharAtCurrentPosition(char c) {
     text[strlen(text)] = '\0'; // Ensure null termination
 }
 
+char TextInputWidget::getCharAtCurrentPosition() {
+    return text[currentPosition];
+}
+
+void TextInputWidget::attachToEncoder() {
+    bIsAttachedToEncoder = true;
+}
+
+void TextInputWidget::detachFromEncoder() {
+    bIsAttachedToEncoder = false; 
+}
+
 /**
  * @brief Handles hardware input for left/right button presses to navigate the cursor.
  */
 void TextInputWidget::handleInput() {
-    if(hardware.buttonStateChanged(0, true, true)) { 
+    if(hardware.buttonStateChanged(1, true, true)) { 
         advanceCurrentPosition();
-    } else if(hardware.buttonStateChanged(1, true, true)) {
+    } else if(hardware.buttonStateChanged(0, true, true)) {
         backtrackCurrentPosition();
+    }
+
+    if(bIsAttachedToEncoder) {
+        char charEncoderValue = hardware.getEncoderModdedBy(96) + 32;
+        text[currentPosition] = charEncoderValue;
     }
 }
 

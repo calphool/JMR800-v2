@@ -204,6 +204,14 @@ public:
      */
     knobConfig getKnobConfiguration(uint i);
 
+    /**
+     * @brief Converts an ASCII value to an encoder setting
+     * @param c character
+     * @return the encoder setting
+     */
+    int AsciiToEncoder(char c);
+
+    long getEncoderModdedBy(long i);
 };
 
 /**
