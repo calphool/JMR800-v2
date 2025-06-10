@@ -36,7 +36,7 @@ void ConfigMode::onExit() {
  * a knob configuration dialog when the encoder switch is pressed.
  */
 void ConfigMode::loop() {
-    uint active_knob = hardware.getEncoderZeroTo(NUM_KNOBS);
+    uint active_knob = hardware.getEncoderModdedBy(NUM_KNOBS);
 
     theConfigScreen.highlightActiveKnob(active_knob);
 

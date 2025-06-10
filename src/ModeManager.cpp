@@ -22,6 +22,8 @@ ModeManager modeManager;
  * @param mode Pointer to an `AppMode` instance to register.
  */
 void ModeManager::addMode(AppMode* mode) {
+    log(LOG_VERBOSE, "inside ModeManager->addMode()");
+
     modes.push_back(mode);
 }
 
@@ -31,6 +33,8 @@ void ModeManager::addMode(AppMode* mode) {
  * This method calls `onEnter()` and `showScreen()` on the first mode if at least one mode is registered.
  */
 void ModeManager::init() {
+    log(LOG_VERBOSE, "inside ModeManager->init()");
+
     if (!modes.empty()) {
       modes[0]->onEnter();
       modes[0]->showScreen();  // Let the mode decide its screen
@@ -82,6 +86,7 @@ void ModeManager::loop() {
  * @return AppMode* Currently active mode, or nullptr if no modes are registered.
  */
 AppMode* ModeManager::currentMode() const {
+    log(LOG_VERBOSE, "inside ModeManager->currentMode()");   
     return modes.empty() ? nullptr : modes[currentIndex];
 }
 
