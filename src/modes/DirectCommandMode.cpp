@@ -19,7 +19,7 @@
  * Prepares any state or logs entry into this mode.
  */
 void DirectCommandMode::onEnter() {
-    log(LOG_VERBOSE, "Entering Direct Command Mode");
+    log(LOG_VERBOSE, "Entering Direct Command Mode", __func__);
 }
 
 
@@ -29,7 +29,7 @@ void DirectCommandMode::onEnter() {
  * Handles any cleanup or state persistence on mode deactivation.
  */
 void DirectCommandMode::onExit() {
-    log(LOG_VERBOSE, "Exiting Direct Command Mode");
+    log(LOG_VERBOSE, "Exiting Direct Command Mode", __func__);
 }
 
 

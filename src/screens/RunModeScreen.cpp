@@ -18,14 +18,14 @@
  * @brief Constructs a RunModeScreen instance and initializes internal state.
  */
 RunModeScreen::RunModeScreen() {
-  log(LOG_VERBOSE, "Inside RunModeScreen->constructor");
+  log(LOG_VERBOSE, "Inside RunModeScreen->constructor", __func__);
 }
 
 /**
  * @brief Destructor for RunModeScreen, which cleans up dynamically allocated widgets.
  */
 RunModeScreen::~RunModeScreen() {
-  log(LOG_VERBOSE, "Inside RunModeScreen->destructor");
+  log(LOG_VERBOSE, "Inside RunModeScreen->destructor", __func__);
 }
 
 
@@ -35,7 +35,7 @@ RunModeScreen::~RunModeScreen() {
  * @param w Pointer to a dynamically allocated Widget to register with this screen.
  */
 void RunModeScreen::addWidget(Widget* w) {
-  log(LOG_VERBOSE, "Inside RunModeScreen->addWidget()");
+  log(LOG_VERBOSE, "Inside RunModeScreen->addWidget()", __func__);
   widgets.push_back(w);
 }
 
@@ -47,7 +47,7 @@ void RunModeScreen::addWidget(Widget* w) {
  * Otherwise, delegates rendering to each widget in order.
  */
 void RunModeScreen::draw() {
-  log(LOG_VERBOSE, "Inside RunModeScreen->draw()");
+  log(LOG_VERBOSE, "Inside RunModeScreen->draw()", __func__);
   long m = millis();
 
    if(m < 10000) {
@@ -80,7 +80,7 @@ void RunModeScreen::draw() {
  * Called repeatedly in the main loop to process UI interaction.
  */
 void RunModeScreen::handleInput() {
-  log(LOG_VERBOSE, "Inside RunModeScreen->handleInput()");
+  log(LOG_VERBOSE, "Inside RunModeScreen->handleInput()", __func__);
 
   for (Widget* w : widgets) {
      w->handleInput();
@@ -94,7 +94,7 @@ void RunModeScreen::handleInput() {
  * Sets up a minimal layout, including a screen title label and a decorative rectangle.
  */
 void RunModeScreen::onEnter() {
-  log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()");
+  log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()", __func__);
     const char* labelText = "Run Mode";
 
    Widget* w = new StarFieldWidget(0,0,SCREEN_WIDTH,64);
@@ -111,7 +111,7 @@ void RunModeScreen::onEnter() {
  * Responsible for deallocating all dynamic widgets and clearing the widget list.
  */
 void RunModeScreen::onExit() {
-  log(LOG_VERBOSE, "Inside RunModeScreen->onExit()");
+  log(LOG_VERBOSE, "Inside RunModeScreen->onExit()", __func__);
 
   for (Widget* w : widgets) {
        delete w;

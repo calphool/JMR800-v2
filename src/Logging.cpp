@@ -23,7 +23,7 @@ unsigned long lastSerialInitAttemptMillis = 0;
  * @param level LogLevel to categorize the message (e.g., LOG_INFO, LOG_ERROR).
  * @param message The message to be logged.
  */
-void log(LogLevel level, const String& message) {
+void log(LogLevel level, const String& message, const char* _func_name) {
     if (level < LOG_LEVEL_THRESHOLD) return;
 
     if(!Serial) {                      // if we haven't initialized the Serial object, turn on the system's LEDs, 
@@ -53,6 +53,9 @@ void log(LogLevel level, const String& message) {
             break;
     }
 
+    Serial.print(_func_name);
+    Serial.print(": ");
+
     Serial.println(message);
 }
 
@@ -62,6 +65,6 @@ void log(LogLevel level, const String& message) {
  *
  * @param message The message to be logged.
  */
-void log(const String& message) {
-    log(LOG_INFO, message);
-}
+void log(const String& message, const char* _func_name) {
+    log(LOG_VERBOSE, message, _func_name);
+} 

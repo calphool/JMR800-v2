@@ -70,7 +70,7 @@ public:
 
     char getCharAtCurrentPosition();
 
-    void attachToEncoder();
+    void attachToEncoder(bool bEnteringLeftEdge = true);
 
     void detachFromEncoder();
 

@@ -89,7 +89,7 @@ const int8_t PotentiometerKnobWidget::arrow_dy[360] = {
  */
 PotentiometerKnobWidget::PotentiometerKnobWidget(int _knobId, int x, int y) : KnobWidget(x, y),
       knobId(_knobId), value(0) {
-  log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor");
+  log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->constructor", __func__);
 }
 
 
@@ -130,7 +130,7 @@ void PotentiometerKnobWidget::setHighlighted(bool h) {
  * @param deg Angle in degrees (0–359) used to compute arrow direction.
  */
 void PotentiometerKnobWidget::drawArrow(int deg) {
-    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->drawArrow()");
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->drawArrow()", __func__);
 
     int cx = x + 4;
     int cy = y + 3;
@@ -151,7 +151,7 @@ void PotentiometerKnobWidget::drawArrow(int deg) {
  * Includes bezel, fill, and optional highlight circle. Arrow angle reflects value.
  */
 void PotentiometerKnobWidget::draw() {
-    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->draw()");
+    log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->draw()", __func__);
     toggle = !toggle;
 
     bool fillBlack = bHighlighted && toggle;
@@ -185,7 +185,7 @@ void PotentiometerKnobWidget::handleInput() {
     if(knobId > NUM_KNOBS || knobId < 0) {
         char buf[128];
         sprintf(buf, "PotentiometerKnobWidget->handleInput() invoked with an invalid knobId: %d", knobId);
-        log(LOG_ERROR, buf);
+        log(LOG_ERROR, buf, __func__);
         return;
     }
 

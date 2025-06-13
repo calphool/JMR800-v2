@@ -19,7 +19,7 @@
  * @param outNumBox Reference to a pointer that will be assigned a `TextLabelWidget` representing a numeric display box.
  */
 void SharedControlScreenUtility::initializeControllerScreenLayout(std::vector<Widget*>& widgets, const char* labelText, TextLabelWidget*& outNumBox) {
-    log(LOG_VERBOSE, "Inside WidgetLayoutHelper::initializeTestScreenLayout()");
+    log(LOG_VERBOSE, "Inside WidgetLayoutHelper::initializeTestScreenLayout()", __func__);
 
     int textWidth = strlen(labelText) * 6;
     int x = (SCREEN_WIDTH - textWidth) / 2;

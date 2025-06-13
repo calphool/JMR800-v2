@@ -19,7 +19,7 @@
  * Initializes the configuration screen's internal state.
  */
 ConfigScreen::ConfigScreen() {
-    log(LOG_VERBOSE, "Inside ConfigScreen->constructor");
+    log(LOG_VERBOSE, "Inside ConfigScreen->constructor", __func__);
 }
 
 
@@ -29,7 +29,7 @@ ConfigScreen::ConfigScreen() {
  * Cleans up all dynamically allocated widgets and dialogs.
  */
 ConfigScreen::~ConfigScreen() {
-    log(LOG_VERBOSE, "Inside ConfigScreen->destructor");
+    log(LOG_VERBOSE, "Inside ConfigScreen->destructor", __func__);
 }
 
 
@@ -38,7 +38,7 @@ ConfigScreen::~ConfigScreen() {
  * @param w Pointer to a dynamically allocated Widget.
  */
 void ConfigScreen::addWidget(Widget* w) {
-  log(LOG_VERBOSE, "Inside ConfigScreen->addWidget()");
+  log(LOG_VERBOSE, "Inside ConfigScreen->addWidget()", __func__);
   widgets.push_back(w);
 }
 
@@ -47,7 +47,7 @@ void ConfigScreen::addWidget(Widget* w) {
  * @brief Renders all widgets or the modal knob configuration dialog if active.
  */
 void ConfigScreen::draw() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->draw()");
+  log(LOG_VERBOSE, "Inside ConfigScreen->draw()", __func__);
 
   for (Widget* w : widgets) {
         w->draw();
@@ -63,7 +63,7 @@ void ConfigScreen::draw() {
  * @brief Passes control to either the modal dialog or each registered widget to handle input.
  */
 void ConfigScreen::handleInput() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->handleInput()");
+  log(LOG_VERBOSE, "Inside ConfigScreen->handleInput()", __func__);
 
    if (knobConfigDialog && !knobConfigDialog->isDone()) {
          knobConfigDialog->handleInput();
@@ -82,7 +82,7 @@ void ConfigScreen::handleInput() {
  * Populates the widget list using the shared layout utility.
  */
 void ConfigScreen::onEnter() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()");
+  log(LOG_VERBOSE, "Inside ConfigScreen->onEnter()", __func__);
   const char* labelText = "Config Mode";
 
    TextLabelWidget* dummyBox = nullptr;
@@ -96,7 +96,7 @@ void ConfigScreen::onEnter() {
  * Cleans up modal dialogs and all dynamically allocated widgets.
  */
 void ConfigScreen::onExit() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->onExit()");
+  log(LOG_VERBOSE, "Inside ConfigScreen->onExit()", __func__);
 
    if (knobConfigDialog) {
          knobConfigDialog->onExit();

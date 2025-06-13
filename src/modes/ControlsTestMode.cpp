@@ -18,7 +18,7 @@
  * Logs mode entry. No specific setup required at this stage.
  */
 void ControlsTestMode::onEnter() {
-    log(LOG_VERBOSE, "Entering Controls Test Mode");
+    log(LOG_VERBOSE, "Entering Controls Test Mode", __func__);
 }
 
 
@@ -28,7 +28,7 @@ void ControlsTestMode::onEnter() {
  * Turns off all button LEDs and logs mode exit.
  */
 void ControlsTestMode::onExit() {
-    log(LOG_VERBOSE, "Exiting Controls Test Mode");
+    log(LOG_VERBOSE, "Exiting Controls Test Mode", __func__);
     for(int i=0; i < NUM_BUTTONS; i++)
         hardware.setButtonLights(i, false, false);
 }

@@ -31,7 +31,7 @@ TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
                                  LabelColor c)
                                  : Widget(x, y, false)
     , text(t), fontSize(fs), useTinyFont(tiny), color(c) {
-    log(LOG_VERBOSE, "Inside TextLabelWidget->constructor");
+    log(LOG_VERBOSE, "Inside TextLabelWidget->constructor", __func__);
 }
 
 
@@ -42,7 +42,7 @@ TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
  * If the widget is highlighted, an animated underline is toggled on each draw.
  */
 void TextLabelWidget::draw() {
-    log(LOG_VERBOSE, "Inside TextLabelWidget->draw()");
+    log(LOG_VERBOSE, "Inside TextLabelWidget->draw()", __func__);
     toggle = !toggle;
 
     ScreenManager::getDisplay()->setCursor(x, y);

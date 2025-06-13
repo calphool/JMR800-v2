@@ -22,7 +22,7 @@
  */
 KnobWidget::KnobWidget(int x, int y)
     : Widget(x, y, false) {
-  log(LOG_VERBOSE, "Inside KnobWidget->constructor");
+  log(LOG_VERBOSE, "Inside KnobWidget->constructor", __func__);
 }
 
 

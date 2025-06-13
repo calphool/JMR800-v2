@@ -22,7 +22,7 @@
  */
 ButtonWidget::ButtonWidget(int _buttonId, int x, int y) : Widget(x, y, false), 
   pressed(false), red(false), green(false), buttonId(_buttonId) {
-  log(LOG_VERBOSE, "Inside ButtonWidget->constructor");
+  log(LOG_VERBOSE, "Inside ButtonWidget->constructor", __func__);
 }
 
 /**
@@ -81,7 +81,7 @@ void ButtonWidget::handleInput() {
   if(buttonId < 0 || buttonId > NUM_BUTTONS) {
         char buf[128];
         sprintf(buf, "ButtonWidget->handleInput() invoked with an invalid buttonId: %d", buttonId);
-        log(LOG_ERROR, buf);
+        log(LOG_ERROR, buf, __func__);
         return;
   }
 

@@ -26,7 +26,7 @@ volatile uint16_t HardwareManager::sendBuffer = 0;
  * Also initializes the MUX channel state and LED register system.
  */
 void HardwareManager::init() {
-    log(LOG_VERBOSE, "Entering HardwareManager->init()");
+    log(LOG_VERBOSE, "Entering HardwareManager->init()", __func__);
     
     EEPROM.begin();
     loadKnobs(); 
@@ -63,17 +63,17 @@ void HardwareManager::init() {
     pinMode(DATA_OUT_PIN, OUTPUT);
     digitalWrite(READYOUT_PIN, LOW);
 
-    log(LOG_VERBOSE, "Setting up ADC...");
+    log(LOG_VERBOSE, "Setting up ADC...", __func__);
 
     adc.adc0->setAveraging(4);
     adc.adc0->setConversionSpeed(ADC_CONVERSION_SPEED::MED_SPEED);
     adc.adc0->setSamplingSpeed(ADC_SAMPLING_SPEED::MED_SPEED); 
 
-    log(LOG_VERBOSE, "Attaching interrupts...");
+    log(LOG_VERBOSE, "Attaching interrupts...", __func__);
 
     attachInterrupt(digitalPinToInterrupt(CLOCK_IN_PIN), HardwareManager::onPG800ClockFall, FALLING);
 
-    log(LOG_VERBOSE, "Setting up DAC tables...");
+    log(LOG_VERBOSE, "Setting up DAC tables...", __func__);
 
     for(uint8_t i=0; i< NUM_MUXES; i++) {
         for(uint8_t j=0;j<16;j++) {
@@ -84,7 +84,7 @@ void HardwareManager::init() {
 
     ledstate = 0b00000000;
 
-    log(LOG_INFO, "Initialized.");
+    log(LOG_INFO, "Initialized.", __func__);
 }
 
 /**
@@ -137,10 +137,10 @@ void HardwareManager::saveKnobs() {
 
     if(knobChanged(i)) { // optimization that reduces wear on EEPROM
       EEPROM.put(addr, knobConfigurations[i]);
-      log(LOG_INFO, "knob changed:     " + String(i));
+      log(LOG_INFO, "knob changed:     " + String(i), __func__);
     }
     else {
-      log(LOG_VERBOSE, "knob not changed: " + String(i));
+      log(LOG_VERBOSE, "knob not changed: " + String(i), __func__);
     }
   }
   memcpy(knobConfigurations_bkup, knobConfigurations, sizeof(knobConfigurations));
@@ -199,7 +199,7 @@ int HardwareManager::getKnobValue(uint knobIX) {
  */
 bool HardwareManager::isButtonPressed(uint index) {
     if(index >= NUM_BUTTONS) {
-      log(LOG_ERROR, "HardwareManager::isButtonPressed() invoked with index larger than number of defined buttons.");
+      log(LOG_ERROR, "HardwareManager::isButtonPressed() invoked with index larger than number of defined buttons.", __func__);
       return buttonStates[0];
     }
 
@@ -239,7 +239,7 @@ void HardwareManager::gatherControlSettings() {
  */
 bool HardwareManager::redIsLit(uint buttonId) {
   if(buttonId >= NUM_BUTTONS) {
-    log(LOG_ERROR, "invalid button number passed to HardwareManager::redIsLit()");
+    log(LOG_ERROR, "invalid button number passed to HardwareManager::redIsLit()", __func__);
     return false;
   }
   
@@ -257,7 +257,7 @@ bool HardwareManager::redIsLit(uint buttonId) {
  */
 bool HardwareManager::greenIsLit(uint buttonId) {
   if(buttonId >= NUM_BUTTONS) {
-    log(LOG_ERROR, "invalid button number passed to HardwareManager::greenIsLit()");
+    log(LOG_ERROR, "invalid button number passed to HardwareManager::greenIsLit()", __func__);
     return false;
   }
 
@@ -303,7 +303,7 @@ bool HardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag)
  */
 bool HardwareManager::buttonStateChanged(uint index, bool upThenDown, bool clearFlag) {
   if(index >= NUM_BUTTONS) {
-    log(LOG_ERROR, "invalid button number passed to HardwareManager::buttonStateChanged()");
+    log(LOG_ERROR, "invalid button number passed to HardwareManager::buttonStateChanged()", __func__);
     return false;
   }
 
@@ -374,6 +374,7 @@ void HardwareManager::setAddressPins(uint val) {
  */
 void HardwareManager::resetEncoder(uint i) {
   encoderKnob->write(i);
+  lastEncoderPosition = i;
 }
 
 int HardwareManager::AsciiToEncoder(char c) {
@@ -395,9 +396,9 @@ void HardwareManager::updateEncoder() {
 
   if (newPosition != lastEncoderPosition) {
     if (newPosition > lastEncoderPosition) {
-      log(LOG_VERBOSE, "CCW " + String(lastEncoderPosition>>2));
+      log(LOG_VERBOSE, "CCW " + String(lastEncoderPosition>>2), __func__);
     } else {
-      log(LOG_VERBOSE, "CW  " + String(lastEncoderPosition>>2));
+      log(LOG_VERBOSE, "CW  " + String(lastEncoderPosition>>2), __func__);
     }
 
     lastEncoderPosition = newPosition;
@@ -481,7 +482,7 @@ void HardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
 
   while (bitIndex != -1 && (millis() - now < 250) );  // Wait until previous transfer is complete
   if(millis() - now >= 250) {
-    log(LOG_ERROR, "problem waiting for bitIndex in sendParameter()");
+    log(LOG_ERROR, "problem waiting for bitIndex in sendParameter()", __func__);
     return;
   }
 
@@ -552,7 +553,7 @@ void HardwareManager::restoreLedState() {
  */
 knobConfig HardwareManager::getKnobConfiguration(uint index) {
   if(index >= NUM_KNOBS) {
-    log(LOG_ERROR, "HardwareManager::getKnobConfiguration() invoked with an invalid knob index");
+    log(LOG_ERROR, "HardwareManager::getKnobConfiguration() invoked with an invalid knob index", __func__);
     return knobConfigurations[NUM_KNOBS % index];
   }
   return knobConfigurations[index];
@@ -569,7 +570,7 @@ void HardwareManager::setButtonLights(uint buttonId, bool red, bool green) {
   // all logging here must check whether Serial is defined because this 
   // code gets used in the logging setup
   if(buttonId >= NUM_BUTTONS) {
-    if(Serial) log(LOG_ERROR, "HardwareManager::setButtonLights() invoked with an invalid button id");
+    if(Serial) log(LOG_ERROR, "HardwareManager::setButtonLights() invoked with an invalid button id", __func__);
     return;
   }
 

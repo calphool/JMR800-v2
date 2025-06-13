@@ -15,7 +15,7 @@
  * Logs entry and performs any setup required for configuration context.
  */
 void ConfigMode::onEnter() {
-    log(LOG_VERBOSE, "Entering System Config Mode");
+    log(LOG_VERBOSE, "Entering System Config Mode", __func__);
 }
 
 /**
@@ -24,7 +24,7 @@ void ConfigMode::onEnter() {
  * Logs exit and performs any teardown if necessary.
  */
 void ConfigMode::onExit() {
-    log(LOG_VERBOSE, "Exiting System Config Mode");
+    log(LOG_VERBOSE, "Exiting System Config Mode", __func__);
 }
 
 

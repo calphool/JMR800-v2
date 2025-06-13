@@ -54,7 +54,7 @@ ConfigMode configMode;
  * the appropriate entry point for the application.
  */
 void setup() {
-  log(LOG_VERBOSE, "Inside main->setup()");
+  log(LOG_VERBOSE, "Inside main->setup()", __func__);
 
   hardware.init();
   screenManager.init();
