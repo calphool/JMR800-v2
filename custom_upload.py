@@ -4,7 +4,7 @@ import os
 import sys
 
 MAX_RETRIES = 10
-RETRY_DELAY_SECONDS = 5
+RETRY_DELAY_SECONDS = 2
 
 firmware_path = sys.argv[1]
 mcu_type = "TEENSY41"

@@ -267,6 +267,10 @@ bool HardwareManager::greenIsLit(uint buttonId) {
 }
 
 
+void HardwareManager::clearEncoderButton() {
+  bPrevEncoderBtn = bEncoderBtn = false;
+}
+
 /**
  * @brief Checks if the encoder switch changed state in the specified direction.
  * 

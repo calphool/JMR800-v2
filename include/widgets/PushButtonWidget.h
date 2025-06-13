@@ -11,6 +11,8 @@
 #include "widgets/Widget.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#include <functional>
+
 
 /**
  * @class PushButtonWidget
@@ -68,13 +70,19 @@ public:
      */ 
     WidgetType getType() const override;
 
+    /**
+     * @brief Sets an optional callback to invoke when the button is pressed.
+     * @param callback Function to call on button press
+     */
+    void setOnPressCallback(std::function<void()> callback);
+
+
 
 private:
     bool pressed;               ///< Whether the button is currently pressed
     char text[25];              ///< Button label text
     bool bIsAttachedToEncoder;  ///< Encoder navigation focus flag
-
-
+    std::function<void()> onPressCallback = nullptr; ///< Optional callback for button press events
 };
 
 

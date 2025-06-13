@@ -104,12 +104,28 @@ void PushButtonWidget::handleInput() {
     if(bIsAttachedToEncoder) {
         if(hardware.getEncoderSwitchStatus()) {
             this->setPressed(true);
+            if (onPressCallback) {
+                //log(LOG_INFO, "invoking onPressCallback", __func__);
+                onPressCallback(); // Execute the callback
+            }
         }
         else {
             this->setPressed(false);
         }
     }
 }
+
+
+/**
+ * @brief Sets a callback function to be invoked when the button is pressed.
+ *
+ * @return void
+ */
+void PushButtonWidget::setOnPressCallback(std::function<void()> callback) {
+    onPressCallback = callback;
+}
+
+
 
 /**
  * @brief Returns the widget type identifier.

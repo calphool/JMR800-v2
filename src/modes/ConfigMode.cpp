@@ -41,7 +41,7 @@ void ConfigMode::loop() {
     theConfigScreen.highlightActiveKnob(active_knob);
 
     if(hardware.encoderSwitchStateChanged(true, true )) {
-        theConfigScreen.changeScreenMode(active_knob);
+        theConfigScreen.activateKnobConfig(active_knob);
     }
 }
 
