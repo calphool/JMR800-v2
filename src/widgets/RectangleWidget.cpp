@@ -23,7 +23,7 @@
  */
 RectangleWidget::RectangleWidget(int x, int y, int w, int h, bool f, RectColor c) :
   Widget(x, y, false), width(w), height(h), filled(f), color(c) {
-  log(LOG_VERBOSE, "Inside RectangleWidget->constructor");
+  log(LOG_VERBOSE, "Inside RectangleWidget->constructor", __func__);
 }
 
 
@@ -34,7 +34,7 @@ RectangleWidget::RectangleWidget(int x, int y, int w, int h, bool f, RectColor c
  * an additional animated border is toggled to indicate focus.
  */
 void RectangleWidget::draw() {
-  log(LOG_VERBOSE, "Inside RectangleWidget->draw()");
+  log(LOG_VERBOSE, "Inside RectangleWidget->draw()", __func__);
   toggle = !toggle;
   
   if (filled) {

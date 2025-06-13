@@ -44,7 +44,7 @@ extern unsigned long lastSerialInitAttemptMillis;
  * @param level The severity of the message.
  * @param message The message string to be logged.
  */
-void log(LogLevel level, const String& message);
+void log(LogLevel level, const String& message, const char* func);
 
 /**
  * @brief Logs a message with an explicit log level.
@@ -52,4 +52,4 @@ void log(LogLevel level, const String& message);
  * @param level The severity of the message.
  * @param message The message string to be logged.
  */
-void log(const String& message); // defaults to INFO
+void log(const String& message, const char* func); // defaults to VERBOSE

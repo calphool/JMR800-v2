@@ -19,7 +19,7 @@
  * Initializes the internal widget list and logs screen creation.
  */
 DirectCommandScreen::DirectCommandScreen() {
-    log(LOG_VERBOSE, "Inside DirectCommandScreen->constructor");
+    log(LOG_VERBOSE, "Inside DirectCommandScreen->constructor", __func__);
 }
 
 /**
@@ -28,7 +28,7 @@ DirectCommandScreen::DirectCommandScreen() {
  * Frees all dynamically allocated widgets upon screen teardown.
  */
 DirectCommandScreen::~DirectCommandScreen() {
-    log(LOG_VERBOSE, "Inside DirectCommandScreen->destructor");
+    log(LOG_VERBOSE, "Inside DirectCommandScreen->destructor", __func__);
 }
 
 
@@ -38,7 +38,7 @@ DirectCommandScreen::~DirectCommandScreen() {
  * @param w Pointer to the widget to add.
  */
 void DirectCommandScreen::addWidget(Widget* w) {
-  log(LOG_VERBOSE, "Inside DirectCommandScreen->addWidget()");
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->addWidget()", __func__);
   widgets.push_back(w);
 }
 
@@ -47,7 +47,7 @@ void DirectCommandScreen::addWidget(Widget* w) {
  * @brief Renders all registered widgets to the OLED display.
  */
 void DirectCommandScreen::draw() {
-  log(LOG_VERBOSE, "Inside DirectCommandScreen->draw()");
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->draw()", __func__);
 
   for (Widget* w : widgets) {
         w->draw();
@@ -59,7 +59,7 @@ void DirectCommandScreen::draw() {
  * @brief Dispatches input handling to all widgets in the screen.
  */
 void DirectCommandScreen::handleInput() {
-  log(LOG_VERBOSE, "Inside DirectCommandScreen->handleInput()");
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->handleInput()", __func__);
 
   for (Widget* w : widgets) {
      w->handleInput();
@@ -74,7 +74,7 @@ void DirectCommandScreen::handleInput() {
  */
 void DirectCommandScreen::onEnter() {
     // Optionally refresh data or reset states
-  log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()");
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->onEnter()", __func__);
   const char* labelText = "Direct Command Mode";
 
   strcpy(buff, "%02X");
@@ -108,7 +108,7 @@ void DirectCommandScreen::onEnter() {
  */
 void DirectCommandScreen::advanceActiveControl() {
    if(cmdWidget == NULL || byteWidget == NULL || pushWidget == NULL) {
-      log(LOG_ERROR, "undefined control in DirectCommandScreen::advanceActiveContr()");
+      log(LOG_ERROR, "undefined control in DirectCommandScreen::advanceActiveContr()", __func__);
       return;
    }
    
@@ -188,7 +188,7 @@ Widget* DirectCommandScreen::getActiveWidget() {
  * Cleans up all dynamic widgets.
  */
 void DirectCommandScreen::onExit() {
-  log(LOG_VERBOSE, "Inside DirectCommandScreen->onExit()");
+  log(LOG_VERBOSE, "Inside DirectCommandScreen->onExit()", __func__);
     for (Widget* w : widgets) {
         delete w;
     }

@@ -131,7 +131,7 @@
                 detachAllWidgets();
                 knobNameInputWidget->setHighlighted(true);
                 knobNameInputWidget->setCurrentPosition(0);
-                knobNameInputWidget->attachToEncoder();
+                knobNameInputWidget->attachToEncoder(true);
                 return;
             }
         } else if(hardware.buttonStateChanged(0, true, true)) { // moving left
@@ -142,7 +142,7 @@
                 detachAllWidgets();
                 knobNameInputWidget->setHighlighted(true);
                 knobNameInputWidget->setCurrentPosition(knobNameInputWidget->getEndPosition());
-                knobNameInputWidget->attachToEncoder();
+                knobNameInputWidget->attachToEncoder(false);
                 return;
             } else if(typeCodeWidget && typeCodeWidget->getHighlightedStatus()) {
                 detachAllWidgets();

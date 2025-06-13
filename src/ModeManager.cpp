@@ -22,7 +22,7 @@ ModeManager modeManager;
  * @param mode Pointer to an `AppMode` instance to register.
  */
 void ModeManager::addMode(AppMode* mode) {
-    log(LOG_VERBOSE, "inside ModeManager->addMode()");
+    log(LOG_VERBOSE, "inside ModeManager->addMode()", __func__);
 
     modes.push_back(mode);
 }
@@ -33,7 +33,7 @@ void ModeManager::addMode(AppMode* mode) {
  * This method calls `onEnter()` and `showScreen()` on the first mode if at least one mode is registered.
  */
 void ModeManager::init() {
-    log(LOG_VERBOSE, "inside ModeManager->init()");
+    log(LOG_VERBOSE, "inside ModeManager->init()", __func__);
 
     if (!modes.empty()) {
       modes[0]->onEnter();
@@ -61,7 +61,7 @@ void ModeManager::loop() {
     if (currentCombo && !prevButtonState && !modes.empty()) {
         sprintf(buffer_64, "Cycling from %s to %s", modes[currentIndex]->name(), 
             modes[(currentIndex + 1) % modes.size()]->name());
-        log(LOG_INFO, buffer_64);
+        log(LOG_INFO, buffer_64, __func__);
 
 
         modes[currentIndex]->onExit();
@@ -86,7 +86,7 @@ void ModeManager::loop() {
  * @return AppMode* Currently active mode, or nullptr if no modes are registered.
  */
 AppMode* ModeManager::currentMode() const {
-    log(LOG_VERBOSE, "inside ModeManager->currentMode()");   
+    log(LOG_VERBOSE, "inside ModeManager->currentMode()", __func__);   
     return modes.empty() ? nullptr : modes[currentIndex];
 }
 

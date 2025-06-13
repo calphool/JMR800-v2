@@ -23,7 +23,7 @@
  * Initializes the screen and logs its creation.
  */
 ControlsTestScreen::ControlsTestScreen() {
-      log(LOG_VERBOSE, "Inside ControlsTestScreen->constructor");
+      log(LOG_VERBOSE, "Inside ControlsTestScreen->constructor", __func__);
 }
 
 
@@ -33,7 +33,7 @@ ControlsTestScreen::ControlsTestScreen() {
  * Cleans up any dynamically allocated widgets.
  */
 ControlsTestScreen::~ControlsTestScreen() {
-      log(LOG_VERBOSE, "Inside ControlsTestScreen->destructor");
+      log(LOG_VERBOSE, "Inside ControlsTestScreen->destructor", __func__);
 }
 
 
@@ -42,7 +42,7 @@ ControlsTestScreen::~ControlsTestScreen() {
  * @param w Pointer to the widget to add.
  */
 void ControlsTestScreen::addWidget(Widget* w) {
-  log(LOG_VERBOSE, "Inside ControlsTestScreen->addWidget()");
+  log(LOG_VERBOSE, "Inside ControlsTestScreen->addWidget()", __func__);
   widgets.push_back(w);
 }
 
@@ -71,7 +71,7 @@ void truncateTo3Right(long value, char* outStr) {
  * @brief Draws all registered widgets onto the display.
  */
 void ControlsTestScreen::draw() {
-  log(LOG_VERBOSE, "Inside ControlsTestScreen->draw()");
+  log(LOG_VERBOSE, "Inside ControlsTestScreen->draw()", __func__);
 
   for (Widget* w : widgets) {
         w->draw();
@@ -84,7 +84,7 @@ void ControlsTestScreen::draw() {
  * @brief Handles input by delegating to widgets and updating the encoder value display.
  */
 void ControlsTestScreen::handleInput() {
-  log(LOG_VERBOSE, "Inside ControlsTestScreen->handleInput()");
+  log(LOG_VERBOSE, "Inside ControlsTestScreen->handleInput()", __func__);
 
   for (Widget* w : widgets) {
      w->handleInput();
@@ -102,7 +102,7 @@ void ControlsTestScreen::handleInput() {
  * Uses a shared layout helper to configure knobs, buttons, and encoder display.
  */
 void ControlsTestScreen::onEnter() {
-    log(LOG_VERBOSE, "Inside ControlsTestScreen->onEnter()");
+    log(LOG_VERBOSE, "Inside ControlsTestScreen->onEnter()", __func__);
     const char* labelText = "Controls Test Mode";
 
    SharedControlScreenUtility::initializeControllerScreenLayout(widgets, labelText, numBox);
@@ -115,7 +115,7 @@ void ControlsTestScreen::onEnter() {
  * Cleans up all dynamically allocated widgets.
  */
 void ControlsTestScreen::onExit() {
-  log(LOG_VERBOSE, "Inside ControlsTestScreen->onExit()");
+  log(LOG_VERBOSE, "Inside ControlsTestScreen->onExit()", __func__);
   for (Widget* w : widgets) {
       delete w;
   }

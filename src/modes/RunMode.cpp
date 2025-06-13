@@ -17,7 +17,7 @@
  * Used to perform any setup or initialization needed before the mode starts executing.
  */
 void RunMode::onEnter() {
-    log(LOG_VERBOSE, "Entering Run Mode");
+    log(LOG_VERBOSE, "Entering Run Mode", __func__);
 }
 
 
@@ -27,7 +27,7 @@ void RunMode::onEnter() {
  * Used for cleanup or persisting state before transitioning out of the mode.
  */
 void RunMode::onExit() {
-    log(LOG_VERBOSE, "Exiting Run Mode");
+    log(LOG_VERBOSE, "Exiting Run Mode", __func__);
 }
 
 

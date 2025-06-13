@@ -6,7 +6,7 @@
 
 StarFieldWidget::StarFieldWidget(int x, int y, int w, int h) :
   Widget(x, y, false), width(w), height(h) {
-  log(LOG_VERBOSE, "Inside StarFieldWidget->constructor");
+  log(LOG_VERBOSE, "Inside StarFieldWidget->constructor", __func__);
 
   half_width = width / 2;
   half_height = height / 2;

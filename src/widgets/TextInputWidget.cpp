@@ -41,7 +41,7 @@ TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHan
     }
 
     if(((int)strlen(text) * 6) > w) {
-        log(LOG_WARNING, "TextInputWidget: text is too long for the given width, truncating to fit");
+        log(LOG_WARNING, "TextInputWidget: text is too long for the given width, truncating to fit", __func__);
         while(((int)strlen(text) * 6) > w && strlen(text) > 0) 
             text[strlen(text) - 1] = '\0'; 
     }
@@ -85,7 +85,8 @@ void TextInputWidget::advanceCurrentPosition() {
         } 
         currentPosition = 0; 
     }
-    hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
+    else
+        hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -100,7 +101,8 @@ void TextInputWidget::backtrackCurrentPosition() {
         }
         currentPosition = strlen(text) - 1;
     }
-    hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
+    else
+        hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -111,7 +113,7 @@ void TextInputWidget::backtrackCurrentPosition() {
  */
 void TextInputWidget::setCharAtCurrentPosition(char c) {
     if(currentPosition < 0 || currentPosition >= (int)strlen(text)) {
-        log(LOG_ERROR, "TextInputWidget: current position out of bounds");
+        log(LOG_ERROR, "TextInputWidget: current position out of bounds", __func__);
         return;
     }
     text[currentPosition] = c; 
@@ -122,8 +124,12 @@ char TextInputWidget::getCharAtCurrentPosition() {
     return text[currentPosition];
 }
 
-void TextInputWidget::attachToEncoder() {
+void TextInputWidget::attachToEncoder(bool bEnteringLeftEdge) {
     bIsAttachedToEncoder = true;
+    if(bEnteringLeftEdge) 
+        hardware.resetEncoder(hardware.AsciiToEncoder(text[0]));
+    else
+        hardware.resetEncoder(hardware.AsciiToEncoder(text[strlen(text) - 1]));
 }
 
 void TextInputWidget::detachFromEncoder() {

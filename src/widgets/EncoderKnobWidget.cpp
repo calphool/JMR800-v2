@@ -21,7 +21,7 @@
  * @param y Vertical position of the knob.
  */
 EncoderKnobWidget::EncoderKnobWidget(int x, int y) : KnobWidget(x, y), pressed(false) {
-  log(LOG_VERBOSE, "Inside EncoderKnobWidget->constructor");
+  log(LOG_VERBOSE, "Inside EncoderKnobWidget->constructor", __func__);
 }
 
 

@@ -89,7 +89,7 @@ bool EncoderAttachedNumericWidget::isAttachedToEncoder() {
  * @brief Binds this widget to the encoder and initializes encoder state to match current value.
  */
 void EncoderAttachedNumericWidget::attachToEncoder() {
-    hardware.resetEncoder(control_value*4);
+    hardware.resetEncoder(control_value << 2);
     bIsAttachedToEncoder = true;
 }
 
