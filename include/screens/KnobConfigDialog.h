@@ -40,6 +40,9 @@ private:
     PushButtonWidget* okButtonWidget = nullptr;
     PushButtonWidget* cancelButtonWidget = nullptr;
 
+    std::function<void()> onExitCallback = nullptr;
+
+
 public:
 
     /**
@@ -90,4 +93,12 @@ public:
 
 
     void detachAllWidgets();
+
+
+    void OkPressed();
+
+    void CancelPressed();
+
+
+    void setOnExitCallback(std::function<void()> callback);
 };

@@ -18,6 +18,10 @@
         done = false;
     }
 
+    void KnobConfigDialog::setOnExitCallback(std::function<void()> callback) {
+        onExitCallback = callback;
+    }
+
     void KnobConfigDialog::onLeavingWidgetRight() {
         if(knobNameInputWidget && cmdByteWidget) {
             detachAllWidgets();
@@ -43,6 +47,27 @@
 
     bool KnobConfigDialog::isDone() const {
         return false;
+    }
+
+    void KnobConfigDialog::OkPressed() {
+        log(LOG_INFO, "Ok was pressed", __func__);
+        okButtonWidget->setOnPressCallback(nullptr);
+        //TODO:  add code to save the knob configuration
+        if(onExitCallback) {
+            this->onExitCallback();
+            delay(500);
+            hardware.clearEncoderButton();
+        }
+    }
+
+    void KnobConfigDialog::CancelPressed() {
+        log(LOG_INFO, "Cancel was pressed", __func__);
+        cancelButtonWidget->setOnPressCallback(nullptr);
+        if(onExitCallback) {
+            this->onExitCallback();
+            delay(500);
+            hardware.clearEncoderButton();
+        }
     }
 
     void KnobConfigDialog::onEnter() {
@@ -80,9 +105,11 @@
         widgets.push_back(typeCodeWidget);
 
         okButtonWidget = new PushButtonWidget("Ok", xoffset + 14, yoffset + height - 12);
+        okButtonWidget->setOnPressCallback([this]() { this->OkPressed(); });
         widgets.push_back(okButtonWidget);
 
         cancelButtonWidget = new PushButtonWidget("Cancel", xoffset + width - 50, yoffset + height - 12);
+        cancelButtonWidget->setOnPressCallback([this]() { this->CancelPressed(); });
         widgets.push_back(cancelButtonWidget);
     }
  

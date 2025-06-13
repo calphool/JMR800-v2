@@ -130,8 +130,21 @@ void ConfigScreen::highlightActiveKnob(int knobix) {
  * @brief Initiates modal dialog for configuring the selected knob.
  * @param knobid Index of the knob to configure.
  */
-void ConfigScreen::changeScreenMode(uint knobid) {
+void ConfigScreen::activateKnobConfig(uint knobid) {
    active_knob = knobid;
    knobConfigDialog = new KnobConfigDialog(7, 4, 112, 58, active_knob); // Adjust dimensions as needed
    knobConfigDialog->onEnter();
+   knobConfigDialog->setOnExitCallback([this]() {
+      deactiveKnobConfig(); // Clean up dialog when done
+   });
+}
+
+
+void ConfigScreen::deactiveKnobConfig() {
+   if (knobConfigDialog) {
+      knobConfigDialog->onExit();
+      delete knobConfigDialog;
+      knobConfigDialog = nullptr;
+   }
+   active_knob = -1; // Reset active knob index
 }

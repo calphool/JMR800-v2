@@ -78,5 +78,7 @@ public:
      * @brief Launches the knob configuration dialog for a given knob.
      * @param knobIndex Index of the knob to configure
      */
-    void changeScreenMode(uint knobIndex);
+    void activateKnobConfig(uint knobIndex);
+
+    void deactiveKnobConfig();
 };

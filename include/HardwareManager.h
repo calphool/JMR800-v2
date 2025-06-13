@@ -167,6 +167,8 @@ public:
      */
     bool greenIsLit(uint buttonId);
 
+    void clearEncoderButton();
+
     /**
      * @brief Checks if the red LED is lit for a given button.
      * @param buttonId Button index
