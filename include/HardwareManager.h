@@ -169,6 +169,8 @@ public:
 
     void clearEncoderButton();
 
+    void setKnobConfiguration(uint knobIndex, const char *name, uint8_t cmdbyte, uint8_t typecode);
+
     /**
      * @brief Checks if the red LED is lit for a given button.
      * @param buttonId Button index

@@ -50,9 +50,10 @@
     }
 
     void KnobConfigDialog::OkPressed() {
-        log(LOG_INFO, "Ok was pressed", __func__);
+        log(LOG_VERBOSE, "Ok was pressed", __func__);
         okButtonWidget->setOnPressCallback(nullptr);
-        //TODO:  add code to save the knob configuration
+        hardware.setKnobConfiguration(active_knob, knobNameInputWidget->getText(), cmdByteWidget->getValue(), typeCodeWidget->getValue());
+        hardware.saveKnobs();
         if(onExitCallback) {
             this->onExitCallback();
             delay(500);
@@ -61,7 +62,7 @@
     }
 
     void KnobConfigDialog::CancelPressed() {
-        log(LOG_INFO, "Cancel was pressed", __func__);
+        log(LOG_VERBOSE, "Cancel was pressed", __func__);
         cancelButtonWidget->setOnPressCallback(nullptr);
         if(onExitCallback) {
             this->onExitCallback();

@@ -42,6 +42,8 @@ public:
      */
     TextInputWidget(char* initialString, int x, int y, int w, IWidgetNavHandler* navHandler = nullptr);
 
+    char *getText();
+
     /**
      * @brief Draws the text field and highlights the active cursor position.
      */
