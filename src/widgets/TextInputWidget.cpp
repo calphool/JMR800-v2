@@ -49,6 +49,10 @@ TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHan
     hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
 }
 
+char* TextInputWidget::getText() {
+    return text;
+}
+
 
 /**
  * @brief Renders the text input field and animated cursor.

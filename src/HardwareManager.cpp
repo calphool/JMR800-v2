@@ -271,6 +271,18 @@ void HardwareManager::clearEncoderButton() {
   bPrevEncoderBtn = bEncoderBtn = false;
 }
 
+void HardwareManager::setKnobConfiguration(uint knobIndex, const char* name, uint8_t cmdbyte, uint8_t typecode) {
+  if(knobIndex >= NUM_KNOBS) {
+    log(LOG_ERROR, "invalid knob number passed to HardwareManager::setKnobConfiguration()", __func__);
+    return;
+  }
+
+  strncpy(knobConfigurations[knobIndex].name, name, sizeof(knobConfigurations[knobIndex].name) - 1);
+  knobConfigurations[knobIndex].name[sizeof(knobConfigurations[knobIndex].name) - 1] = '\0'; // Ensure null termination
+  knobConfigurations[knobIndex].cmdbyte = cmdbyte;
+  knobConfigurations[knobIndex].typecode = typecode;
+}
+
 /**
  * @brief Checks if the encoder switch changed state in the specified direction.
  * 
