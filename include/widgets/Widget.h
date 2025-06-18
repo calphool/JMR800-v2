@@ -26,7 +26,8 @@ enum class WidgetType {
     EncoderAttachedNumericWidget,   ///< Numeric input widget using an encoder
     PushButton,                     ///< UI button with push functionality (like an OK or Cancel UI button)
     TextInputWidget,                ///< Editable text input field
-    StarField                       ///< StarField widget (sort of useless, but it was fun to add)
+    StarField,                      ///< StarField widget (sort of useless, but it was fun to add)
+    EncoderAttachedSelectorWidget   ///< Selector widget that allows choosing from a list of options using an encoder
 };
 
 
