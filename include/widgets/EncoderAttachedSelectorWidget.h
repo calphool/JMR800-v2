@@ -36,7 +36,9 @@ public:
      * @brief Responds to encoder input to modify the value.
      */
     void handleInput() override;
- 
+
+    void setValue(uint x);
+
     /**
      * @brief Enables encoder control for this widget.
      */
@@ -57,11 +59,11 @@ public:
      * @brief Gets the current numeric value.
      * @return Current value
      */
-    const char* getValue(uint index);
-    
+    uint getValue();
+
     /**
      * @brief Returns the widget type for this control.
-     * @return WidgetType::EncoderAttachedNumericWidget
+     * @return WidgetType::EncoderAttachedSelectorWidget
      */
     WidgetType getType() const override;
 

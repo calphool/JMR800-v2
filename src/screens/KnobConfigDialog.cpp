@@ -5,7 +5,7 @@
 #include "widgets/TextLabelWidget.h"
 #include "widgets/TextInputWidget.h"
 #include "HardwareManager.h"
-#include "widgets/EncoderAttachedNumericWidget.h"
+#include "widgets/EncoderAttachedSelectorWidget.h"
 #include "widgets/PushButtonWidget.h"
 
 
@@ -100,7 +100,8 @@
         Widget* textLabel3 = new TextLabelWidget(" Type Code:", xoffset + 2, yoffset + 33, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel3);
 
-        typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
+        typeCodeWidget = new EncoderAttachedSelectorWidget(xoffset + 65, yoffset + 33);
+        //typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
         typeCodeWidget->setValue(hardware.getKnobConfiguration(active_knob).typecode);
         typeCodeWidget->detachFromEncoder();
         widgets.push_back(typeCodeWidget);

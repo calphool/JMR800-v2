@@ -9,6 +9,7 @@
 #include "TypeCodes.h"
 #include <ScreenManager.h>
 #include <Fonts/TomThumb.h>
+#include "HardwareManager.h"
 
 
     EncoderAttachedSelectorWidget::EncoderAttachedSelectorWidget(int x, int y) : Widget(x, y) {
@@ -47,16 +48,18 @@
 
         uint rectwidth = width + 8; // 1 character for the down arrow, and 2 pixels padding on each side
 
-        if(toggle) {
-            ScreenManager::getDisplay()->drawRect(x, y, rectwidth, 7, SH110X_BLACK);
-            ScreenManager::getDisplay()->drawRect(x + width - 4, y, 4, 7, SH110X_BLACK);
-            ScreenManager::getDisplay()->drawLine(x + 2, y, x + 2, y + 5, SH110X_BLACK);
-            ScreenManager::getDisplay()->drawLine(x + 1, y + 4, x + 3, y + 4, SH110X_WHITE);
-        } else {
-            ScreenManager::getDisplay()->drawRect(x, y, rectwidth, 7, SH110X_WHITE);
-            ScreenManager::getDisplay()->drawRect(x + width - 4, y, 4, 7, SH110X_WHITE);
-            ScreenManager::getDisplay()->drawLine(x + 2, y, x + 2, y + 5, SH110X_WHITE);
-            ScreenManager::getDisplay()->drawLine(x + 1, y + 4, x + 3, y + 4, SH110X_WHITE);
+        if(bHighlighted) {
+            if(toggle) {
+                ScreenManager::getDisplay()->drawRect(x, y, rectwidth, 9, SH110X_BLACK);
+                ScreenManager::getDisplay()->drawRect(x + rectwidth - 6, y, 6, 9, SH110X_BLACK);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 7, y, x + rectwidth - 4, y + 4, SH110X_BLACK);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 3, y + 4, x + rectwidth - 1, y, SH110X_BLACK);
+            } else {
+                ScreenManager::getDisplay()->drawRect(x, y, rectwidth, 9, SH110X_WHITE);
+                ScreenManager::getDisplay()->drawRect(x + rectwidth - 6, y, 6, 9, SH110X_WHITE);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 7, y, x + rectwidth - 4, y + 4, SH110X_WHITE);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 3, y + 4, x + rectwidth - 1, y, SH110X_WHITE);
+            }
         }
 
         if(strlen(labels[currentValue]) == 0) {
@@ -66,13 +69,21 @@
         
         ScreenManager::getDisplay()->setFont(&TomThumb);
         for(uint i = 0; i < strlen(labels[currentValue]); i++) {
-            ScreenManager::getDisplay()->drawChar(x+(i*4)+2, y+2, labels[currentValue][i], 1, 0, 1);     
+            ScreenManager::getDisplay()->drawChar(x+(i*4)+2, y+7, labels[currentValue][i], SH110X_WHITE, SH110X_BLACK, 1);
         }
         ScreenManager::getDisplay()->setFont();
     }
 
     void EncoderAttachedSelectorWidget::handleInput() {
+        if(bIsAttachedToEncoder) {
+            currentValue = hardware.getEncoderZeroTo(labels.size());
+        }
     }
+
+    void EncoderAttachedSelectorWidget::setValue(uint x) {
+        currentValue = x;
+    }
+
  
     /**
      * @brief Enables encoder control for this widget.
@@ -102,18 +113,15 @@
      * @brief Gets the current numeric value.
      * @return Current value
      */
-    const char* EncoderAttachedSelectorWidget::getValue(uint index) {
-        if(index >= labels.size())
-            return nullptr;
-
-        return labels[index];
+    uint EncoderAttachedSelectorWidget::getValue() {
+        return currentValue;
     }
     
     /**
      * @brief Returns the widget type for this control.
      * @return WidgetType::EncoderAttachedNumericWidget
      */
-    WidgetType getType() {
+    WidgetType EncoderAttachedSelectorWidget::getType() const {
         return WidgetType::EncoderAttachedSelectorWidget;
     }
 
