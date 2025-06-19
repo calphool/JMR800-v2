@@ -14,7 +14,9 @@
 #include "IWidgetNavHandler.h"
 #include "widgets/TextInputWidget.h"
 #include "widgets/PushButtonWidget.h"
+#include "widgets/EncoderAttachedSelectorWidget.h"
 #include "widgets/EncoderAttachedNumericWidget.h"
+
 
 /**
  * @class KnobConfigDialog
@@ -36,7 +38,7 @@ private:
 
     TextInputWidget* knobNameInputWidget = nullptr;
     EncoderAttachedNumericWidget* cmdByteWidget = nullptr;
-    EncoderAttachedNumericWidget* typeCodeWidget = nullptr;
+    EncoderAttachedSelectorWidget* typeCodeWidget = nullptr;
     PushButtonWidget* okButtonWidget = nullptr;
     PushButtonWidget* cancelButtonWidget = nullptr;
 
