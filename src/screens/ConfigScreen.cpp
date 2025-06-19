@@ -12,6 +12,7 @@
 #include "widgets/TextLabelWidget.h"
 #include "screens/SharedControlScreenUtility.h"
 #include "screens/KnobConfigDialog.h"
+#include "HardwareManager.h"
 
 /**
  * @brief Constructor for ConfigScreen.
@@ -146,5 +147,6 @@ void ConfigScreen::deactiveKnobConfig() {
       delete knobConfigDialog;
       knobConfigDialog = nullptr;
    }
-   active_knob = -1; // Reset active knob index
+   active_knob = 0; // Reset active knob index
+   hardware.resetEncoder(0);
 }

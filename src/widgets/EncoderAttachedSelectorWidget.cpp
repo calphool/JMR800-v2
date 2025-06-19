@@ -52,13 +52,13 @@
             if(toggle) {
                 ScreenManager::getDisplay()->drawRect(x, y, rectwidth, 9, SH110X_BLACK);
                 ScreenManager::getDisplay()->drawRect(x + rectwidth - 6, y, 6, 9, SH110X_BLACK);
-                ScreenManager::getDisplay()->drawLine(x + rectwidth - 7, y, x + rectwidth - 4, y + 4, SH110X_BLACK);
-                ScreenManager::getDisplay()->drawLine(x + rectwidth - 3, y + 4, x + rectwidth - 1, y, SH110X_BLACK);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 7, y, x + rectwidth - 4, y + 5, SH110X_BLACK);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 3, y + 5, x + rectwidth - 1, y, SH110X_BLACK);
             } else {
                 ScreenManager::getDisplay()->drawRect(x, y, rectwidth, 9, SH110X_WHITE);
                 ScreenManager::getDisplay()->drawRect(x + rectwidth - 6, y, 6, 9, SH110X_WHITE);
-                ScreenManager::getDisplay()->drawLine(x + rectwidth - 7, y, x + rectwidth - 4, y + 4, SH110X_WHITE);
-                ScreenManager::getDisplay()->drawLine(x + rectwidth - 3, y + 4, x + rectwidth - 1, y, SH110X_WHITE);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 7, y, x + rectwidth - 4, y + 5, SH110X_WHITE);
+                ScreenManager::getDisplay()->drawLine(x + rectwidth - 3, y + 5, x + rectwidth - 1, y, SH110X_WHITE);
             }
         }
 
