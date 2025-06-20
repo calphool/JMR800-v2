@@ -6,7 +6,7 @@
  * invoking UI lifecycle methods, and coordinating display updates.
  */
 
-
+#include "DisplayInterface.h"
 #include "ScreenManager.h"
 #include "defines.h"
 #include "Logging.h"
@@ -14,9 +14,14 @@
 /// Global singleton instance of the ScreenManager
 ScreenManager screenManager;
 
-/// Static display driver instance used for rendering UI elements
-Adafruit_SH1106G ScreenManager::display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);  // SDA = 18, SCL = 19 for Teensy 4.1
 
+#ifdef TARGET_TEENSY
+#include "SH110XDisplay.h"
+#else
+#include "SDLDisplay.h" // to be implemented
+#endif
+
+DisplayInterface* display;
 
 /**
  * @brief Initializes the OLED display with default settings.
@@ -27,12 +32,18 @@ Adafruit_SH1106G ScreenManager::display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED
 void ScreenManager::init() {
     log(LOG_VERBOSE, "inside ScreenManager->init(), initializing screen");
 
-    display.begin(OLED_I2C_ADDRESS, false);
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(SH110X_WHITE);
-    display.setTextWrap(false);
-    display.display();
+#ifdef TARGET_TEENSY
+    display = new SH110XDisplay();
+#else
+    display = new SDLDisplay();
+#endif
+
+    display->begin();
+    display->clearDisplay();
+    display->setTextSize(1);
+    display->setTextColor(SH110X_WHITE);
+    display->setTextWrap(false);
+    display->display();
 }
 
 /**
@@ -64,9 +75,9 @@ void ScreenManager::loop() {
     lastScreenLoop = millis();
 
     activeScreen->handleInput();
-    display.clearDisplay();
+    display->clearDisplay();
     activeScreen->draw();
-    display.display();
+    display->display();
 }
 
 /**
@@ -88,7 +99,7 @@ Screen* ScreenManager::getScreen() const {
  *
  * @return Adafruit_SH1106G* Pointer to the initialized display object.
  */
-Adafruit_SH1106G* ScreenManager::getDisplay()  {
-  log(LOG_VERBOSE, "inside ScreenManager->getScreen()");
-  return &display;
+DisplayInterface* ScreenManager::getDisplay()  {
+  log(LOG_VERBOSE, "inside ScreenManager->getDisplay()");
+  return display;
 }

@@ -25,13 +25,14 @@
  * @param tiny Whether to use the ultra-small TomThumb font.
  * @param c Color of the label text.
  */
-TextLabelWidget::TextLabelWidget(const String& t, int x, int y,
+TextLabelWidget::TextLabelWidget(const char* t, int x, int y,
                                  uint8_t fs,
                                  bool tiny,
                                  LabelColor c)
                                  : Widget(x, y, false)
-    , text(t), fontSize(fs), useTinyFont(tiny), color(c) {
+    , fontSize(fs), useTinyFont(tiny), color(c) {
     log(LOG_VERBOSE, "Inside TextLabelWidget->constructor", __func__);
+    strcpy(text, t);
 }
 
 
@@ -57,9 +58,9 @@ void TextLabelWidget::draw() {
 
     if(bHighlighted) {
         if(toggle)
-            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y + 6, (uint16_t) LabelColor::WHITE);
+            ScreenManager::getDisplay()->drawLine(x, y + 6, x + strlen(text) * 6, y + 6, (uint16_t) LabelColor::WHITE);
         else
-            ScreenManager::getDisplay()->drawLine(x, y + 6, x + text.length() * 6, y + 6, (uint16_t) LabelColor::BLACK);
+            ScreenManager::getDisplay()->drawLine(x, y + 6, x + strlen(text) * 6, y + 6, (uint16_t) LabelColor::BLACK);
     }
 }
 
@@ -74,8 +75,8 @@ void TextLabelWidget::handleInput() {
  * @brief Updates the text displayed by the label.
  * @param newText New string to assign to the label.
  */
-void TextLabelWidget::setText(const String& newText) {
-    text = newText;
+void TextLabelWidget::setText(const char* newText) {
+    strcpy(text, newText);
 }
 
 
