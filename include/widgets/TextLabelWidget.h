@@ -33,7 +33,7 @@ enum class LabelColor : uint8_t {
  */
 class TextLabelWidget : public Widget {
 private:
-    String text;            ///< Text to render
+    char text[40];            ///< Text to render
     uint8_t fontSize;       ///< Font size multiplier (standard font)
     bool useTinyFont;       ///< Whether to use the TomThumb pixel font
     LabelColor color;       ///< Text color (white or black)
@@ -49,7 +49,7 @@ public:
      * @param tiny If true, uses tiny font instead of Adafruit default
      * @param color Text color (default: white)
      */
-    TextLabelWidget(const String& t, int x, int y, uint8_t fs = 1, bool tiny = false, 
+    TextLabelWidget(const char* t, int x, int y, uint8_t fs = 1, bool tiny = false, 
         LabelColor color = LabelColor::WHITE);
 
     /**
@@ -66,7 +66,7 @@ public:
      * @brief Updates the label’s text.
      * @param newText New text to display
      */
-    void setText(const String& newText);
+    void setText(const char* newText);
 
     /**
      * @brief Changes the widget’s screen position.

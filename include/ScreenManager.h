@@ -12,6 +12,7 @@
 
 #include <Adafruit_SH110X.h>
 #include "screens/Screen.h"
+#include "DisplayInterface.h"
 
 
 /**
@@ -34,10 +35,6 @@ private:
      */
     unsigned long lastScreenLoop = 0;
 
-    /**
-     * @brief Static instance of the SH1106 OLED display used across all screens.
-     */
-    static Adafruit_SH1106G display;
 
 public:
     /**
@@ -70,7 +67,7 @@ public:
      * @brief Provides access to the static OLED display instance.
      * @return Pointer to the Adafruit_SH1106G display.
      */
-    static Adafruit_SH1106G* getDisplay();
+    static DisplayInterface* getDisplay();
 };
 
 /**

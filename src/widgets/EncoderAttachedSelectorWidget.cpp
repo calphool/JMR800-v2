@@ -69,7 +69,8 @@
         
         ScreenManager::getDisplay()->setFont(&TomThumb);
         for(uint i = 0; i < strlen(labels[currentValue]); i++) {
-            ScreenManager::getDisplay()->drawChar(x+(i*4)+2, y+7, labels[currentValue][i], SH110X_WHITE, SH110X_BLACK, 1);
+            ScreenManager::getDisplay()->drawChar((uint16_t) x+(i*4)+2, (uint16_t) y+7, 
+            labels[currentValue][i], SH110X_WHITE, SH110X_BLACK);
         }
         ScreenManager::getDisplay()->setFont();
     }
