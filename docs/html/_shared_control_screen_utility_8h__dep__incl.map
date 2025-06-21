@@ -1,9 +1,0 @@
-<map id="include/screens/SharedControlScreenUtility.h" name="include/screens/SharedControlScreenUtility.h">
-<area shape="rect" id="Node000001" title="Provides utility functions for initializing common screen layouts." alt="" coords="211,5,410,46"/>
-<area shape="rect" id="Node000002" href="$_config_screen_8cpp.html" title="Implements the configuration screen for knob mapping and diagnostics." alt="" coords="5,102,203,127"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,55,134,103,132,99,249,50"/>
-<area shape="rect" id="Node000003" href="$_controls_test_screen_8cpp.html" title="Implements a screen for testing all physical controls: knobs, buttons, and encoder." alt="" coords="227,94,394,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="313,62,313,94,308,94,308,62"/>
-<area shape="rect" id="Node000004" href="$_shared_control_screen_utility_8cpp.html" title="Provides layout helper utilities for constructing shared UI control screens." alt="" coords="418,94,595,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="370,50,463,91,461,96,368,55"/>
-</map>

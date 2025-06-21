@@ -9,9 +9,10 @@
 #include "modes/DirectCommandMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
 #include "widgets/Widget.h"
 
+extern HardwareInterface* hardware;
 
 /**
  * @brief Called when the Direct Command Mode is activated.
@@ -41,15 +42,15 @@ void DirectCommandMode::onExit() {
  * Encoder switch triggers command send if the active control is a push button.
  */
 void DirectCommandMode::loop() {
-    if(hardware.buttonStateChanged(0, true, true)) {
+    if(hardware->buttonStateChanged(0, true, true)) {
         screen.advanceActiveControl();
     }
 
-    if(hardware.encoderSwitchStateChanged(true, true)) {
+    if(hardware->encoderSwitchStateChanged(true, true)) {
         Widget* w = screen.getActiveWidget();
         if(w != NULL) {
             if(w->getType() == WidgetType::PushButton) {
-                hardware.sendParameter(screen.getCmdValue(), screen.getByteValue());
+                hardware->sendParameter(screen.getCmdValue(), screen.getByteValue());
             }
         }
     }

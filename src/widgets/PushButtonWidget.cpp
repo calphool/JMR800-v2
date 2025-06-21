@@ -8,7 +8,10 @@
 #include "widgets/Widget.h"
 #include "widgets/PushButtonWidget.h"
 #include "ScreenManager.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
+
     
 
 /**
@@ -102,7 +105,7 @@ void PushButtonWidget::draw() {
  */
 void PushButtonWidget::handleInput() {
     if(bIsAttachedToEncoder) {
-        if(hardware.getEncoderSwitchStatus()) {
+        if(hardware->getEncoderSwitchStatus()) {
             this->setPressed(true);
             if (onPressCallback) {
                 //log(LOG_INFO, "invoking onPressCallback", __func__);

@@ -10,7 +10,9 @@
 #include "widgets/ButtonWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
 
 
 /**
@@ -85,8 +87,8 @@ void ButtonWidget::handleInput() {
         return;
   }
 
-  this->setPressed(hardware.isButtonPressed(buttonId));
-  this->setLEDs(hardware.redIsLit(buttonId), hardware.greenIsLit(buttonId));
+  this->setPressed(hardware->isButtonPressed(buttonId));
+  this->setLEDs(hardware->redIsLit(buttonId), hardware->greenIsLit(buttonId));
 }
 
 

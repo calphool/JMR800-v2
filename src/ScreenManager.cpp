@@ -30,7 +30,7 @@ DisplayInterface* display;
  * Should be called once during application setup.
  */
 void ScreenManager::init() {
-    log(LOG_VERBOSE, "inside ScreenManager->init(), initializing screen");
+    log(LOG_VERBOSE, "inside ScreenManager->init(), initializing screen", __func__);
 
 #ifdef TARGET_TEENSY
     display = new SH110XDisplay();
@@ -55,7 +55,7 @@ void ScreenManager::init() {
  * @param screen Pointer to the new screen to activate.
  */
 void ScreenManager::setScreen(Screen* screen) {
-  log(LOG_VERBOSE, "inside ScreenManager->setScreen()");
+  log(LOG_VERBOSE, "inside ScreenManager->setScreen()", __func__);
 
   if (activeScreen) activeScreen->onExit();
   activeScreen = screen;
@@ -86,7 +86,7 @@ void ScreenManager::loop() {
  * @return Screen* Pointer to the active screen object, or nullptr if no screen is active.
  */
 Screen* ScreenManager::getScreen() const {
-  log(LOG_VERBOSE, "inside ScreenManager->getScreen()");
+  log(LOG_VERBOSE, "inside ScreenManager->getScreen()", __func__);
   return activeScreen;
 }
 
@@ -100,6 +100,6 @@ Screen* ScreenManager::getScreen() const {
  * @return Adafruit_SH1106G* Pointer to the initialized display object.
  */
 DisplayInterface* ScreenManager::getDisplay()  {
-  log(LOG_VERBOSE, "inside ScreenManager->getDisplay()");
+  log(LOG_VERBOSE, "inside ScreenManager->getDisplay()", __func__);
   return display;
 }

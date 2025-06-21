@@ -1,8 +1,0 @@
-<map id="ControlsTestScreen::onEnter" name="ControlsTestScreen::onEnter">
-<area shape="rect" id="Node000001" title="Called when the test screen becomes active." alt="" coords="5,35,142,75"/>
-<area shape="rect" id="Node000002" href="$class_shared_control_screen_utility.html#a05bc2d607c34ecb7cda4bad96b5274be" title="Initializes a screen layout with standard controller widgets." alt="" coords="190,5,402,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,43,174,39,175,44,142,49"/>
-<area shape="rect" id="Node000003" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="450,42,488,68"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="142,54,190,55,402,55,434,54,434,59,402,60,190,60,142,59"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,41,435,47,434,52,402,46"/>
-</map>

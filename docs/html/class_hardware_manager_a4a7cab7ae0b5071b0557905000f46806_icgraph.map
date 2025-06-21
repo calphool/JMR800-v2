@@ -1,5 +1,0 @@
-<map id="HardwareManager::gatherControlSettings" name="HardwareManager::gatherControlSettings">
-<area shape="rect" id="Node000001" title="Reads all analog and digital inputs." alt="" coords="213,5,426,46"/>
-<area shape="rect" id="Node000002" href="$class_hardware_manager.html#a6f45e846ef082a37a2bd2d3edf9efb5b" title="Main polling loop, throttled to a fixed interval." alt="" coords="5,13,165,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,28,165,28,165,23,197,23"/>
-</map>

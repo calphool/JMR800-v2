@@ -1,9 +1,0 @@
-<map id="KnobWidget" name="KnobWidget">
-<area shape="rect" id="Node000001" title="Shared base class for rotary&#45;style knob widgets." alt="" coords="120,79,212,105"/>
-<area shape="rect" id="Node000003" href="$class_encoder_knob_widget.html" title="A knob&#45;style widget driven by encoder input rather than analog voltage." alt="" coords="5,153,146,178"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,117,92,154,89,150,137,112"/>
-<area shape="rect" id="Node000004" href="$class_potentiometer_knob_widget.html" title="Widget for displaying and interacting with a hardware potentiometer." alt="" coords="170,153,344,178"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="195,112,243,150,240,154,192,117"/>
-<area shape="rect" id="Node000002" href="$class_widget.html" title="Base class for all on&#45;screen widgets." alt="" coords="135,5,197,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,46,169,79,164,79,164,46"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="ConfigScreen" name="ConfigScreen">
-<area shape="rect" id="Node000001" title="User interface screen for updating device configuration settings." alt="" coords="5,79,106,105"/>
-<area shape="rect" id="Node000002" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="24,5,87,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,46,58,79,53,79,53,46"/>
-</map>

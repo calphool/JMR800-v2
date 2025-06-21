@@ -9,8 +9,9 @@
 #include "modes/ControlsTestMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
 
+extern HardwareInterface* hardware;
 
 /**
  * @brief Called when the Controls Test Mode is activated.
@@ -30,7 +31,7 @@ void ControlsTestMode::onEnter() {
 void ControlsTestMode::onExit() {
     log(LOG_VERBOSE, "Exiting Controls Test Mode", __func__);
     for(int i=0; i < NUM_BUTTONS; i++)
-        hardware.setButtonLights(i, false, false);
+        hardware->setButtonLights(i, false, false);
 }
 
 
@@ -44,17 +45,17 @@ void ControlsTestMode::onExit() {
  */
 void ControlsTestMode::loop() {
     for(int i=0;i < NUM_BUTTONS; i++) {
-        if(hardware.buttonStateChanged(i, true, true)) {
-            if(hardware.redIsLit(i) == false && hardware.greenIsLit(i) == false) {
-                hardware.setButtonLights(i, true, false);
+        if(hardware->buttonStateChanged(i, true, true)) {
+            if(hardware->redIsLit(i) == false && hardware->greenIsLit(i) == false) {
+                hardware->setButtonLights(i, true, false);
             }
             else
-            if(hardware.redIsLit(i) == true && hardware.greenIsLit(i) == false) {
-                hardware.setButtonLights(i, true, true);
+            if(hardware->redIsLit(i) == true && hardware->greenIsLit(i) == false) {
+                hardware->setButtonLights(i, true, true);
             }
             else
-            if(hardware.redIsLit(i) == true && hardware.greenIsLit(i) == true) {
-                hardware.setButtonLights(i, false, false);
+            if(hardware->redIsLit(i) == true && hardware->greenIsLit(i) == true) {
+                hardware->setButtonLights(i, false, false);
             }
         }
     }

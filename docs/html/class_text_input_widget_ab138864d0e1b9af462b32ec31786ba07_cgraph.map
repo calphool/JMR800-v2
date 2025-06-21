@@ -1,7 +1,0 @@
-<map id="TextInputWidget::TextInputWidget" name="TextInputWidget::TextInputWidget">
-<area shape="rect" id="Node000001" title="Constructs a new TextInputWidget." alt="" coords="5,23,184,64"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="268,5,307,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,29,252,20,253,25,185,34"/>
-<area shape="rect" id="Node000003" href="$class_widget.html#a5726db3aa94844c547974fb48594a305" title="Constructs a widget at a specified screen location." alt="" coords="232,55,343,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,52,217,56,216,61,184,57"/>
-</map>

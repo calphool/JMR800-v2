@@ -1,5 +1,0 @@
-<map id="include/screens/ModalDialog.h" name="include/screens/ModalDialog.h">
-<area shape="rect" id="Node000001" title="Abstract base class for modal dialogs in the JMR800&#45;V2 UI." alt="" coords="5,5,205,31"/>
-<area shape="rect" id="Node000002" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="43,79,167,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,31,108,63,102,63,102,31"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="HardwareManager::redIsLit" name="HardwareManager::redIsLit">
-<area shape="rect" id="Node000001" title="Checks if the red LED is lit for a given button." alt="" coords="5,5,184,31"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="232,5,270,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,16,216,16,216,21,184,21"/>
-</map>

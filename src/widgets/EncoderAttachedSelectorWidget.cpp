@@ -9,7 +9,10 @@
 #include "TypeCodes.h"
 #include <ScreenManager.h>
 #include <Fonts/TomThumb.h>
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
+
 
 
     EncoderAttachedSelectorWidget::EncoderAttachedSelectorWidget(int x, int y) : Widget(x, y) {
@@ -77,7 +80,7 @@
 
     void EncoderAttachedSelectorWidget::handleInput() {
         if(bIsAttachedToEncoder) {
-            currentValue = hardware.getEncoderZeroTo(labels.size());
+            currentValue = hardware->getEncoderZeroTo(labels.size());
         }
     }
 

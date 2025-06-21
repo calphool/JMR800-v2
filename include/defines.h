@@ -77,3 +77,17 @@ typedef struct {
   uint8_t cmdbyte; ///< Command byte to send to PG-800 (analogous to a Midi CC)
   uint8_t typecode; ///< Reserved field or control type classification
 } knobConfig;
+
+
+/**
+ * @enum LogLevel
+ * @brief Defines logging severity levels.
+ *
+ * These levels allow filtering of log messages based on verbosity or importance.
+ */
+enum LogLevel {
+    LOG_VERBOSE,
+    LOG_INFO,
+    LOG_WARNING,
+    LOG_ERROR
+};

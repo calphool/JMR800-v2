@@ -1,5 +1,0 @@
-<map id="ScreenManager" name="ScreenManager">
-<area shape="rect" id="Node000001" title="Controls the active UI screen and manages the OLED display lifecycle." alt="" coords="5,102,118,128"/>
-<area shape="rect" id="Node000002" href="$class_screen.html" title="Base class for user interface screens." alt="" coords="30,5,93,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,46,64,101,59,101,59,46"/>
-</map>

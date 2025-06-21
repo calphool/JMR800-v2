@@ -1,9 +1,0 @@
-<map id="ButtonWidget::handleInput" name="ButtonWidget::handleInput">
-<area shape="rect" id="Node000001" title="Handles user interaction (encoder press, etc.)." alt="" coords="5,55,181,80"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="297,5,335,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,51,281,23,282,28,155,57"/>
-<area shape="rect" id="Node000003" href="$class_button_widget.html#a3096fff9b45d94556d37e1fa71b6cac6" title="Sets the red and green LED states." alt="" coords="236,55,396,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,65,220,65,220,70,181,70"/>
-<area shape="rect" id="Node000004" href="$class_button_widget.html#abb4b44395073628724d1379a5865d1f9" title="Sets the pressed state of the button (visual feedback only)." alt="" coords="229,104,403,130"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,78,240,97,239,103,154,84"/>
-</map>

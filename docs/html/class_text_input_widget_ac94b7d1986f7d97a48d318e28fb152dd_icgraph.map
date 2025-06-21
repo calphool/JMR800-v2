@@ -1,5 +1,0 @@
-<map id="TextInputWidget::advanceCurrentPosition" name="TextInputWidget::advanceCurrentPosition">
-<area shape="rect" id="Node000001" title="Advances the cursor to the next character position." alt="" coords="245,5,418,46"/>
-<area shape="rect" id="Node000002" href="$class_text_input_widget.html#a90fdd0ddf1fc9de32e8649708f9b362a" title="Processes input events to move cursor or change characters." alt="" coords="5,13,197,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,28,197,28,197,23,229,23"/>
-</map>

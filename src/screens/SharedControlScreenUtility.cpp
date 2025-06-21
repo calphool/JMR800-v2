@@ -4,7 +4,7 @@
  */
 
 #include "screens/SharedControlScreenUtility.h"
-#include "HardwareManager.h"
+#include "TeensyHardwareManager.h"
 
 
 /**

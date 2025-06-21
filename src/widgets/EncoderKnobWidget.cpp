@@ -9,7 +9,10 @@
 #include "widgets/EncoderKnobWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
+
 
 
 /**
@@ -61,7 +64,7 @@ void EncoderKnobWidget::draw() {
  * @brief Sets the pressed state of the encoder knob widget based on current hardware status
  */
 void EncoderKnobWidget::handleInput() {
-    setPressed(hardware.getEncoderSwitchStatus());
+    setPressed(hardware->getEncoderSwitchStatus());
 }
 
 

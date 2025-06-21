@@ -1,5 +1,0 @@
-<map id="ModalDialog::ModalDialog" name="ModalDialog::ModalDialog">
-<area shape="rect" id="Node000001" title="Constructs a modal dialog with specified position and dimensions." alt="" coords="256,13,429,38"/>
-<area shape="rect" id="Node000002" href="$class_knob_config_dialog.html#a970b880b757851cf9699e22400c4449e" title="Constructs a new knob configuration dialog." alt="" coords="5,5,208,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,28,208,28,208,23,240,23"/>
-</map>

@@ -7,11 +7,13 @@
  */
 
 #include "ModeManager.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
 #include "Logging.h"
 
 /// Global singleton instance of the ModeManager.
 ModeManager modeManager;
+
+extern HardwareInterface* hardware;
 
 /**
  * @brief Adds an application mode to the internal mode list.
@@ -52,8 +54,8 @@ void ModeManager::init() {
  */
 void ModeManager::loop() {
     // Get current state of both buttons
-    bool button2 = hardware.isButtonPressed(2);  // Button 3 (index 2)
-    bool button3 = hardware.isButtonPressed(3);  // Button 4 (index 3)
+    bool button2 = hardware->isButtonPressed(2);  // Button 3 (index 2)
+    bool button3 = hardware->isButtonPressed(3);  // Button 4 (index 3)
 
     // New condition: both must be pressed, and were not pressed together last time
     bool currentCombo = button2 && button3;
@@ -66,7 +68,7 @@ void ModeManager::loop() {
 
         modes[currentIndex]->onExit();
         currentIndex = (currentIndex + 1) % modes.size();
-        hardware.loadKnobs(); // might make this conditional based on mode
+        hardware->loadKnobs(); // might make this conditional based on mode
 
         modes[currentIndex]->onEnter();
         modes[currentIndex]->showScreen();  // Let the mode present its screen

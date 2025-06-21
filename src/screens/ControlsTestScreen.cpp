@@ -14,8 +14,10 @@
 #include "widgets/PotentiometerKnobWidget.h"
 #include "widgets/EncoderKnobWidget.h"
 #include "widgets/ButtonWidget.h"
-#include "HardwareManager.h"
 #include "screens/SharedControlScreenUtility.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
 
 /**
  * @brief Constructor for ControlsTestScreen.
@@ -91,7 +93,7 @@ void ControlsTestScreen::handleInput() {
   }
 
   char buf[4];
-  truncateTo3Right(hardware.getEncoderValue(), buf);
+  truncateTo3Right(hardware->getEncoderValue(), buf);
   numBox->setText(buf);
 }
 

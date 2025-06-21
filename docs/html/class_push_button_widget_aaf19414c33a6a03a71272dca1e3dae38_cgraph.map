@@ -1,5 +1,0 @@
-<map id="PushButtonWidget::PushButtonWidget" name="PushButtonWidget::PushButtonWidget">
-<area shape="rect" id="Node000001" title="Constructs a labeled push button at a specific screen location." alt="" coords="5,5,212,46"/>
-<area shape="rect" id="Node000002" href="$class_widget.html#a5726db3aa94844c547974fb48594a305" title="Constructs a widget at a specified screen location." alt="" coords="260,13,371,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,23,244,23,244,28,212,28"/>
-</map>

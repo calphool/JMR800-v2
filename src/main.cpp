@@ -16,22 +16,31 @@
  * @date 2025-06-04
  */
 
+ #ifdef TARGET_TEENSY
 #include <Arduino.h>
+#endif
 #include <stdarg.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
 #include "defines.h"
-#include "HardwareManager.h"
 #include "ScreenManager.h"
 #include "screens/RunModeScreen.h"
 #include "Logging.h"
+#include "HardwareInterface.h"
 
 #include "ModeManager.h"
 #include "modes/RunMode.h"
-#include "modes/ControlsTestMode.h"
+#include "modes/ControlsTestMode.h" 
 #include "modes/DirectCommandMode.h"
 #include "modes/ConfigMode.h"
 
+HardwareInterface* hardware = nullptr;
+
+#ifdef TARGET_TEENSY
+#include "TeensyHardwareManager.h"
+#else
+#include "SimulatedTeensyHardwareManager.h"
+#endif
 
 RunMode runMode;
 ControlsTestMode testMode;
@@ -56,7 +65,13 @@ ConfigMode configMode;
 void setup() {
   log(LOG_VERBOSE, "Inside main->setup()", __func__);
 
-  hardware.init();
+#ifdef TARGET_TEENSY
+    hardware = new TeensyHardwareManager();
+#else
+    hardware = new SimulatedTeensyHardwareManager();
+#endif
+    hardware->init();
+
   screenManager.init();
   modeManager.addMode(&runMode);
   modeManager.addMode(&testMode);
@@ -76,7 +91,7 @@ void setup() {
  * - Screen updates and redraws
  */
 void loop() {
-  hardware.loop();
+  hardware->loop();
   modeManager.loop();
   screenManager.loop();
 }

@@ -1,7 +1,0 @@
-<map id="include/ScreenManager.h" name="include/ScreenManager.h">
-<area shape="rect" id="Node000001" title="Declares the ScreenManager class responsible for UI screen control on the OLED display." alt="" coords="64,5,232,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,139,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,33,98,70,94,66,133,30"/>
-<area shape="rect" id="Node000003" href="$_screen_8h.html" title="Abstract interface for all UI screens in the JMR800&#45;V2 system." alt="" coords="162,79,286,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,30,202,66,198,70,159,33"/>
-</map>

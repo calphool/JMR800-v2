@@ -1,9 +1,0 @@
-<map id="include/widgets/ButtonWidget.h" name="include/widgets/ButtonWidget.h">
-<area shape="rect" id="Node000001" title="Represents an on&#45;screen button widget with LED state indicators." alt="" coords="105,5,310,31"/>
-<area shape="rect" id="Node000002" href="$_widget_8h.html" title="Abstract base class for UI widgets in the JMR800&#45;V2 OLED interface." alt="" coords="5,79,128,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,34,105,74,103,69,183,29"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="152,79,264,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,31,210,63,205,63,205,31"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="288,79,421,105"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="234,29,317,69,315,74,232,34"/>
-</map>

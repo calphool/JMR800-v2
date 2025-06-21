@@ -6,13 +6,18 @@
  * This widget provides interactive text input through button-based navigation and character replacement.
  * It supports cursor animation and optional external navigation handlers for moving between widgets.
  */
+#ifdef TARGET_TEENSY
 #include <Arduino.h>
+#endif
 #include "widgets/TextInputWidget.h"
 #include "widgets/Widget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
 #include "IWidgetNavHandler.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
+
 
 
 /**
@@ -46,7 +51,7 @@ TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHan
             text[strlen(text) - 1] = '\0'; 
     }
 
-    hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
+    hardware->resetEncoder(hardware->AsciiToEncoder(text[currentPosition]));
 }
 
 char* TextInputWidget::getText() {
@@ -90,7 +95,7 @@ void TextInputWidget::advanceCurrentPosition() {
         currentPosition = 0; 
     }
     else
-        hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
+        hardware->resetEncoder(hardware->AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -106,7 +111,7 @@ void TextInputWidget::backtrackCurrentPosition() {
         currentPosition = strlen(text) - 1;
     }
     else
-        hardware.resetEncoder(hardware.AsciiToEncoder(text[currentPosition]));
+        hardware->resetEncoder(hardware->AsciiToEncoder(text[currentPosition]));
 }
 
 
@@ -131,9 +136,9 @@ char TextInputWidget::getCharAtCurrentPosition() {
 void TextInputWidget::attachToEncoder(bool bEnteringLeftEdge) {
     bIsAttachedToEncoder = true;
     if(bEnteringLeftEdge) 
-        hardware.resetEncoder(hardware.AsciiToEncoder(text[0]));
+        hardware->resetEncoder(hardware->AsciiToEncoder(text[0]));
     else
-        hardware.resetEncoder(hardware.AsciiToEncoder(text[strlen(text) - 1]));
+        hardware->resetEncoder(hardware->AsciiToEncoder(text[strlen(text) - 1]));
 }
 
 void TextInputWidget::detachFromEncoder() {
@@ -145,7 +150,7 @@ void TextInputWidget::detachFromEncoder() {
  */
 void TextInputWidget::handleInput() {
     if(bIsAttachedToEncoder) {
-        char charEncoderValue = hardware.getEncoderModdedBy(96) + 32;
+        char charEncoderValue = hardware->getEncoderModdedBy(96) + 32;
         text[currentPosition] = charEncoderValue;
     }
 }

@@ -1,7 +1,0 @@
-<map id="KnobWidget::KnobWidget" name="KnobWidget::KnobWidget">
-<area shape="rect" id="Node000001" title="Constructs a knob widget at the specified position." alt="" coords="235,46,406,72"/>
-<area shape="rect" id="Node000002" href="$class_encoder_knob_widget.html#ade97b68046dd611b9f84de6fafc556a4" title="Constructs a new encoder knob widget." alt="" coords="22,5,170,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,47,170,39,171,34,220,41"/>
-<area shape="rect" id="Node000003" href="$class_potentiometer_knob_widget.html#af7263c973f911d8ee2951c659b46bebc" title="Constructs a new potentiometer knob widget." alt="" coords="5,71,187,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,76,187,81,187,75,219,71"/>
-</map>

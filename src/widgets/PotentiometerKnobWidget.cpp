@@ -9,7 +9,10 @@
 #include "widgets/PotentiometerKnobWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
+
 
 
 
@@ -179,7 +182,7 @@ void PotentiometerKnobWidget::draw() {
 /**
  * @brief Updates the widget value from the actual hardware knob.
  *
- * Reads analog value via HardwareManager and maps it to the 0–255 range.
+ * Reads analog value via TeensyHardwareManager and maps it to the 0–255 range.
  */
 void PotentiometerKnobWidget::handleInput() {
     if(knobId > NUM_KNOBS || knobId < 0) {
@@ -189,7 +192,7 @@ void PotentiometerKnobWidget::handleInput() {
         return;
     }
 
-    setValue(hardware.getKnobValue(knobId));
+    setValue(hardware->getKnobValue(knobId));
 }
 
 /**

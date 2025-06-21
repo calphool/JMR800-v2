@@ -1,5 +1,0 @@
-<map id="RunModeScreen::handleInput" name="RunModeScreen::handleInput">
-<area shape="rect" id="Node000001" title="Delegates input handling to the appropriate widget(s)." alt="" coords="5,5,199,31"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="247,5,285,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,16,231,16,231,21,199,21"/>
-</map>
