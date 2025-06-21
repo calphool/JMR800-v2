@@ -9,7 +9,9 @@
 
 #pragma once
 
+#ifdef TARGET_TEENSY
 #include <Arduino.h>
+#endif
 #include "widgets/Widget.h"
 #include "IWidgetNavHandler.h"
 

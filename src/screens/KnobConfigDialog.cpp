@@ -4,9 +4,12 @@
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
 #include "widgets/TextInputWidget.h"
-#include "HardwareManager.h"
 #include "widgets/EncoderAttachedSelectorWidget.h"
 #include "widgets/PushButtonWidget.h"
+#include "Logging.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
 
 
     KnobConfigDialog::KnobConfigDialog(int x, int y, int w, int h, int knob) : ModalDialog(x, y, w, h) {
@@ -53,12 +56,12 @@
         if(okButtonWidget->getHighlightedStatus()) {
             log(LOG_INFO, "Ok was pressed", __func__);
             okButtonWidget->setOnPressCallback(nullptr);
-            hardware.setKnobConfiguration(active_knob, knobNameInputWidget->getText(), cmdByteWidget->getValue(), typeCodeWidget->getValue());
-            hardware.saveKnobs();
+            hardware->setKnobConfiguration(active_knob, knobNameInputWidget->getText(), cmdByteWidget->getValue(), typeCodeWidget->getValue());
+            hardware->saveKnobs();
             if(onExitCallback) {
                 this->onExitCallback();
                 delay(500);
-                hardware.clearEncoderButton();
+                hardware->clearEncoderButton();
             }
         }
     }
@@ -70,7 +73,7 @@
             if(onExitCallback) {
                 this->onExitCallback();
                 delay(500);
-                hardware.clearEncoderButton();
+                hardware->clearEncoderButton();
             }
         }
     }
@@ -88,7 +91,7 @@
         Widget* textLabel = new TextLabelWidget("Knob Name", (xoffset + (width/2))-27, yoffset + 2, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel);
 
-        knobNameInputWidget = new TextInputWidget(hardware.getKnobConfiguration(active_knob).name, xoffset + 2, yoffset + 12, width - 4, this);
+        knobNameInputWidget = new TextInputWidget(hardware->getKnobConfiguration(active_knob).name, xoffset + 2, yoffset + 12, width - 4, this);
         knobNameInputWidget->attachToEncoder();
         knobNameInputWidget->setHighlighted(true);
         widgets.push_back(knobNameInputWidget);
@@ -97,7 +100,7 @@
         widgets.push_back(textLabel2);
 
         cmdByteWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 23, 0, 255, buf);
-        cmdByteWidget->setValue(hardware.getKnobConfiguration(active_knob).cmdbyte);
+        cmdByteWidget->setValue(hardware->getKnobConfiguration(active_knob).cmdbyte);
         cmdByteWidget->detachFromEncoder();
         widgets.push_back(cmdByteWidget);
 
@@ -106,7 +109,7 @@
 
         typeCodeWidget = new EncoderAttachedSelectorWidget(xoffset + 65, yoffset + 33);
         //typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
-        typeCodeWidget->setValue(hardware.getKnobConfiguration(active_knob).typecode);
+        typeCodeWidget->setValue(hardware->getKnobConfiguration(active_knob).typecode);
         typeCodeWidget->detachFromEncoder();
         widgets.push_back(typeCodeWidget);
 
@@ -141,7 +144,7 @@
     }
 
     void KnobConfigDialog::handleInput() {
-        if(hardware.buttonStateChanged(1, true, true)) {  // moving right
+        if(hardware->buttonStateChanged(1, true, true)) {  // moving right
             if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
                 knobNameInputWidget->advanceCurrentPosition();
                 return;
@@ -167,7 +170,7 @@
                 knobNameInputWidget->attachToEncoder(true);
                 return;
             }
-        } else if(hardware.buttonStateChanged(0, true, true)) { // moving left
+        } else if(hardware->buttonStateChanged(0, true, true)) { // moving left
             if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
                 knobNameInputWidget->backtrackCurrentPosition();
                 return;

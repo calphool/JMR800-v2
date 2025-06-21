@@ -1,7 +1,0 @@
-<map id="TextInputWidget::handleInput" name="TextInputWidget::handleInput">
-<area shape="rect" id="Node000001" title="Processes input events to move cursor or change characters." alt="" coords="5,46,197,72"/>
-<area shape="rect" id="Node000002" href="$class_text_input_widget.html#ac94b7d1986f7d97a48d318e28fb152dd" title="Advances the cursor to the next character position." alt="" coords="249,5,422,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,43,233,38,234,43,196,48"/>
-<area shape="rect" id="Node000003" href="$class_text_input_widget.html#a9531b8ecaa365b40af28009e786b9535" title="Moves the cursor to the previous character position." alt="" coords="245,71,426,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,69,230,74,229,79,197,75"/>
-</map>

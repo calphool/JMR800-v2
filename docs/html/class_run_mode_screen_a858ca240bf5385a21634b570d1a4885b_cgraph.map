@@ -1,5 +1,0 @@
-<map id="RunModeScreen::addWidget" name="RunModeScreen::addWidget">
-<area shape="rect" id="Node000001" title="Adds a widget to the screen&#39;s layout." alt="" coords="5,5,194,31"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="242,5,280,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,16,226,16,226,21,194,21"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="HardwareManager::getKnobConfiguration" name="HardwareManager::getKnobConfiguration">
-<area shape="rect" id="Node000001" title="Retrieves the configuration associated with a given knob." alt="" coords="5,5,189,46"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="237,13,275,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,23,221,23,221,28,189,28"/>
-</map>

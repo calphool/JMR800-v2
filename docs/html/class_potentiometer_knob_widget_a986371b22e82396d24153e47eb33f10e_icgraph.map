@@ -1,5 +1,0 @@
-<map id="PotentiometerKnobWidget::getKnobId" name="PotentiometerKnobWidget::getKnobId">
-<area shape="rect" id="Node000001" title="Returns the identifier of the associated knob." alt="" coords="277,5,450,46"/>
-<area shape="rect" id="Node000002" href="$class_config_screen.html#a2591a4696c00b837036bca841c03b5c6" title="Highlights a knob widget to indicate it is active." alt="" coords="5,13,229,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,28,229,28,229,23,261,23"/>
-</map>

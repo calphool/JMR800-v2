@@ -11,7 +11,10 @@
 #include "ScreenManager.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
+
+extern HardwareInterface* hardware;
+
 
 
 /**
@@ -70,7 +73,7 @@ void EncoderAttachedNumericWidget::draw() {
  */
 void EncoderAttachedNumericWidget::handleInput() {
     if(bIsAttachedToEncoder) {
-        control_value = hardware.getEncoderZeroTo(max + min + 1) - min;
+        control_value = hardware->getEncoderZeroTo(max + min + 1) - min;
     }
 }
 
@@ -89,7 +92,7 @@ bool EncoderAttachedNumericWidget::isAttachedToEncoder() {
  * @brief Binds this widget to the encoder and initializes encoder state to match current value.
  */
 void EncoderAttachedNumericWidget::attachToEncoder() {
-    hardware.resetEncoder(control_value << 2);
+    hardware->resetEncoder(control_value << 2);
     bIsAttachedToEncoder = true;
 }
 

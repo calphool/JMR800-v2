@@ -1,5 +1,0 @@
-<map id="PushButtonWidget::handleInput" name="PushButtonWidget::handleInput">
-<area shape="rect" id="Node000001" title="Processes input events (e.g., encoder button press)." alt="" coords="5,5,182,46"/>
-<area shape="rect" id="Node000002" href="$class_push_button_widget.html#a7ef738283579552f538349d8c175ab56" title="Sets the pressed state of the button (visual only)." alt="" coords="230,13,434,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,23,214,23,214,28,182,28"/>
-</map>

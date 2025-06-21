@@ -1,7 +1,0 @@
-<map id="HardwareManager::saveKnobs" name="HardwareManager::saveKnobs">
-<area shape="rect" id="Node000001" title="Saves the current knob configuration to EEPROM." alt="" coords="5,31,206,56"/>
-<area shape="rect" id="Node000002" href="$class_hardware_manager.html#a8ccfd2a833eb6826587dba7a4d97c331" title="Detects change in knob value." alt="" coords="254,5,469,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,31,238,28,238,33,206,36"/>
-<area shape="rect" id="Node000003" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="342,55,381,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,50,327,62,326,67,206,56"/>
-</map>

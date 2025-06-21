@@ -1,5 +1,0 @@
-<map id="HardwareManager::onPG800ClockFall" name="HardwareManager::onPG800ClockFall">
-<area shape="rect" id="Node000001" title="ISR for clocking out serial bits." alt="" coords="206,5,395,46"/>
-<area shape="rect" id="Node000002" href="$class_hardware_manager.html#acbee566327ea9e237566823f46dfcac5" title="Initializes hardware peripherals: GPIO, ADC, encoder, etc." alt="" coords="5,13,158,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,28,158,28,158,23,190,23"/>
-</map>

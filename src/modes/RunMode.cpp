@@ -8,7 +8,7 @@
 #include "modes/RunMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "TeensyHardwareManager.h"
 
 
 /**

@@ -6,8 +6,9 @@
 #include "modes/ConfigMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
 
+extern HardwareInterface* hardware;
 
 /**
  * @brief Called when the System Config Mode is entered.
@@ -36,11 +37,11 @@ void ConfigMode::onExit() {
  * a knob configuration dialog when the encoder switch is pressed.
  */
 void ConfigMode::loop() {
-    uint active_knob = hardware.getEncoderModdedBy(NUM_KNOBS);
+    uint active_knob = hardware->getEncoderModdedBy(NUM_KNOBS);
 
     theConfigScreen.highlightActiveKnob(active_knob);
 
-    if(hardware.encoderSwitchStateChanged(true, true )) {
+    if(hardware->encoderSwitchStateChanged(true, true )) {
         theConfigScreen.activateKnobConfig(active_knob);
     }
 }

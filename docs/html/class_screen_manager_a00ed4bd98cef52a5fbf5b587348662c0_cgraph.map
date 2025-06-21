@@ -1,5 +1,0 @@
-<map id="ScreenManager::init" name="ScreenManager::init">
-<area shape="rect" id="Node000001" title="Initializes the display and prepares the screen manager for use." alt="" coords="5,5,143,31"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="191,5,229,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,16,175,16,175,21,143,21"/>
-</map>

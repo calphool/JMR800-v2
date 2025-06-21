@@ -1,5 +1,0 @@
-<map id="ScreenManager::setScreen" name="ScreenManager::setScreen">
-<area shape="rect" id="Node000001" title="Sets the active screen to be rendered and updated." alt="" coords="5,5,185,31"/>
-<area shape="rect" id="Node000002" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="233,5,271,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,16,217,16,217,21,185,21"/>
-</map>

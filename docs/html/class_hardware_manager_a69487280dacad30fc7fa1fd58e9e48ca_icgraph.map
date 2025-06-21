@@ -1,5 +1,0 @@
-<map id="HardwareManager::writeLedRegistersToHardware" name="HardwareManager::writeLedRegistersToHardware">
-<area shape="rect" id="Node000001" title="Pushes current LED state to shift registers." alt="" coords="245,5,429,46"/>
-<area shape="rect" id="Node000002" href="$class_hardware_manager.html#a518b4b1ddd898bd2a962392af422614f" title="Sets the LED colors for a button." alt="" coords="5,5,197,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,28,197,28,197,23,229,23"/>
-</map>

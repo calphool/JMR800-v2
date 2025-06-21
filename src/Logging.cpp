@@ -7,10 +7,12 @@
  */
 
 #include "Logging.h"
-#include "HardwareManager.h"
+#include "HardwareInterface.h"
 
 /// Global timestamp of the last attempt to initialize the Serial interface.
 unsigned long lastSerialInitAttemptMillis = 0;
+
+extern HardwareInterface* hardware;
 
 
 /**
@@ -23,18 +25,18 @@ unsigned long lastSerialInitAttemptMillis = 0;
  * @param level LogLevel to categorize the message (e.g., LOG_INFO, LOG_ERROR).
  * @param message The message to be logged.
  */
-void log(LogLevel level, const String& message, const char* _func_name) {
+void log(LogLevel level, const char* message, const char* _func_name) {
     if (level < LOG_LEVEL_THRESHOLD) return;
 
     if(!Serial) {                      // if we haven't initialized the Serial object, turn on the system's LEDs, 
         unsigned long now = millis();  // initialize it, and then turn them off keep rechecking every 300 seconds if it remains undefined
         if (now - lastSerialInitAttemptMillis >= 300000 || lastSerialInitAttemptMillis == 0) {
             lastSerialInitAttemptMillis = now;
-            hardware.saveLedState();
-            for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware.setButtonLights(i, true, true);
+            hardware->saveLedState();
+            for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware->setButtonLights(i, true, true);
             Serial.begin(9600);
-            for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware.setButtonLights(i, false, false);
-            hardware.restoreLedState();
+            for(uint8_t i = 0; i < NUM_BUTTONS; i++) hardware->setButtonLights(i, false, false);
+            hardware->restoreLedState();
         }
     }
 
@@ -65,6 +67,6 @@ void log(LogLevel level, const String& message, const char* _func_name) {
  *
  * @param message The message to be logged.
  */
-void log(const String& message, const char* _func_name) {
+void log(const char* message, const char* _func_name) {
     log(LOG_VERBOSE, message, _func_name);
 } 

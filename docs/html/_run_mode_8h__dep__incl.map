@@ -1,7 +1,0 @@
-<map id="include/modes/RunMode.h" name="include/modes/RunMode.h">
-<area shape="rect" id="Node000001" title="Defines the main runtime mode of the application." alt="" coords="43,5,219,31"/>
-<area shape="rect" id="Node000002" href="$main_8cpp.html" title="Entry point for the JMR800&#45;V2 firmware." alt="" coords="5,79,102,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,44,68,81,65,77,105,40"/>
-<area shape="rect" id="Node000003" href="$_run_mode_8cpp.html" title="Implements the behavior of the Run Mode application state." alt="" coords="126,79,293,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,40,198,77,195,81,153,43"/>
-</map>

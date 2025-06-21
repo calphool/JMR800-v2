@@ -1,5 +1,0 @@
-<map id="Widget::getType" name="Widget::getType">
-<area shape="rect" id="Node000001" title="Returns the widget type for runtime introspection." alt="" coords="234,5,350,31"/>
-<area shape="rect" id="Node000002" href="$class_direct_command_mode.html#addc9b1e79189525af2c42a9e10549583" title="Executes logic that should run continuously during the mode." alt="" coords="5,5,186,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,21,186,21,186,16,218,16"/>
-</map>

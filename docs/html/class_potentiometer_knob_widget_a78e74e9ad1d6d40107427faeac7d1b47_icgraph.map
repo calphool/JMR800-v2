@@ -1,5 +1,0 @@
-<map id="PotentiometerKnobWidget::drawArrow" name="PotentiometerKnobWidget::drawArrow">
-<area shape="rect" id="Node000001" title="Draws the indicator arrow based on the knob&#39;s value." alt="" coords="227,5,400,46"/>
-<area shape="rect" id="Node000002" href="$class_potentiometer_knob_widget.html#a66fb95b36cbfe0876a2dd59d03dd719a" title="Draws the knob and arrow on the screen." alt="" coords="5,5,179,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,28,179,28,179,23,211,23"/>
-</map>

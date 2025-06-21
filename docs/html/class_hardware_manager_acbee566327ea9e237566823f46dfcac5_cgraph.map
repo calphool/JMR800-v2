@@ -1,9 +1,0 @@
-<map id="HardwareManager::init" name="HardwareManager::init">
-<area shape="rect" id="Node000001" title="Initializes hardware peripherals: GPIO, ADC, encoder, etc." alt="" coords="5,55,158,80"/>
-<area shape="rect" id="Node000002" href="$class_hardware_manager.html#aaf70a4835af8352a2af86b9679b89d41" title="Loads the knob configuration from EEPROM or persistent storage." alt="" coords="206,5,402,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,51,227,32,228,38,143,57"/>
-<area shape="rect" id="Node000003" href="$_logging_8cpp.html#a32abad09d9f828a9805862e18ad5da5f" title="Logs a message with an explicit log level." alt="" coords="285,55,323,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,65,269,65,269,70,158,70"/>
-<area shape="rect" id="Node000004" href="$class_hardware_manager.html#ae436f35ee0851ca0dad3f0f0c9ad83ea" title="ISR for clocking out serial bits." alt="" coords="209,104,398,145"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="135,78,208,97,207,103,134,84"/>
-</map>

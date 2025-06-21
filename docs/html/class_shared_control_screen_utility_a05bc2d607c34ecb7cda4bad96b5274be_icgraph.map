@@ -1,7 +1,0 @@
-<map id="SharedControlScreenUtility::initializeControllerScreenLayout" name="SharedControlScreenUtility::initializeControllerScreenLayout">
-<area shape="rect" id="Node000001" title="Initializes a screen layout with standard controller widgets." alt="" coords="207,27,419,68"/>
-<area shape="rect" id="Node000002" href="$class_config_screen.html#a82716504d10aed05efd3eebe514555ae" title="Called when this screen becomes active." alt="" coords="5,5,159,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,35,159,31,159,25,192,29"/>
-<area shape="rect" id="Node000003" href="$class_controls_test_screen.html#adaf9a1358cb371d5c88dabfb8feaf147" title="Called when the test screen becomes active." alt="" coords="14,55,150,96"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,65,151,70,150,65,191,60"/>
-</map>
