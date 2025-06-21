@@ -1,3 +1,6 @@
+#ifdef TARGET_TEENSY
+
+
 #include "SH110XDisplay.h"
 #include "defines.h"
 
@@ -76,3 +79,6 @@ void SH110XDisplay::drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) 
     disp.drawCircle(x, y, r, color);
 }
 
+
+
+#endif

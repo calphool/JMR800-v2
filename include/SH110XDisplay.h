@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef TARGET_TEENSY
+
 #include "DisplayInterface.h"
 #include <Adafruit_SH110X.h>
 
@@ -30,3 +32,7 @@ public:
 private:
     Adafruit_SH1106G disp;
 };
+
+
+
+#endif

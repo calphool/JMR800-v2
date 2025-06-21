@@ -7,7 +7,10 @@
  */
 
 #pragma once
+
+#ifdef TARGET_TEENSY
 #include <Arduino.h>
+#endif
 #include "defines.h"  // Ensure LogLevel is available project-wide
 
 

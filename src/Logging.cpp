@@ -9,11 +9,23 @@
 #include "Logging.h"
 #include "HardwareInterface.h"
 
+#ifndef TARGET_TEENSY
+#include <stdio.h>
+#endif
+
 /// Global timestamp of the last attempt to initialize the Serial interface.
 unsigned long lastSerialInitAttemptMillis = 0;
 
 extern HardwareInterface* hardware;
 
+
+void outstr(const char* s) {
+#ifdef TARGET_TEENSY
+    Serial.print(s);
+#else
+    printf("%s", s);
+#endif
+}
 
 /**
  * @brief Logs a message to the serial console with a specified verbosity level.
@@ -28,6 +40,7 @@ extern HardwareInterface* hardware;
 void log(LogLevel level, const char* message, const char* _func_name) {
     if (level < LOG_LEVEL_THRESHOLD) return;
 
+#ifdef TARGET_TEENSY
     if(!Serial) {                      // if we haven't initialized the Serial object, turn on the system's LEDs, 
         unsigned long now = millis();  // initialize it, and then turn them off keep rechecking every 300 seconds if it remains undefined
         if (now - lastSerialInitAttemptMillis >= 300000 || lastSerialInitAttemptMillis == 0) {
@@ -39,26 +52,28 @@ void log(LogLevel level, const char* message, const char* _func_name) {
             hardware->restoreLedState();
         }
     }
+#endif
 
     switch (level) {
         case LOG_VERBOSE:
-            Serial.print("[VERBOSE] ");
+            outstr("[VERBOSE] ");
             break;
         case LOG_INFO:
-            Serial.print("[INFO] ");
+            outstr("[INFO] ");
             break;
         case LOG_WARNING:
-            Serial.print("[WARN] ");
+            outstr("[WARN] ");
             break;
         case LOG_ERROR:
-            Serial.print("[ERROR] ");
+            outstr("[ERROR] ");
             break;
     }
 
-    Serial.print(_func_name);
-    Serial.print(": ");
+    outstr(_func_name);
+    outstr(": ");
 
-    Serial.println(message);
+    outstr(message);
+    outstr("\n");
 }
 
 

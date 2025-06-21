@@ -16,12 +16,13 @@
  * @date 2025-06-04
  */
 
- #ifdef TARGET_TEENSY
+#ifdef TARGET_TEENSY
 #include <Arduino.h>
-#endif
-#include <stdarg.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#endif
+
+#include <stdarg.h>
 #include "defines.h"
 #include "ScreenManager.h"
 #include "screens/RunModeScreen.h"
