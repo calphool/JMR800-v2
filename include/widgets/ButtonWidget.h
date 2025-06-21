@@ -10,8 +10,11 @@
 #pragma once
 
 #include "widgets/Widget.h"
+
+#ifdef TARGET_TEENSY
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#endif
 
 /**
  * @class ButtonWidget

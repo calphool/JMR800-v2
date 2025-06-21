@@ -9,6 +9,7 @@
 #include "ModeManager.h"
 #include "HardwareInterface.h"
 #include "Logging.h"
+#include <stdio.h>
 
 /// Global singleton instance of the ModeManager.
 ModeManager modeManager;

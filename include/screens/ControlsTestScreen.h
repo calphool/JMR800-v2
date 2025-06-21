@@ -8,8 +8,10 @@
 
 #pragma once
 
+#ifdef TARGET_TEENSY
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#endif
 #include <vector>
 #include "widgets/Widget.h"
 #include "widgets/TextLabelWidget.h"

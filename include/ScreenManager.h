@@ -10,7 +10,10 @@
 
 #pragma once
 
+#ifdef TARGET_TEENSY
 #include <Adafruit_SH110X.h>
+#endif
+
 #include "screens/Screen.h"
 #include "DisplayInterface.h"
 

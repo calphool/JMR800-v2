@@ -1,7 +1,12 @@
 // DisplayInterface.h
 #pragma once
 #include <cstdint>
+
+#ifdef TARGET_TEENSY
 #include <gfxfont.h>
+#else
+#define GFXfont void
+#endif
 
 class DisplayInterface {
 public:

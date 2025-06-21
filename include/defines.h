@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include <stdint.h>
+
 
 // MUX enable pins
 #define U2_ENABLE_PIN 4
