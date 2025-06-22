@@ -10,12 +10,10 @@
 #pragma once
 
 #include "widgets/Widget.h"
-
+#include <stdint.h>
 #ifdef TARGET_TEENSY
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
-#else
-#include <stdint.h>
 #endif
 
 
