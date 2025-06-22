@@ -89,7 +89,7 @@ public:
      * @brief Returns the widget highlight status
      * @return the widget highlight status
      */
-    bool getHighlightedStatus();
+    bool getHighlightedStatus() const;
 
 protected:
     int x; ///< Horizontal position in pixels

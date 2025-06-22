@@ -49,7 +49,7 @@ public:
     /**
      * @brief Handles user interaction (optional override).
      */
-    void handleInput();
+    void handleInput() override;
 
     /**
      * @brief Draws the knob and arrow on the screen.

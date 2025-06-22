@@ -41,7 +41,7 @@ private:
     /**
      * @brief A temporary buffer used internally (e.g., for screen rendering or label text).
      */
-    char buffer_64[64];
+    char buffer_64[64] = {0};
 
 public:
 
@@ -69,7 +69,7 @@ public:
      * @brief Returns the currently active application mode.
      * @return Pointer to the current AppMode.
      */
-    AppMode* currentMode() const;
+    //AppMode* currentMode() const;
 };
 
 

@@ -158,7 +158,7 @@ void TeensyHardwareManager::saveKnobs() {
  * @param i Index of the knob configuration to compare.
  * @return true if the configuration has changed.
  */
-bool TeensyHardwareManager::knobChanged(int i) {
+bool TeensyHardwareManager::knobChanged(int i) const {
   return memcmp(&knobConfigurations[i], &knobConfigurations_bkup[i], sizeof(knobConfig)) != 0;
 }
 
@@ -454,7 +454,7 @@ long TeensyHardwareManager::getEncoderModdedBy(long divisor) {
 /**
  * @brief Sends LED register data to the hardware shift register.
  */
-void TeensyHardwareManager::writeLedRegistersToHardware() {
+void TeensyHardwareManager::writeLedRegistersToHardware() const {
   // make sure to check Serial before doing any logging here.  This is a low level method that gets used 
   // before we know that logging is available.
 

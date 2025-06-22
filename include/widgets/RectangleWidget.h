@@ -64,26 +64,26 @@ public:
      * @param xpos New X coordinate
      * @param ypos New Y coordinate
      */
-    void setPosition(int xpos, int ypos);
+    //void setPosition(int xpos, int ypos);
 
     /**
      * @brief Sets the rectangle’s size.
      * @param w New width
      * @param h New height
      */
-    void setSize(int w, int h);
+    //void setSize(int w, int h);
 
     /**
      * @brief Changes whether the rectangle is filled.
      * @param f True for filled; false for outline only
      */
-    void setFilled(bool f);
+    //void setFilled(bool f);
 
     /**
      * @brief Changes the drawing color.
      * @param c New color (WHITE or BLACK)
      */
-    void setColor(RectColor c);
+    //void setColor(RectColor c);
 
     /**
      * @brief Identifies the widget as a Rectangle type.

@@ -75,7 +75,7 @@ public:
      */
     void addLabelAt(const char* s, uint x);
 
-    void clearData();
+    //void clearData();
 
 
 private:

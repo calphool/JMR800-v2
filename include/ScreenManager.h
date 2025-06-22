@@ -64,7 +64,7 @@ public:
      * @brief Retrieves the currently active screen.
      * @return Pointer to the current active screen.
      */
-    Screen* getScreen() const;
+    //Screen* getScreen() const;
 
     /**
      * @brief Provides access to the static OLED display instance.

@@ -47,7 +47,7 @@ void DirectCommandMode::loop() {
     }
 
     if(hardware->encoderSwitchStateChanged(true, true)) {
-        Widget* w = screen.getActiveWidget();
+        const Widget* w = screen.getActiveWidget();
         if(w != NULL) {
             if(w->getType() == WidgetType::PushButton) {
                 hardware->sendParameter(screen.getCmdValue(), screen.getByteValue());

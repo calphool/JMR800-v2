@@ -96,3 +96,11 @@ void loop() {
   modeManager.loop();
   screenManager.loop();
 }
+
+#ifndef TARGET_TEENSY
+int main(void) {
+  setup();
+  for(;;)
+    loop();
+}
+#endif

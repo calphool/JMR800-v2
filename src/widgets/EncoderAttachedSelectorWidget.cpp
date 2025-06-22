@@ -143,10 +143,11 @@ extern HardwareInterface* hardware;
         this->recalculatePixelWidth();
     }
 
-
+/*
     void EncoderAttachedSelectorWidget::clearData() {
         log(LOG_VERBOSE, "Inside EncoderAttachedSelectorWidget->clearData()", __func__);
         labels.clear();
         currentValue = 0;
         width = 0;
     }
+*/

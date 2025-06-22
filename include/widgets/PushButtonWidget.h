@@ -48,7 +48,7 @@ public:
     /**
      * @brief Processes input events (e.g., encoder button press).
      */
-    void handleInput();
+    void handleInput() override;
 
     /**
      * @brief Flags this button as the target of encoder-driven input.

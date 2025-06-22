@@ -85,10 +85,12 @@ void ScreenManager::loop() {
  *
  * @return Screen* Pointer to the active screen object, or nullptr if no screen is active.
  */
+/*
 Screen* ScreenManager::getScreen() const {
   log(LOG_VERBOSE, "inside ScreenManager->getScreen()", __func__);
   return activeScreen;
 }
+*/
 
 
 /**

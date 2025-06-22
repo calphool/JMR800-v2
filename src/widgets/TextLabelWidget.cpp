@@ -85,38 +85,40 @@ void TextLabelWidget::setText(const char* newText) {
  * @param xpos New x-coordinate.
  * @param ypos New y-coordinate.
  */
+/*
 void TextLabelWidget::setPosition(int xpos, int ypos) {
     x = xpos;
     y = ypos;
 }
-
+*/
 
 /**
  * @brief Sets the font size used when `useTinyFont` is false.
  * @param fs New font size.
  */
-void TextLabelWidget::setFontSize(uint8_t fs) {
-    fontSize = fs;
-}
+//void TextLabelWidget::setFontSize(uint8_t fs) {
+//    fontSize = fs;
+//}
 
 
 /**
  * @brief Enables or disables the use of the TomThumb font.
  * @param tiny True to use the tiny font; false for default font.
  */
-void TextLabelWidget::useTiny(bool tiny) {
-    useTinyFont = tiny;
-}
+//void TextLabelWidget::useTiny(bool tiny) {
+//    useTinyFont = tiny;
+//}
 
 
 /**
  * @brief Sets the color of the label text.
  * @param c LabelColor enum value.
  */
+/*
 void TextLabelWidget::setColor(LabelColor c) {
     color = c;
 }
-
+*/
 
 /**
  * @brief Returns the widget type as `WidgetType::TextLabel`.
