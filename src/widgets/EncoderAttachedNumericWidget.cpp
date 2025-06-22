@@ -111,10 +111,12 @@ void EncoderAttachedNumericWidget::detachFromEncoder() {
  * @param xpos X coordinate in pixels.
  * @param ypos Y coordinate in pixels.
  */
+/*
 void EncoderAttachedNumericWidget::setPosition(int xpos, int ypos) {
     this->x = xpos;
     this->y = ypos;
 }
+*/
 
 
 /**

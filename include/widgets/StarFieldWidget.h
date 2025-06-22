@@ -19,7 +19,7 @@ private:
     int half_width;
     int half_height;
 
-    Star stars[NUM_STARS];
+    Star stars[NUM_STARS] = {0};
 
     void resetStar(Star& s);
 
@@ -32,7 +32,7 @@ public:
      * @param width Width of the rectangle
      * @param height Height of the rectangle
      */
-    StarFieldWidget(int x, int y, int width, int height);
+    StarFieldWidget(int x, int y, int _width, int _height);
 
     /**
      * @brief Draws the rectangle on the display.

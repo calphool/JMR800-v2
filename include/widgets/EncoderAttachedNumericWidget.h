@@ -14,6 +14,8 @@
 #ifdef TARGET_TEENSY
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#else
+#include <stdint.h>
 #endif
 
 
@@ -53,7 +55,7 @@ public:
      * @param xpos New X position
      * @param ypos New Y position
      */
-    void setPosition(int xpos, int ypos);
+    //void setPosition(int xpos, int ypos);
 
     /**
      * @brief Enables encoder control for this widget.
@@ -89,8 +91,8 @@ public:
     void setValue(int x);
 
 private:
-    String text;                    ///< Rendered text based on current value
-    uint8_t fontSize;               ///< Font size multiplier for display
+    //String text;                    ///< Rendered text based on current value
+    //uint8_t fontSize;               ///< Font size multiplier for display
     uint control_value;             ///< Current numeric value
     bool bIsAttachedToEncoder;      ///< True if widget has input focus
     int min;                        ///< Minimum allowed value

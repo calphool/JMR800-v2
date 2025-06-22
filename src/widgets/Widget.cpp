@@ -38,6 +38,6 @@ void Widget::setHighlighted(bool b) {
     bHighlighted = b;
 }
 
-bool Widget::getHighlightedStatus() {
+bool Widget::getHighlightedStatus() const {
     return bHighlighted;
 }

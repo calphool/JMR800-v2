@@ -47,7 +47,7 @@ public:
     /**
      * @brief Draws the dialog box on the screen.
      */
-  virtual void draw() = 0;
+  virtual void draw() override = 0;
 
     /**
      * @brief Indicates whether the dialog is finished and should be dismissed.
@@ -58,10 +58,10 @@ public:
     /**
      * @brief Called when the dialog becomes active.
      */
-  virtual void onEnter() = 0;
+  virtual void onEnter() override = 0;
 
     /**
      * @brief Called when the dialog is dismissed or replaced.
      */
-  virtual void onExit() = 0;
+  virtual void onExit() override = 0;
 };

@@ -8,6 +8,8 @@
  */
 #ifdef TARGET_TEENSY
 #include <Arduino.h>
+#else
+#include <stdint.h>
 #endif
 #include "widgets/TextInputWidget.h"
 #include "widgets/Widget.h"
@@ -32,7 +34,7 @@ extern HardwareInterface* hardware;
  * @param w Pixel width allocated for text display.
  * @param handler Optional navigation handler to notify on left/right exit.
  */
-TextInputWidget::TextInputWidget(char* _text, int x, int y, int w, IWidgetNavHandler* handler) : Widget(x, y, true), navHandler(handler) {
+TextInputWidget::TextInputWidget(const char* _text, int x, int y, int w, IWidgetNavHandler* handler) : Widget(x, y, true), navHandler(handler) {
     currentPosition = 0;
     bIsAttachedToEncoder = false;
     strcpy(text, _text);
@@ -120,6 +122,7 @@ void TextInputWidget::backtrackCurrentPosition() {
  *
  * @param c Character to insert.
  */
+/*
 void TextInputWidget::setCharAtCurrentPosition(char c) {
     if(currentPosition < 0 || currentPosition >= (int)strlen(text)) {
         log(LOG_ERROR, "TextInputWidget: current position out of bounds", __func__);
@@ -128,10 +131,11 @@ void TextInputWidget::setCharAtCurrentPosition(char c) {
     text[currentPosition] = c; 
     text[strlen(text)] = '\0'; // Ensure null termination
 }
+*/
 
-char TextInputWidget::getCharAtCurrentPosition() {
-    return text[currentPosition];
-}
+//char TextInputWidget::getCharAtCurrentPosition() {
+//    return text[currentPosition];
+//}
 
 void TextInputWidget::attachToEncoder(bool bEnteringLeftEdge) {
     bIsAttachedToEncoder = true;
@@ -156,11 +160,11 @@ void TextInputWidget::handleInput() {
 }
 
 
-void TextInputWidget::setCurrentPosition(uint i) {
+void TextInputWidget::setCurrentPosition(uint8_t i) {
     currentPosition = i;
 }
 
-uint TextInputWidget::getEndPosition() {
+uint8_t TextInputWidget::getEndPosition() {
     return strlen(text) - 1;
 }
 

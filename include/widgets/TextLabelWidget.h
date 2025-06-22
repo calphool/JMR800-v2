@@ -13,17 +13,18 @@
 #ifdef TARGET_TEENSY
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
-#endif
-
 extern const GFXfont TomThumb;  ///< Tiny pixel font used when useTinyFont is enabled
+#else
+#include <stdint.h>
+#endif
 
 /**
  * @enum LabelColor
  * @brief Text rendering color for OLED display.
  */
 enum class LabelColor : uint8_t {
-    BLACK = SH110X_BLACK,
-    WHITE = SH110X_WHITE
+    BLACK = 0,
+    WHITE = 1
 };
 
 
@@ -53,7 +54,7 @@ public:
      * @param color Text color (default: white)
      */
     TextLabelWidget(const char* t, int x, int y, uint8_t fs = 1, bool tiny = false, 
-        LabelColor color = LabelColor::WHITE);
+        LabelColor c = LabelColor::WHITE);
 
     /**
      * @brief Draws the label text to the OLED display.
@@ -76,25 +77,25 @@ public:
      * @param xpos New X-coordinate
      * @param ypos New Y-coordinate
      */
-    void setPosition(int xpos, int ypos);
+    //void setPosition(int xpos, int ypos);
 
     /**
      * @brief Changes the font size.
      * @param fs New font size multiplier
      */
-    void setFontSize(uint8_t fs);
+    //void setFontSize(uint8_t fs);
 
     /**
      * @brief Enables or disables the tiny font.
      * @param tiny True to use TomThumb font
      */
-    void useTiny(bool tiny);
+    //void useTiny(bool tiny);
 
     /**
      * @brief Sets the text rendering color.
      * @param c New label color
      */
-    void setColor(LabelColor c);
+    //void setColor(LabelColor c);
 
     /**
      * @brief Identifies the widget as a TextLabel type.

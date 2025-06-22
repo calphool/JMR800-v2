@@ -88,8 +88,10 @@ void ModeManager::loop() {
  *
  * @return AppMode* Currently active mode, or nullptr if no modes are registered.
  */
+/*
 AppMode* ModeManager::currentMode() const {
     log(LOG_VERBOSE, "inside ModeManager->currentMode()", __func__);   
     return modes.empty() ? nullptr : modes[currentIndex];
 }
+*/
 

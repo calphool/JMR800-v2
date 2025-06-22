@@ -60,10 +60,12 @@ void RectangleWidget::draw() {
  * @param xpos New x-coordinate.
  * @param ypos New y-coordinate.
  */
+/*
 void RectangleWidget::setPosition(int xpos, int ypos) {
     x = xpos;
     y = ypos;
 }
+*/
 
 
 /**
@@ -72,10 +74,12 @@ void RectangleWidget::setPosition(int xpos, int ypos) {
  * @param w New width in pixels.
  * @param h New height in pixels.
  */
+/*
 void RectangleWidget::setSize(int w, int h) {
     width = w;
     height = h;
 }
+*/
 
 
 /**
@@ -83,9 +87,9 @@ void RectangleWidget::setSize(int w, int h) {
  *
  * @param f True for filled rectangle, false for outline only.
  */
-void RectangleWidget::setFilled(bool f) {
-    filled = f;
-}
+//void RectangleWidget::setFilled(bool f) {
+//    filled = f;
+//}
 
 
 /**
@@ -93,9 +97,9 @@ void RectangleWidget::setFilled(bool f) {
  *
  * @param c Color from the RectColor enum.
  */
-void RectangleWidget::setColor(RectColor c) {
-    color = c;
-}
+//void RectangleWidget::setColor(RectColor c) {
+//    color = c;
+//}
 
 
 /**

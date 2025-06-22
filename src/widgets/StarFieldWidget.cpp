@@ -4,8 +4,8 @@
 #include "ScreenManager.h"
 #include "Logging.h"
 
-StarFieldWidget::StarFieldWidget(int x, int y, int w, int h) :
-  Widget(x, y, false), width(w), height(h) {
+StarFieldWidget::StarFieldWidget(int x, int y, int _width, int _height) :
+  Widget(x, y, false), width(_width), height(_height) {
   log(LOG_VERBOSE, "Inside StarFieldWidget->constructor", __func__);
 
   half_width = width / 2;

@@ -66,7 +66,7 @@ public:
      * @brief Returns whether the dialog has finished.
      * @return True if dialog should close
      */
-    bool isDone() const;
+    bool isDone() const override;
 
     /**
      * @brief Lifecycle hook triggered when dialog becomes active.

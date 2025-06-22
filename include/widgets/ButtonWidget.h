@@ -57,7 +57,7 @@ public:
     /**
      * @brief Handles user interaction (encoder press, etc.).
      */
-    void handleInput();
+    void handleInput() override;
 
     /**
      * @brief Returns the widget type as Button.

@@ -11,6 +11,8 @@
 
 #ifdef TARGET_TEENSY
 #include <Arduino.h>
+#else
+#include <stdint.h>
 #endif
 #include "widgets/Widget.h"
 #include "IWidgetNavHandler.h"
@@ -36,13 +38,13 @@ public:
 
     /**
      * @brief Constructs a new TextInputWidget.
-     * @param initialString Initial null-terminated string to load into the field
+     * @param _text Initial null-terminated string to load into the field
      * @param x X position in pixels
      * @param y Y position in pixels
      * @param w Width of the editable field (in characters)
      * @param navHandler Optional handler for off-edge navigation
      */
-    TextInputWidget(char* initialString, int x, int y, int w, IWidgetNavHandler* navHandler = nullptr);
+    TextInputWidget(const char* _text, int x, int y, int w, IWidgetNavHandler* handler = nullptr);
 
     char *getText();
 
@@ -70,17 +72,17 @@ public:
      * @brief Updates the character at the current cursor position.
      * @param c New character to set
      */
-    void setCharAtCurrentPosition(char c);
+    //void setCharAtCurrentPosition(char c);
 
-    char getCharAtCurrentPosition();
+    //char getCharAtCurrentPosition();
 
     void attachToEncoder(bool bEnteringLeftEdge = true);
 
     void detachFromEncoder();
 
-    void setCurrentPosition(uint i);
+    void setCurrentPosition(uint8_t i);
 
-    uint getEndPosition();
+    uint8_t getEndPosition();
 
     /**
      * @brief Returns the widget type as WidgetType::TextInputWidget.
