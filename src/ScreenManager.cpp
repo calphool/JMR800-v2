@@ -36,6 +36,7 @@ void ScreenManager::init() {
     display = new SH110XDisplay();
 #else
     display = new SDLDisplay();
+#define SH110X_WHITE 1
 #endif
 
     display->begin();

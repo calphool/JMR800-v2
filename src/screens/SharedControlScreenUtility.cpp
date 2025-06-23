@@ -3,6 +3,7 @@
  * @brief Provides layout helper utilities for constructing shared UI control screens.
  */
 
+#include <cstring>
 #include "screens/SharedControlScreenUtility.h"
 #include "TeensyHardwareManager.h"
 

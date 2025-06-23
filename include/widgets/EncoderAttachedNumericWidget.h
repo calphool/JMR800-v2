@@ -75,7 +75,7 @@ public:
      * @brief Gets the current numeric value.
      * @return Current value
      */
-    uint getValue();
+    uint8_t getValue();
     
     /**
      * @brief Returns the widget type for this control.
@@ -91,7 +91,7 @@ public:
 private:
     //String text;                    ///< Rendered text based on current value
     //uint8_t fontSize;               ///< Font size multiplier for display
-    uint control_value;             ///< Current numeric value
+    uint8_t control_value;             ///< Current numeric value
     bool bIsAttachedToEncoder;      ///< True if widget has input focus
     int min;                        ///< Minimum allowed value
     int max;                        ///< Maximum allowed value

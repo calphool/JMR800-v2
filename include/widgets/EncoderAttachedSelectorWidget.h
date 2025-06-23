@@ -40,7 +40,7 @@ public:
      */
     void handleInput() override;
 
-    void setValue(uint x);
+    void setValue(uint8_t x);
 
     /**
      * @brief Enables encoder control for this widget.
@@ -62,7 +62,7 @@ public:
      * @brief Gets the current numeric value.
      * @return Current value
      */
-    uint getValue();
+    uint8_t getValue();
 
     /**
      * @brief Returns the widget type for this control.
@@ -73,16 +73,16 @@ public:
     /**
      * @brief Set the control's value
      */
-    void addLabelAt(const char* s, uint x);
+    void addLabelAt(const char* s, uint8_t x);
 
     //void clearData();
 
 
 private:
-    uint currentValue;
+    uint8_t currentValue;
     bool bIsAttachedToEncoder = false; ///< Flag indicating if the widget is attached to the encoder
     std::vector<const char*> labels;
-    uint width;
+    uint8_t width;
 
     void recalculatePixelWidth();
 };

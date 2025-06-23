@@ -2,6 +2,7 @@
 
 
 #include "SH110XDisplay.h"
+#include "Fonts/TomThumb.h"
 #include "defines.h"
 
 SH110XDisplay::SH110XDisplay() : disp(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1) {}
@@ -30,8 +31,12 @@ void SH110XDisplay::setTextColor(uint16_t c) {
     disp.setTextColor(c);
 }
 
-void SH110XDisplay::setFont(const GFXfont *f) {
-    disp.setFont(f);
+void SH110XDisplay::setFont(FontSize fontSize) {
+    if (fontSize == FontSize::Small) {
+        disp.setFont(&TomThumb);
+    } else {
+        disp.setFont();  // default font
+    }
 }
 
 void SH110XDisplay::setFont() {

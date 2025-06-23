@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <cstdint>
+
 #include "widgets/Widget.h"
 #ifdef TARGET_TEENSY
 #include <Adafruit_SH110X.h>
@@ -18,8 +20,8 @@
  * @brief Defines rendering colors for rectangle drawing.
  */
 enum class RectColor : uint8_t {
-    BLACK = SH110X_BLACK,
-    WHITE = SH110X_WHITE
+    BLACK = 0,
+    WHITE = 1
 };
 
 

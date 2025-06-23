@@ -1,3 +1,4 @@
+#include <cstring>
 #include "screens/KnobConfigDialog.h"
 #include "screens/ModalDialog.h"
 #include "widgets/Widget.h"
@@ -8,6 +9,7 @@
 #include "widgets/PushButtonWidget.h"
 #include "Logging.h"
 #include "HardwareInterface.h"
+#include "defines.h"
 
 extern HardwareInterface* hardware;
 

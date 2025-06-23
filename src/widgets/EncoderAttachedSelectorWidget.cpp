@@ -3,12 +3,17 @@
  * @brief Widget for displaying and adjusting an array of string values
  */
 
+#include <cstring>
+#include <cstdint>
 #include "widgets/Widget.h"
 #include "widgets/EncoderAttachedSelectorWidget.h"
 #include "Logging.h"
 #include "TypeCodes.h"
 #include <ScreenManager.h>
-#include <Fonts/TomThumb.h>
+#ifndef TARGET_TEENSY
+#define SH110X_BLACK 0
+#define SH110X_WHITE 1
+#endif
 #include "HardwareInterface.h"
 
 extern HardwareInterface* hardware;
@@ -70,7 +75,7 @@ extern HardwareInterface* hardware;
             return;
         }
         
-        ScreenManager::getDisplay()->setFont(&TomThumb);
+        ScreenManager::getDisplay()->setFont(FontSize::Small);
         for(uint i = 0; i < strlen(labels[currentValue]); i++) {
             ScreenManager::getDisplay()->drawChar((uint16_t) x+(i*4)+2, (uint16_t) y+7, 
             labels[currentValue][i], SH110X_WHITE, SH110X_BLACK);
@@ -84,7 +89,7 @@ extern HardwareInterface* hardware;
         }
     }
 
-    void EncoderAttachedSelectorWidget::setValue(uint x) {
+    void EncoderAttachedSelectorWidget::setValue(uint8_t x) {
         currentValue = x;
     }
 
@@ -117,7 +122,7 @@ extern HardwareInterface* hardware;
      * @brief Gets the current numeric value.
      * @return Current value
      */
-    uint EncoderAttachedSelectorWidget::getValue() {
+    uint8_t EncoderAttachedSelectorWidget::getValue() {
         return currentValue;
     }
     
@@ -133,7 +138,7 @@ extern HardwareInterface* hardware;
     /**
      * @brief Set the control's value
      */
-    void EncoderAttachedSelectorWidget::addLabelAt(const char* s, uint index) {
+    void EncoderAttachedSelectorWidget::addLabelAt(const char* s, uint8_t index) {
         log(LOG_VERBOSE, "Inside EncoderAttachedSelectorWidget->setValue()", __func__);
         if (labels.size() <= index)
             labels.resize(index + 1, nullptr);

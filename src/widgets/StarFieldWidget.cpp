@@ -1,8 +1,17 @@
 
-
+#include <cstdlib>
+#include <cmath>
 #include "widgets/StarFieldWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
+
+#ifdef TARGET_TEENSY
+#define RANDOM_RNG(X, Y) random(X, Y)
+#define RANDOM(X) random(x)
+#else
+#define RANDOM_RNG(X, Y) ((X) + (random() % ((Y) - (X))))
+#define RANDOM(X) (random() % (X))
+#endif
 
 StarFieldWidget::StarFieldWidget(int x, int y, int _width, int _height) :
   Widget(x, y, false), width(_width), height(_height) {
@@ -17,14 +26,14 @@ StarFieldWidget::StarFieldWidget(int x, int y, int _width, int _height) :
 
 
 void StarFieldWidget::resetStar(Star &s) {
-  float angle = random(0, 6283) / 1000.0; // 0 to 2π
-  float speed = 0.5 + (random(10) / 10.0); // 0.5 to 1.5
+  float angle = RANDOM_RNG(0, 6283) / 1000.0; // 0 to 2π
+  float speed = 0.5 + (RANDOM(10) / 10.0); // 0.5 to 1.5
 
   s.dx = cos(angle) * speed;
   s.dy = sin(angle) * speed;
   s.x = x+(half_width);
   s.y = y+(half_height);
-  s.speedMult = 1.01 + (random(5) / 100.0); // subtle growth per frame
+  s.speedMult = 1.01 + (RANDOM(5) / 100.0); // subtle growth per frame
 }
 
 

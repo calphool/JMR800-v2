@@ -71,7 +71,7 @@ void setup() {
 #else
     hardware = new SimulatedTeensyHardwareManager();
 #endif
-    hardware->init();
+  hardware->init();
 
   screenManager.init();
   modeManager.addMode(&runMode);

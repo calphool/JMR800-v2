@@ -5,6 +5,8 @@
  * This widget simulates a pushbutton that can be toggled visually and respond to encoder button presses.
  * It supports highlighting, text labels, and press state rendering.
  */
+
+#include <cstring>
 #include "widgets/Widget.h"
 #include "widgets/PushButtonWidget.h"
 #include "ScreenManager.h"

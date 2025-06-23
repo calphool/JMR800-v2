@@ -6,6 +6,8 @@
  * It uses shared layout utilities for a consistent grid arrangement.
  */
 
+#include <cstdio>
+#include <cstring>
 #include "screens/ControlsTestScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"

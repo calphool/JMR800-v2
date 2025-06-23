@@ -5,7 +5,8 @@
  * This screen allows the user to manipulate two numeric inputs (command and value) and a push button
  * to transmit them. Encoder-based navigation allows toggling between controls.
  */
-
+#include <cstdio>
+#include <cstring>
 #include "screens/DirectCommandScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"

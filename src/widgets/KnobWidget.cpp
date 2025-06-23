@@ -7,7 +7,12 @@
  */
 
 #include "widgets/KnobWidget.h"
+#ifdef TARGET_TEENSY
 #include <Adafruit_SH110X.h>
+#else
+#define SH110X_WHITE 1
+#define SH110X_BLACK 0
+#endif
 #include "ScreenManager.h"
 #include "Logging.h"
 
