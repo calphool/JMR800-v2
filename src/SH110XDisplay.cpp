@@ -76,7 +76,7 @@ void SH110XDisplay::setTextWrap(bool b) {
     disp.setTextWrap(b);
 }
 
-void SH110XDisplay::drawChar(int16_t x, int16_t y, char c, uint16_t fg, uint16_t bg)  {
+void SH110XDisplay::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t fg, uint16_t bg)  {
     disp.drawChar(x, y, c, fg, bg, 1);
 }
 
