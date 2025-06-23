@@ -6,10 +6,14 @@
  * This widget provides interactive text input through button-based navigation and character replacement.
  * It supports cursor animation and optional external navigation handlers for moving between widgets.
  */
+
+#include <cstring>
+#include <cstdint>
 #ifdef TARGET_TEENSY
 #include <Arduino.h>
 #else
-#include <stdint.h>
+#define SH110X_WHITE 1
+#define SH110X_BLACK 0
 #endif
 #include "widgets/TextInputWidget.h"
 #include "widgets/Widget.h"

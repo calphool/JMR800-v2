@@ -1,16 +1,18 @@
 #pragma once
 
-#ifdef TARGET_TEENSY
+#ifndef TARGET_TEENSY
 
-#include "DisplayInterface.h"
-#include <Adafruit_SH110X.h>
+#include "DisplayInterface.h"  // Your abstract base
+#include <SDL2/SDL.h>
 
-class SH110XDisplay : public DisplayInterface {
+class SDLDisplay : public DisplayInterface {
 public:
-    SH110XDisplay();
+    SDLDisplay(int screenWidth = 128, int screenHeight = 64, int pixelSize = 6);
+    ~SDLDisplay();
 
     void begin() override;
     void clearDisplay() override;
+    void drawPixel(int16_t x, int16_t y, uint16_t color) override;
     void display() override;
     void setCursor(int16_t x, int16_t y) override;
     void setTextSize(uint8_t s) override;
@@ -20,19 +22,29 @@ public:
     void print(const char *text) override;
     void print(const char ch) override;
     void println(const char *text) override;
-    void drawPixel(int16_t x, int16_t y, uint16_t color) override;
     void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color) override;
     void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) override;
     void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) override;
     void setTextWrap(bool b) override;
     void drawChar(int16_t x, int16_t y, char c, uint16_t fg, uint16_t bg) override;
     void drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) override;
- 
+
 
 private:
-    Adafruit_SH1106G disp;
-};
+    int screenWidth;
+    int screenHeight;
+    int pixelSize;
 
+    SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
+    bool pixels[64][128] = {{false}};  // [y][x]
+    int cursorX = 0;
+    int cursorY = 0;
+    uint8_t textSize = 1;
+    uint16_t textColor = 1;
+    bool textWrap = true;
+    FontSize currentFont = FontSize::Default;
+};
 
 
 #endif

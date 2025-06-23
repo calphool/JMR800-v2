@@ -5,15 +5,19 @@
  * This widget provides a circular knob display with an arrow indicating value.
  * It supports visual highlighting and links to actual analog knob input on the hardware.
  */
-
+#include <cstdint>
+#include <cstdio>
 #include "widgets/PotentiometerKnobWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 #include "HardwareInterface.h"
 
+#ifndef TARGET_TEENSY
+#define SH110X_BLACK 0
+#define SH110X_WHITE 1
+#endif
+
 extern HardwareInterface* hardware;
-
-
 
 
 const int8_t PotentiometerKnobWidget::arrow_dx[360] = {

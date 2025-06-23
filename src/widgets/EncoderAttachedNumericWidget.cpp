@@ -6,11 +6,15 @@
  * within a specified range. It supports highlighting, formatted display, and encoder binding.
  */
 
+ #include <cstring>
+ #include <cstdio>
 #include "widgets/EncoderAttachedNumericWidget.h"
 #include "widgets/Widget.h"
 #include "ScreenManager.h"
+#ifdef TARGET_TEENSY
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#endif
 #include "HardwareInterface.h"
 
 extern HardwareInterface* hardware;
@@ -39,7 +43,7 @@ EncoderAttachedNumericWidget::EncoderAttachedNumericWidget(int x, int y, int min
  *
  * @return uint The current numeric value.
  */
-uint EncoderAttachedNumericWidget::getValue() {
+uint8_t EncoderAttachedNumericWidget::getValue() {
     return control_value;
 }
 

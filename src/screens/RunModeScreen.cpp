@@ -7,6 +7,7 @@
  * and dynamic screen layout.
  */
 
+#include <cstring>
 #include "screens/RunModeScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"

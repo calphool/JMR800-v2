@@ -6,9 +6,12 @@
  * configurable colors, and an animated highlight underline effect.
  */
 
+ #include <cstring>
 #include "widgets/Widget.h"
 #include "widgets/TextLabelWidget.h"
+#ifdef TARGET_TEENSY
 #include <Fonts/TomThumb.h>
+#endif
 #include "Logging.h"
 #include "ScreenManager.h"
 
@@ -48,7 +51,7 @@ void TextLabelWidget::draw() {
 
     ScreenManager::getDisplay()->setCursor(x, y);
     if (useTinyFont) {
-        ScreenManager::getDisplay()->setFont(&TomThumb);
+        ScreenManager::getDisplay()->setFont(FontSize::Small);
     } else {
         ScreenManager::getDisplay()->setFont();
         ScreenManager::getDisplay()->setTextSize(fontSize);

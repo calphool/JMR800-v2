@@ -11,6 +11,11 @@
 #include "Logging.h"
 #include "HardwareInterface.h"
 
+#ifndef TARGET_TEENSY
+#define SH110X_BLACK 0
+#define SH110X_WHITE 1
+#endif
+
 extern HardwareInterface* hardware;
 
 

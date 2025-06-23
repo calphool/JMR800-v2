@@ -2,11 +2,11 @@
 #pragma once
 #include <cstdint>
 
-#ifdef TARGET_TEENSY
-#include <gfxfont.h>
-#else
-#define GFXfont void
-#endif
+
+enum class FontSize {
+    Default,
+    Small
+};
 
 class DisplayInterface {
 public:
@@ -16,7 +16,7 @@ public:
     virtual void setCursor(int16_t x, int16_t y) = 0;
     virtual void setTextSize(uint8_t s) = 0;
     virtual void setTextColor(uint16_t c) = 0;
-    virtual void setFont(const GFXfont *f) = 0;
+    virtual void setFont(FontSize fontSize) = 0;
     virtual void setFont() = 0;
     virtual void print(const char *text) = 0;
     virtual void print(const char ch) = 0;
