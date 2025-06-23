@@ -40,6 +40,7 @@ HardwareInterface* hardware = nullptr;
 #ifdef TARGET_TEENSY
 #include "TeensyHardwareManager.h"
 #else
+#include <SDL2/SDL.h>
 #include "SimulatedTeensyHardwareManager.h"
 #endif
 
@@ -100,7 +101,22 @@ void loop() {
 #ifndef TARGET_TEENSY
 int main(void) {
   setup();
-  for(;;)
+  bool running = true;
+
+  while (running) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+        running = false;
+      }
+    }
+
     loop();
+
+    SDL_Delay(4);
+  }
+
+  SDL_Quit();
+  return 0;
 }
 #endif
