@@ -20,6 +20,14 @@
 #include <Arduino.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#include "TeensyHardwareManager.h"
+#include "SH110XDisplay.h"
+#else
+#include <SDL2/SDL.h>
+#include "SimulatedTeensyHardwareManager.h"
+#include "SDLDisplay.h"
+#include "HardwareSimWindow.h"
+#include <iostream>
 #endif
 
 #include <stdarg.h>
@@ -36,14 +44,6 @@
 #include "modes/ConfigMode.h"
 
 HardwareInterface* hardware = nullptr;
-
-#ifdef TARGET_TEENSY
-#include "TeensyHardwareManager.h"
-#else
-#include <SDL2/SDL.h>
-#include "SimulatedTeensyHardwareManager.h"
-#endif
-
 RunMode runMode;
 ControlsTestMode testMode;
 DirectCommandMode directMode;
@@ -74,7 +74,10 @@ void setup() {
 #endif
   hardware->init();
 
-  screenManager.init();
+
+#ifdef TARGET_TEENSY
+  screenManager.init(new SH110XDisplay());
+#endif
   modeManager.addMode(&runMode);
   modeManager.addMode(&testMode);
   modeManager.addMode(&directMode);
@@ -99,24 +102,46 @@ void loop() {
 }
 
 #ifndef TARGET_TEENSY
-int main(void) {
-  setup();
-  bool running = true;
+int main(int argc, char* argv[]) {
+    SDLDisplay screenDisplay;
+    HardwareSimWindow hwWindow;
 
-  while (running) {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
-        running = false;
-      }
+    if (!screenDisplay.initialize()) {
+        std::cerr << "Failed to initialize SDLDisplay." << std::endl;
+        return -1;
     }
 
-    loop();
+    if (!hwWindow.initialize()) {
+        std::cerr << "Failed to initialize HardwareSimWindow." << std::endl;
+        return -1;
+    }
 
-    SDL_Delay(4);
-  }
+    screenManager.init(&screenDisplay);
+    setup();
 
-  SDL_Quit();
-  return 0;
+    bool running = true;
+    SDL_Event event;
+
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) running = false;
+            screenDisplay.handleEvent(event);
+            hwWindow.handleEvent(event);
+        }
+
+        loop();
+
+        screenDisplay.renderFrame();
+        hwWindow.renderFrame();
+
+        if (screenDisplay.shouldClose() || hwWindow.shouldClose()) {
+            running = false;
+        }
+    }
+
+    screenDisplay.shutdown();
+    hwWindow.shutdown();
+
+    return 0;
 }
 #endif

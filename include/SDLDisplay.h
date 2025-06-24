@@ -29,12 +29,20 @@ public:
     void drawChar(int16_t x, int16_t y, unsigned char c, uint16_t fg, uint16_t bg) override;
     void drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) override;
 
+    bool initialize();
+    void handleEvent(const SDL_Event& event);
+    void renderFrame();
+    void shutdown();
+    bool shouldClose() const { return closed; }
+
 
 private:
     int screenWidth;
     int screenHeight;
     int pixelSize;
 
+    SDL_Texture* texture = nullptr;
+    bool closed = false;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
     bool pixels[64][128] = {{false}};  // [y][x]

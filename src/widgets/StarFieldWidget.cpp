@@ -7,7 +7,7 @@
 
 #ifdef TARGET_TEENSY
 #define RANDOM_RNG(X, Y) random(X, Y)
-#define RANDOM(X) random(x)
+#define RANDOM(X) random(X)
 #else
 #define RANDOM_RNG(X, Y) ((X) + (random() % ((Y) - (X))))
 #define RANDOM(X) (random() % (X))
