@@ -102,6 +102,10 @@ void loop() {
 }
 
 #ifndef TARGET_TEENSY
+
+SimulatedTeensyHardwareState hardwareState;
+
+
 int main(int argc, char* argv[]) {
     SDLDisplay screenDisplay;
     HardwareSimWindow hwWindow;
@@ -132,7 +136,7 @@ int main(int argc, char* argv[]) {
         loop();
 
         screenDisplay.renderFrame();
-        hwWindow.renderFrame();
+        hwWindow.renderFrame(&hardwareState);
 
         if (screenDisplay.shouldClose() || hwWindow.shouldClose()) {
             running = false;
