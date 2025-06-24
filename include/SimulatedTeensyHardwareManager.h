@@ -1,4 +1,20 @@
+#pragma once
 #include "HardwareInterface.h"
+
+
+
+#include <cstdint>
+
+struct SimulatedTeensyHardwareState {
+    int potentiometers[NUM_KNOBS] = {0};    // 56 potentiometer values (0–1023)
+    bool buttons[NUM_BUTTONS] = {false};       // 4 pushbuttons
+    bool redLED[NUM_BUTTONS] = {false};        // 4 red LEDs
+    bool greenLED[NUM_BUTTONS] = {false};      // 4 green LEDs
+    int encoderPosition = 0;         // Rotary encoder position
+    bool encoderPressed = false;     // Rotary encoder pushbutton
+};
+
+
 
 class SimulatedTeensyHardwareManager : public HardwareInterface {
 private:

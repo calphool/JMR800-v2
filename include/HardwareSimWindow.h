@@ -4,12 +4,13 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
+#include "SimulatedTeensyHardwareManager.h"
 
 class HardwareSimWindow {
 public:
     bool initialize();
     void handleEvent(const SDL_Event& event);
-    void renderFrame();
+    void renderFrame(SimulatedTeensyHardwareState* h);
     void shutdown();
     bool shouldClose() const { return closed; }
 
