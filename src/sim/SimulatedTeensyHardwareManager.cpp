@@ -1,6 +1,6 @@
 #ifndef TARGET_TEENSY
 
-#include "SimulatedTeensyHardwareManager.h"
+#include "sim/SimulatedTeensyHardwareManager.h"
 #include <iostream>
 #include "defines.h"
 

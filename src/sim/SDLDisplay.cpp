@@ -1,11 +1,9 @@
-
 #ifndef TARGET_TEENSY
-#include "SDLDisplay.h"
+#include "sim/SDLDisplay.h"
+#include "sim/SimulatedFontDefinitions.h"
 #include <iostream>
 #include <cstring>
 #include <cmath>
-#include "SimulatedFontDefinitions.h"
-#include "SDLDisplay.h"
 #include <SDL2/SDL.h>
 
 

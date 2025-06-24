@@ -24,9 +24,9 @@
 #include "SH110XDisplay.h"
 #else
 #include <SDL2/SDL.h>
-#include "SimulatedTeensyHardwareManager.h"
-#include "SDLDisplay.h"
-#include "HardwareSimWindow.h"
+#include "sim/SimulatedTeensyHardwareManager.h"
+#include "sim/SDLDisplay.h"
+#include "sim/HardwareSimWindow.h"
 #include <iostream>
 #endif
 
