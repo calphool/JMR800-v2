@@ -45,7 +45,9 @@ public:
      *
      * Should be called once during system setup.
      */
-    void init();
+    //void init();
+
+    void init(DisplayInterface* externalDisplay);
 
     /**
      * @brief Sets the active screen to be rendered and updated.

@@ -21,7 +21,7 @@ ScreenManager screenManager;
 #include "SDLDisplay.h" // to be implemented
 #endif
 
-DisplayInterface* display;
+DisplayInterface* display = nullptr;
 
 /**
  * @brief Initializes the OLED display with default settings.
@@ -29,6 +29,8 @@ DisplayInterface* display;
  * Sets up the I2C display, clears the screen, sets text size and color, and renders an empty buffer.
  * Should be called once during application setup.
  */
+
+ /*
 void ScreenManager::init() {
     log(LOG_VERBOSE, "inside ScreenManager->init(), initializing screen", __func__);
 
@@ -45,6 +47,21 @@ void ScreenManager::init() {
     display->setTextColor(SH110X_WHITE);
     display->setTextWrap(false);
     display->display();
+}
+*/
+
+void ScreenManager::init(DisplayInterface* externalDisplay) {
+  if(display != nullptr) {
+    delete display;
+    display= nullptr;
+  }
+  display = externalDisplay;
+  display->begin();
+  display->clearDisplay();
+  display->setTextSize(1);
+  display->setTextColor(1);
+  display->setTextWrap(false);
+  display->display();
 }
 
 /**

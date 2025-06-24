@@ -5,21 +5,51 @@
 #include <cstring>
 #include <cmath>
 #include "SimulatedFontDefinitions.h"
+#include "SDLDisplay.h"
+#include <SDL2/SDL.h>
 
 
 SDLDisplay::SDLDisplay(int screenWidth, int screenHeight, int pixelSize)
-    : screenWidth(screenWidth), screenHeight(screenHeight), pixelSize(pixelSize) {
-    SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("SDL SH110X Display", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                               screenWidth * pixelSize, screenHeight * pixelSize, SDL_WINDOW_SHOWN);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    clearDisplay();
+        : screenWidth(screenWidth), screenHeight(screenHeight), pixelSize(pixelSize) {}
+
+bool SDLDisplay::initialize() {
+        if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+            printf("SDL_Init failed: %s\n", SDL_GetError());
+            return false;
+        }
+
+        window = SDL_CreateWindow("SDL SH1106 Display", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                   screenWidth * pixelSize, screenHeight * pixelSize, SDL_WINDOW_SHOWN);
+        if (!window) {
+            printf("SDL_CreateWindow failed: %s\n", SDL_GetError());
+            return false;
+        }
+
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        if (!renderer) {
+            printf("SDL_CreateRenderer failed: %s\n", SDL_GetError());
+            return false;
+        }
+
+        clearDisplay();
+        return true;
 }
 
 SDLDisplay::~SDLDisplay() {
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    shutdown();
+}
+
+void SDLDisplay::renderFrame() {
+    display();
+}
+
+void SDLDisplay::shutdown() {
+    if (renderer) SDL_DestroyRenderer(renderer);
+    if (window) SDL_DestroyWindow(window);
     SDL_Quit();
+    renderer = nullptr;
+    window = nullptr;
+    closed = false;
 }
 
 void SDLDisplay::begin() {
@@ -42,28 +72,30 @@ void SDLDisplay::display() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    for (int y = 0; y < 64; ++y) {
-        for (int x = 0; x < 128; ++x) {
+    for (int y = 0; y < screenHeight; ++y) {
+        for (int x = 0; x < screenWidth; ++x) {
             if (pixels[y][x]) {
-                SDL_Rect rect = {x * pixelSize, y * pixelSize, pixelSize, pixelSize};
-                SDL_RenderFillRect(renderer, &rect);
+                SDL_Rect r = { x * pixelSize, y * pixelSize, pixelSize, pixelSize };
+                SDL_RenderFillRect(renderer, &r);
             }
         }
     }
     SDL_RenderPresent(renderer);
 }
 
+void SDLDisplay::handleEvent(const SDL_Event& event) {
+    if (event.type == SDL_WINDOWEVENT && event.window.windowID == SDL_GetWindowID(window)) {
+        if (event.window.event == SDL_WINDOWEVENT_CLOSE) {
+            closed = true;
+        }
+    }
+}
 void SDLDisplay::setCursor(int16_t x, int16_t y) { cursorX = x; cursorY = y; }
 void SDLDisplay::setTextSize(uint8_t s) { textSize = s; }
 void SDLDisplay::setTextColor(uint16_t c) { textColor = c; }
 void SDLDisplay::setFont(FontSize fontSize) { currentFont = fontSize; }
 void SDLDisplay::setFont() { currentFont = FontSize::Default; }
 
-#include "SDLDisplay.h"
-#include "SimulatedFontDefinitions.h"
-#include <SDL2/SDL.h>
-#include <cstring>
-#include <iostream>
 
 
 void SDLDisplay::print(const char* text) {
