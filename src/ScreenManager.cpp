@@ -18,7 +18,7 @@ ScreenManager screenManager;
 #ifdef TARGET_TEENSY
 #include "SH110XDisplay.h"
 #else
-#include "SDLDisplay.h" // to be implemented
+#include "sim/SDLDisplay.h" // to be implemented
 #endif
 
 DisplayInterface* display = nullptr;
