@@ -82,7 +82,10 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
 
     // Rotary Encoder
     ImGui::Text("Rotary Encoder");
-    ImGui::SliderInt("Position", &state->encoderPosition, 0, 127);
+    ImGui::BeginGroup();
+    ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+    ImGui::SliderInt(" ", &state->encoderPosition, -1023, 1023);
+    ImGui::EndGroup();
     ImGui::Checkbox("Encoder Pressed", &state->encoderPressed);
     ImGui::Separator();
 
@@ -105,13 +108,13 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
         ImGui::SetCursorPosX(ImGui::GetCursorPosX() + offsetX);
         for (int col = 0; col < 16; ++col) {
             int idx = row * 16 + col;
-            if (idx >= 56) break; // Only 56 potentiometers
+            if (idx >= 56) break;
             if (col > 0) ImGui::SameLine(0.0f, spacing);
-            char label[8];
-            snprintf(label, sizeof(label), "P%02d", idx);
             ImGui::PushID(idx);
             ImGui::BeginGroup();
-            ImGui::TextUnformatted(label); // Label above
+            char label[8];
+            snprintf(label, sizeof(label), "P%02d", idx);
+            ImGui::TextUnformatted(label);
             ImGui::VSliderInt("##slider", ImVec2(sliderWidth, 100), &state->potentiometers[idx], 0, 1023);
             ImGui::EndGroup();
             ImGui::PopID();
@@ -168,10 +171,33 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
 
     ImGui::End(); // End main window
 
+    // Handle keyboard shortcuts for buttons: U/I/O/P toggle B0/B1/B2/B3, Y toggles encoder pressed
+    ImGuiIO& io = ImGui::GetIO();
+    struct KeyButtonMap { ImGuiKey key; int buttonIdx; };
+    static const KeyButtonMap keyMap[] = {
+        { ImGuiKey_U, 0 },
+        { ImGuiKey_I, 1 },
+        { ImGuiKey_O, 2 },
+        { ImGuiKey_P, 3 },
+    };
+    for (const auto& mapping : keyMap) {
+        if (ImGui::IsKeyPressed(mapping.key, false)) {
+            state->buttons[mapping.buttonIdx] = !state->buttons[mapping.buttonIdx];
+        }
+    }
+    // Y key toggles encoder pressed
+    if (ImGui::IsKeyPressed(ImGuiKey_Y, false)) {
+        state->encoderPressed = !state->encoderPressed;
+    }
+
     ImGui::Render();
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     SDL_GL_SwapWindow(window);
+}
+
+void HardwareSimWindow::setWindowPosition(int x, int y) {
+    if (window) SDL_SetWindowPosition(window, x, y);
 }
 #endif

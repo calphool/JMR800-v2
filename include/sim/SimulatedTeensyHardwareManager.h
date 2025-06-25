@@ -21,6 +21,7 @@ private:
     knobConfig knobConfigurations[NUM_KNOBS] = {0};  ///< Current knob-to-parameter mapping
     knobConfig knobConfigurations_bkup[NUM_KNOBS] = {0}; ///< Backup mapping
     knobConfig lastKnobConfig = {0}; ///< Most recent configuration state
+    SimulatedTeensyHardwareState state; ///< Simulation state (potentiometers, buttons, LEDs, encoder)
 
 
 public:
@@ -160,5 +161,6 @@ public:
 
     long getEncoderModdedBy(long divisor) override;
 
+    SimulatedTeensyHardwareState* getState() { return &state; }
 
 };

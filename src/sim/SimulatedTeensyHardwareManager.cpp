@@ -11,16 +11,38 @@ SimulatedTeensyHardwareManager::~SimulatedTeensyHardwareManager() {}
 
 void SimulatedTeensyHardwareManager::loadKnobs() {}
 void SimulatedTeensyHardwareManager::saveKnobs() {}
-int SimulatedTeensyHardwareManager::getKnobValue(unsigned int) { return 0; }
-long SimulatedTeensyHardwareManager::getEncoderZeroTo(long d) { return 0; }
-bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() { return false; }
-long SimulatedTeensyHardwareManager::getEncoderValue() { return 0; }
-bool SimulatedTeensyHardwareManager::isButtonPressed(unsigned int) { return false; }
+
+int SimulatedTeensyHardwareManager::getKnobValue(unsigned int knobIX) { 
+  return getState()->potentiometers[knobIX] >> 2; // return smoothed value 
+}
+
+long SimulatedTeensyHardwareManager::getEncoderZeroTo(long d) { 
+  long ll = getState()->encoderPosition ;
+  if(ll < 0) ll = 0; // avoid negative values
+  return (ll >> 2) % d;
+}
+
+bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() { return getState()->encoderPressed; }
+
+long SimulatedTeensyHardwareManager::getEncoderValue() { 
+  return getState()->encoderPosition; 
+}
+
+bool SimulatedTeensyHardwareManager::isButtonPressed(unsigned int b) {
+  return getState()->buttons[b];
+}
 bool SimulatedTeensyHardwareManager::buttonStateChanged(unsigned int, bool, bool) { return false; }
 bool SimulatedTeensyHardwareManager::encoderSwitchStateChanged(bool, bool) { return false; }
-void SimulatedTeensyHardwareManager::setButtonLights(unsigned int, bool, bool) {}
-bool SimulatedTeensyHardwareManager::greenIsLit(unsigned int) { return false; }
-bool SimulatedTeensyHardwareManager::redIsLit(unsigned int) { return false; }
+void SimulatedTeensyHardwareManager::setButtonLights(unsigned int b, bool red, bool green) {
+  getState()->redLED[b] = red;
+  getState()->greenLED[b] = green;
+}
+bool SimulatedTeensyHardwareManager::greenIsLit(unsigned int b) { 
+  return getState()->greenLED[b];
+}
+bool SimulatedTeensyHardwareManager::redIsLit(unsigned int b) { 
+  return getState()->redLED[b]; 
+}
 void SimulatedTeensyHardwareManager::clearEncoderButton() {}
 void SimulatedTeensyHardwareManager::setKnobConfiguration(unsigned int, const char*, uint8_t, uint8_t) {}
 void SimulatedTeensyHardwareManager::restoreLedState() {}
@@ -34,11 +56,12 @@ knobConfig SimulatedTeensyHardwareManager::getKnobConfiguration(uint index) {
 }
 
 int SimulatedTeensyHardwareManager::AsciiToEncoder(char c) {
-  return 0;
+  int v = ((((int)c) - 65) * 4) + 132;
+  return v;
 }
 
 long SimulatedTeensyHardwareManager::getEncoderModdedBy(long divisor) {
-  return 0;
+   return getState()->encoderPosition % divisor;
 }
 
 
