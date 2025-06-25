@@ -69,14 +69,11 @@ void setup() {
 
 #ifdef TARGET_TEENSY
     hardware = new TeensyHardwareManager();
+    hardware->init();
+    screenManager.init(new SH110XDisplay());
 #else
-    hardware = new SimulatedTeensyHardwareManager();
-#endif
-  hardware->init();
-
-
-#ifdef TARGET_TEENSY
-  screenManager.init(new SH110XDisplay());
+    // hardware is already assigned in main() for simulation; just initialize it
+    hardware->init();
 #endif
   modeManager.addMode(&runMode);
   modeManager.addMode(&testMode);
@@ -103,12 +100,11 @@ void loop() {
 
 #ifndef TARGET_TEENSY
 
-SimulatedTeensyHardwareState hardwareState;
-
-
 int main(int argc, char* argv[]) {
     SDLDisplay screenDisplay;
     HardwareSimWindow hwWindow;
+    SimulatedTeensyHardwareManager* simManager = new SimulatedTeensyHardwareManager();
+    hardware = simManager;
 
     if (!screenDisplay.initialize()) {
         std::cerr << "Failed to initialize SDLDisplay." << std::endl;
@@ -119,6 +115,24 @@ int main(int argc, char* argv[]) {
         std::cerr << "Failed to initialize HardwareSimWindow." << std::endl;
         return -1;
     }
+
+    // Center both windows horizontally on the screen
+    SDL_DisplayMode dm;
+    SDL_GetCurrentDisplayMode(0, &dm);
+    int screenW = dm.w;
+    int screenH = dm.h;
+
+    int displayWidth = 128 * 6; // SDLDisplay: 128x64, pixelSize=6
+    int displayHeight = 64 * 6;
+    int simWidth = 800; // HardwareSimWindow width
+    int simHeight = 700;
+
+    int totalWidth = displayWidth + simWidth;
+    int startX = (screenW - totalWidth) / 2;
+    int centerY = (screenH - ((displayHeight > simHeight) ? displayHeight : simHeight)) / 2;
+
+    screenDisplay.setWindowPosition(startX, centerY);
+    hwWindow.setWindowPosition(startX + displayWidth, centerY);
 
     screenManager.init(&screenDisplay);
     setup();
@@ -136,7 +150,7 @@ int main(int argc, char* argv[]) {
         loop();
 
         screenDisplay.renderFrame();
-        hwWindow.renderFrame(&hardwareState);
+        hwWindow.renderFrame(simManager->getState());
 
         if (screenDisplay.shouldClose() || hwWindow.shouldClose()) {
             running = false;
@@ -145,7 +159,7 @@ int main(int argc, char* argv[]) {
 
     screenDisplay.shutdown();
     hwWindow.shutdown();
-
+    delete simManager;
     return 0;
 }
 #endif

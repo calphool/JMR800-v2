@@ -34,6 +34,7 @@ public:
     void renderFrame();
     void shutdown();
     bool shouldClose() const { return closed; }
+    void setWindowPosition(int x, int y);
 
 
 private:

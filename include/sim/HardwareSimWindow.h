@@ -13,6 +13,7 @@ public:
     void renderFrame(SimulatedTeensyHardwareState* h);
     void shutdown();
     bool shouldClose() const { return closed; }
+    void setWindowPosition(int x, int y);
 
 private:
     SDL_Window* window = nullptr;
