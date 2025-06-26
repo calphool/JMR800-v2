@@ -163,6 +163,12 @@ void SDLDisplay::setTextWrap(bool b) { textWrap = b; }
 void SDLDisplay::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg) {
     if (c >= 128) return;  // Only support ASCII 0-127
 
+    bg = 0;
+    color = 1;
+    if(textColor == 0) {
+        bg = 1;
+        color = 0;
+    }
     const uint8_t (*font)[5] = defaultFont;
     int width = 5;
     int height = 7;

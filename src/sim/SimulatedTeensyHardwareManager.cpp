@@ -22,7 +22,9 @@ long SimulatedTeensyHardwareManager::getEncoderZeroTo(long d) {
   return (ll >> 2) % d;
 }
 
-bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() { return getState()->encoderPressed; }
+bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() { 
+  return getState()->encoderPressed; 
+}
 
 long SimulatedTeensyHardwareManager::getEncoderValue() { 
   return getState()->encoderPosition; 
@@ -31,8 +33,12 @@ long SimulatedTeensyHardwareManager::getEncoderValue() {
 bool SimulatedTeensyHardwareManager::isButtonPressed(unsigned int b) {
   return getState()->buttons[b];
 }
-bool SimulatedTeensyHardwareManager::buttonStateChanged(unsigned int, bool, bool) { return false; }
-bool SimulatedTeensyHardwareManager::encoderSwitchStateChanged(bool, bool) { return false; }
+bool SimulatedTeensyHardwareManager::buttonStateChanged(unsigned int b, bool upThenDown, bool clearFlag) { 
+  return false; 
+}
+bool SimulatedTeensyHardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag) { 
+  return false; 
+}
 void SimulatedTeensyHardwareManager::setButtonLights(unsigned int b, bool red, bool green) {
   getState()->redLED[b] = red;
   getState()->greenLED[b] = green;
