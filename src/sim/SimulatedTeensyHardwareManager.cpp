@@ -34,10 +34,25 @@ bool SimulatedTeensyHardwareManager::isButtonPressed(unsigned int b) {
   return getState()->buttons[b];
 }
 bool SimulatedTeensyHardwareManager::buttonStateChanged(unsigned int b, bool upThenDown, bool clearFlag) { 
-  return false; 
+  static bool prevStates[4];
+
+  if(getState()->buttons[b] == prevStates[b])
+    return false;
+  else {
+    prevStates[b] = getState()->buttons[b];
+    delay(250);
+    return true;
+  }
 }
 bool SimulatedTeensyHardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag) { 
-  return false; 
+  static bool prevState = false;
+  if(getState()->encoderPressed == prevState)
+    return false;
+  else {
+    prevState = getState()->encoderPressed;
+    delay(250);
+    return true;
+  }
 }
 void SimulatedTeensyHardwareManager::setButtonLights(unsigned int b, bool red, bool green) {
   getState()->redLED[b] = red;
@@ -67,7 +82,7 @@ int SimulatedTeensyHardwareManager::AsciiToEncoder(char c) {
 }
 
 long SimulatedTeensyHardwareManager::getEncoderModdedBy(long divisor) {
-   return getState()->encoderPosition % divisor;
+   return getState()->encoderPosition>>2 % divisor;
 }
 
 
