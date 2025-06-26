@@ -171,9 +171,9 @@ void PotentiometerKnobWidget::draw() {
     drawArrow(deg);
 
     if(bHighlighted) {
-        int cx = x + 4;  // center x
+        int cx = x + 5;  // center x
         int cy = y + 2;  // center y
-        int radius = 4;  // padding to fully enclose
+        int radius = 3;  // padding to fully enclose
         if(toggle) {
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_WHITE);
         }

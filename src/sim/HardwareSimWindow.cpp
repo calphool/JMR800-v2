@@ -86,7 +86,13 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
     ImGui::SliderInt(" ", &state->encoderPosition, -1023, 1023);
     ImGui::EndGroup();
-    ImGui::Checkbox("Encoder Pressed", &state->encoderPressed);
+    
+    ImVec4 activeColor = ImVec4(0.2f, 0.7f, 0.2f, 1.0f);
+    if (state->encoderPressed) ImGui::PushStyleColor(ImGuiCol_Button, activeColor);
+    ImGui::Button("Encoder Pressed", ImVec2(ImGui::GetFrameHeight() * 3.0f, ImGui::GetFrameHeight() * 1.5f));
+    bool encoderActive = ImGui::IsItemActive();
+    if (state->encoderPressed) ImGui::PopStyleColor();
+    state->encoderPressed = encoderActive;
     ImGui::Separator();
 
     // Potentiometers Grid + Buttons to the right
@@ -161,9 +167,13 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
         ImGui::SameLine();
         ImGui::TextColored(state->greenLED[i] ? ImVec4(0,1,0,1) : ImVec4(0.3f,0.3f,0.3f,1), "G");
         ImGui::NewLine();
-        char checkbox_id[16];
-        snprintf(checkbox_id, sizeof(checkbox_id), "##button%d", i);
-        ImGui::Checkbox(checkbox_id, &state->buttons[i]); // Unique ID for each checkbox
+        char button_id[16];
+        snprintf(button_id, sizeof(button_id), "B%d", i);
+        if (state->buttons[i]) ImGui::PushStyleColor(ImGuiCol_Button, activeColor);
+        ImGui::Button(button_id, ImVec2(ImGui::GetFrameHeight() * 1.5f, ImGui::GetFrameHeight() * 1.5f));
+        bool isActive = ImGui::IsItemActive();
+        if (state->buttons[i]) ImGui::PopStyleColor();
+        state->buttons[i] = isActive;
         ImGui::EndGroup();
     }
     ImGui::EndChild();
@@ -181,14 +191,10 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
         { ImGuiKey_P, 3 },
     };
     for (const auto& mapping : keyMap) {
-        if (ImGui::IsKeyPressed(mapping.key, false)) {
-            state->buttons[mapping.buttonIdx] = !state->buttons[mapping.buttonIdx];
-        }
+        state->buttons[mapping.buttonIdx] = ImGui::IsKeyDown(mapping.key);
     }
-    // Y key toggles encoder pressed
-    if (ImGui::IsKeyPressed(ImGuiKey_Y, false)) {
-        state->encoderPressed = !state->encoderPressed;
-    }
+    // Y key is momentary for encoder pressed
+    state->encoderPressed = ImGui::IsKeyDown(ImGuiKey_Y);
 
     ImGui::Render();
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
