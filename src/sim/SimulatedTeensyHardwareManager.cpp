@@ -3,6 +3,7 @@
 #include "sim/SimulatedTeensyHardwareManager.h"
 #include <iostream>
 #include "defines.h"
+#include "Logging.h"
 
 void SimulatedTeensyHardwareManager::init() {}
 void SimulatedTeensyHardwareManager::loop() { delay(1); }
@@ -22,7 +23,13 @@ long SimulatedTeensyHardwareManager::getEncoderZeroTo(long d) {
   return (ll >> 2) % d;
 }
 
-bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() { 
+bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() {
+/*
+  if(getState()->encoderPressed) 
+    log(LOG_INFO, "encoder Pressed = true", __func__);
+  else
+    log(LOG_INFO, "encoder Pressed = false", __func__);
+*/
   return getState()->encoderPressed; 
 }
 

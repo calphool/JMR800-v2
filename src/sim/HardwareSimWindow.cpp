@@ -93,6 +93,7 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
     bool encoderActive = ImGui::IsItemActive();
     if (state->encoderPressed) ImGui::PopStyleColor();
     state->encoderPressed = encoderActive;
+
     ImGui::Separator();
 
     // Potentiometers Grid + Buttons to the right
@@ -194,7 +195,8 @@ void HardwareSimWindow::renderFrame(SimulatedTeensyHardwareState* state) {
         state->buttons[mapping.buttonIdx] = ImGui::IsKeyDown(mapping.key);
     }
     // Y key is momentary for encoder pressed
-    state->encoderPressed = ImGui::IsKeyDown(ImGuiKey_Y);
+    if(state->encoderPressed == false)
+        state->encoderPressed = ImGui::IsKeyDown(ImGuiKey_Y);
 
     ImGui::Render();
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
