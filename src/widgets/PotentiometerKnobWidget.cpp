@@ -140,9 +140,9 @@ void PotentiometerKnobWidget::drawArrow(int deg) {
     log(LOG_VERBOSE, "Inside PotentiometerKnobWidget->drawArrow()", __func__);
 
     int cx = x + 4;
-    int cy = y + 3;
+    int cy = y + 2;
 
-    deg = (deg - 45 + 360) % 360;
+    deg = (deg - 30 + 360) % 360;
     int index = deg % 360;
 
     int ex = cx + arrow_dx[index];
@@ -165,15 +165,15 @@ void PotentiometerKnobWidget::draw() {
 
     drawBezel();
 
-    ScreenManager::getDisplay()->fillRect(x+2, y+1, 6, 4, fillBlack ? SH110X_BLACK : SH110X_WHITE);
+    ScreenManager::getDisplay()->fillRect(x+2, y+1, 5, 4, fillBlack ? SH110X_BLACK : SH110X_WHITE);
     
     int deg = static_cast<int>((360.0f * value) / 255.0f);
     drawArrow(deg);
 
     if(bHighlighted) {
-        int cx = x + 5;  // center x
+        int cx = x + 4;  // center x
         int cy = y + 2;  // center y
-        int radius = 3;  // padding to fully enclose
+        int radius = 4;  // padding to fully enclose
         if(toggle) {
             ScreenManager::getDisplay()->drawCircle(cx, cy, radius, SH110X_WHITE);
         }

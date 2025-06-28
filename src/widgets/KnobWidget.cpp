@@ -38,10 +38,11 @@ KnobWidget::KnobWidget(int x, int y)
  * intended to resemble a physical knob's contour.
  */
 void KnobWidget::drawBezel() {
-    ScreenManager::getDisplay()->drawLine(x + 3, y,     x + 6, y,     SH110X_WHITE);
-    ScreenManager::getDisplay()->drawLine(x + 3, y + 5, x + 6, y + 5, SH110X_WHITE);
-    ScreenManager::getDisplay()->drawLine(x + 1, y + 2, x + 1, y + 3, SH110X_WHITE);
-    ScreenManager::getDisplay()->drawLine(x + 8, y + 2, x + 8, y + 3, SH110X_WHITE);
+    ScreenManager::getDisplay()->drawCircle(x+4, y+2, 3, SH110X_WHITE);
+    ScreenManager::getDisplay()->drawLine(x+3, y, x+5, y,     SH110X_WHITE);
+    //ScreenManager::getDisplay()->drawLine(x + 3, y + 5, x + 5, y + 5, SH110X_WHITE);
+    //ScreenManager::getDisplay()->drawLine(x + 1, y + 2, x + 1, y + 3, SH110X_WHITE);
+    //ScreenManager::getDisplay()->drawLine(x + 7, y + 2, x + 7, y + 3, SH110X_WHITE);
 }
 
 /**
