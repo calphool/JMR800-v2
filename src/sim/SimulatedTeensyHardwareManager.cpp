@@ -89,7 +89,10 @@ int SimulatedTeensyHardwareManager::AsciiToEncoder(char c) {
 }
 
 long SimulatedTeensyHardwareManager::getEncoderModdedBy(long divisor) {
-   return getState()->encoderPosition>>2 % divisor;
+   long l = (getState()->encoderPosition>>2) % divisor;
+   if(l<0) l=divisor-1;
+   if(l>=divisor) l=0;
+   return l;
 }
 
 

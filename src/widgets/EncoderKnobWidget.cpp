@@ -51,7 +51,8 @@ void EncoderKnobWidget::setPressed(bool p) {
 void EncoderKnobWidget::draw() {
     toggle = !toggle;
     drawBezel();
-    ScreenManager::getDisplay()->fillRect(x+2, y+1, 6, 4, pressed ? SH110X_BLACK : SH110X_WHITE);
+    ScreenManager::getDisplay()->fillRect(x+2, y+1, 5, 3, pressed ? SH110X_BLACK : SH110X_WHITE);
+    ScreenManager::getDisplay()->fillRect(x+3, y,   3, 5, pressed ? SH110X_BLACK : SH110X_WHITE);
     if(bHighlighted) {
         int cx = x + 4;  // center x
         int cy = y + 2;  // center y
