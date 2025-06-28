@@ -162,6 +162,8 @@ void SDLDisplay::setTextWrap(bool b) { textWrap = b; }
 
 void SDLDisplay::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg) {
     if (c >= 128) return;  // Only support ASCII 0-127
+    if(currentFont == FontSize::Small)
+        y = y - 5;
 
     bg = 0;
     color = 1;

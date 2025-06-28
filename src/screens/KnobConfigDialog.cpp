@@ -108,8 +108,8 @@ extern HardwareInterface* hardware;
 
         Widget* textLabel3 = new TextLabelWidget(" Type Code:", xoffset + 2, yoffset + 33, 1, false, LabelColor::WHITE);
         widgets.push_back(textLabel3);
-
-        typeCodeWidget = new EncoderAttachedSelectorWidget(xoffset + 65, yoffset + 33);
+        uint tcx = yoffset + 33;
+        typeCodeWidget = new EncoderAttachedSelectorWidget(xoffset + 65, tcx);
         //typeCodeWidget = new EncoderAttachedNumericWidget(xoffset + 90, yoffset + 33, 0, 255, buf);
         typeCodeWidget->setValue(hardware->getKnobConfiguration(active_knob).typecode);
         typeCodeWidget->detachFromEncoder();
@@ -146,8 +146,15 @@ extern HardwareInterface* hardware;
     }
 
     void KnobConfigDialog::handleInput() {
+        #ifndef TARGET_TEENSY
+            static bool flip = true;
+        #endif
         if(hardware->buttonStateChanged(1, true, true)) {  // moving right
             if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
+                #ifndef TARGET_TEENSY
+                flip = !flip;
+                if(flip) return;
+                #endif
                 knobNameInputWidget->advanceCurrentPosition();
                 return;
             } else if (cmdByteWidget && cmdByteWidget->getHighlightedStatus()) {
@@ -174,6 +181,10 @@ extern HardwareInterface* hardware;
             }
         } else if(hardware->buttonStateChanged(0, true, true)) { // moving left
             if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
+                #ifndef TARGET_TEENSY
+                flip = !flip;
+                if(flip) return;
+                #endif
                 knobNameInputWidget->backtrackCurrentPosition();
                 return;
             } else if (cmdByteWidget && cmdByteWidget->getHighlightedStatus()) {

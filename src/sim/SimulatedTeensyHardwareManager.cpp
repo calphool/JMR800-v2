@@ -77,7 +77,7 @@ void SimulatedTeensyHardwareManager::restoreLedState() {}
 void SimulatedTeensyHardwareManager::sendParameter(uint8_t, uint8_t) {}
 
 void SimulatedTeensyHardwareManager::saveLedState() {};
-void SimulatedTeensyHardwareManager::resetEncoder(uint i) {};
+void SimulatedTeensyHardwareManager::resetEncoder(uint i) {getState()->encoderPosition = 0;};
 
 knobConfig SimulatedTeensyHardwareManager::getKnobConfiguration(uint index) {
       return knobConfigurations[index];
