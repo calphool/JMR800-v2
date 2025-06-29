@@ -4,9 +4,26 @@
 #include <iostream>
 #include "defines.h"
 #include "Logging.h"
+#include <algorithm>
+#include <cstring>
 
-void SimulatedTeensyHardwareManager::init() {}
-void SimulatedTeensyHardwareManager::loop() { delay(1); }
+static bool s_savedRedLED[NUM_BUTTONS]   = {false};
+static bool s_savedGreenLED[NUM_BUTTONS] = {false};
+static bool s_prevButtonStates[NUM_BUTTONS] = {false};
+static bool s_prevEncoderBtn = false;
+
+void SimulatedTeensyHardwareManager::init() {
+    // No physical peripherals to initialise, but we keep the method
+    // to satisfy the interface and symmetry with the Teensy build.
+}
+
+void SimulatedTeensyHardwareManager::loop() { 
+  delay(1);
+}
+
+void SimulatedTeensyHardwareManager::gatherControlSettings() {
+
+}
 
 SimulatedTeensyHardwareManager::~SimulatedTeensyHardwareManager() {}
 
@@ -17,19 +34,14 @@ int SimulatedTeensyHardwareManager::getKnobValue(unsigned int knobIX) {
   return getState()->potentiometers[knobIX] >> 2; // return smoothed value 
 }
 
-long SimulatedTeensyHardwareManager::getEncoderZeroTo(long d) { 
-  long ll = getState()->encoderPosition ;
-  if(ll < 0) ll = 0; // avoid negative values
-  return (ll >> 2) % d;
+long SimulatedTeensyHardwareManager::getEncoderZeroTo(long divisor) {
+    long val = (getState()->encoderPosition >> 2) % divisor;
+    if(val < 0)        val = 0;
+    if(val >= divisor) val = divisor - 1;
+    return val;
 }
 
 bool SimulatedTeensyHardwareManager::getEncoderSwitchStatus() {
-/*
-  if(getState()->encoderPressed) 
-    log(LOG_INFO, "encoder Pressed = true", __func__);
-  else
-    log(LOG_INFO, "encoder Pressed = false", __func__);
-*/
   return getState()->encoderPressed; 
 }
 
@@ -37,55 +49,135 @@ long SimulatedTeensyHardwareManager::getEncoderValue() {
   return getState()->encoderPosition; 
 }
 
-bool SimulatedTeensyHardwareManager::isButtonPressed(unsigned int b) {
-  return getState()->buttons[b];
+bool SimulatedTeensyHardwareManager::isButtonPressed(uint index) {
+    if(index >= NUM_BUTTONS) {
+        log(LOG_ERROR, "SimulatedTeensyHardwareManager::isButtonPressed() index out of range", __func__);
+        return false;
+    }
+    return getState()->buttons[index];
 }
-bool SimulatedTeensyHardwareManager::buttonStateChanged(unsigned int b, bool upThenDown, bool clearFlag) { 
-  static bool prevStates[4];
 
-  if(getState()->buttons[b] == prevStates[b])
-    return false;
-  else {
-    prevStates[b] = getState()->buttons[b];
-    delay(250);
-    return true;
-  }
-}
-bool SimulatedTeensyHardwareManager::encoderSwitchStateChanged(bool upThenDown, bool clearFlag) { 
-  static bool prevState = false;
-  if(getState()->encoderPressed == prevState)
-    return false;
-  else {
-    prevState = getState()->encoderPressed;
-    delay(250);
-    return true;
-  }
-}
-void SimulatedTeensyHardwareManager::setButtonLights(unsigned int b, bool red, bool green) {
-  getState()->redLED[b] = red;
-  getState()->greenLED[b] = green;
-}
-bool SimulatedTeensyHardwareManager::greenIsLit(unsigned int b) { 
-  return getState()->greenLED[b];
-}
-bool SimulatedTeensyHardwareManager::redIsLit(unsigned int b) { 
-  return getState()->redLED[b]; 
-}
-void SimulatedTeensyHardwareManager::clearEncoderButton() {}
-void SimulatedTeensyHardwareManager::setKnobConfiguration(unsigned int, const char*, uint8_t, uint8_t) {}
-void SimulatedTeensyHardwareManager::restoreLedState() {}
-void SimulatedTeensyHardwareManager::sendParameter(uint8_t, uint8_t) {}
+bool SimulatedTeensyHardwareManager::buttonStateChanged(uint index,
+                                                        bool upThenDown,
+                                                        bool clearFlag) {
+    if(index >= NUM_BUTTONS) {
+        log(LOG_ERROR, "SimulatedTeensyHardwareManager::buttonStateChanged() index out of range", __func__);
+        return false;
+    }
 
-void SimulatedTeensyHardwareManager::saveLedState() {};
-void SimulatedTeensyHardwareManager::resetEncoder(uint i) {getState()->encoderPosition = 0;};
+    bool cur  = getState()->buttons[index];
+    bool prev = s_prevButtonStates[index];
+
+    if(cur != prev) {
+        bool triggered = false;
+        if(upThenDown) {
+            // Detect release
+            if(!cur && prev) triggered = true;
+        } else {
+            // Detect press
+            if(cur && !prev) triggered = true;
+        }
+        if(clearFlag) s_prevButtonStates[index] = cur;
+        return triggered;
+    }
+    return false;
+}
+
+bool SimulatedTeensyHardwareManager::encoderSwitchStateChanged(bool upThenDown,
+                                                               bool clearFlag) {
+    bool cur = getState()->encoderPressed;
+
+    if(cur != s_prevEncoderBtn) {
+        bool triggered = false;
+        if(upThenDown) {
+            // Falling edge (press ➜ release)
+            if(!cur && s_prevEncoderBtn) triggered = true;
+        } else {
+            // Rising edge (release ➜ press)
+            if(cur && !s_prevEncoderBtn) triggered = true;
+        }
+        if(clearFlag) s_prevEncoderBtn = cur;
+        return triggered;
+    }
+    return false;
+}
+
+void SimulatedTeensyHardwareManager::setButtonLights(uint buttonId,
+                                                     bool red,
+                                                     bool green) {
+    if(buttonId >= NUM_BUTTONS) {
+        log(LOG_ERROR, "SimulatedTeensyHardwareManager::setButtonLights() invalid button id", __func__);
+        return;
+    }
+    getState()->redLED[buttonId]   = red;
+    getState()->greenLED[buttonId] = green;
+}
+
+bool SimulatedTeensyHardwareManager::greenIsLit(uint buttonId) {
+    return (buttonId < NUM_BUTTONS) ? getState()->greenLED[buttonId] : false;
+}
+
+bool SimulatedTeensyHardwareManager::redIsLit(uint buttonId) {
+    return (buttonId < NUM_BUTTONS) ? getState()->redLED[buttonId] : false;
+}
+
+
+void SimulatedTeensyHardwareManager::clearEncoderButton() {
+    getState()->encoderPressed = false;
+    s_prevEncoderBtn           = false;
+}
+
+void SimulatedTeensyHardwareManager::setKnobConfiguration(uint knobIndex,
+                                                          const char* name,
+                                                          uint8_t cmdbyte,
+                                                          uint8_t typecode) {
+    if(knobIndex >= NUM_KNOBS) {
+        log(LOG_ERROR, "SimulatedTeensyHardwareManager::setKnobConfiguration() invalid knob index", __func__);
+        return;
+    }
+
+    strncpy(knobConfigurations[knobIndex].name, name,
+            sizeof(knobConfigurations[knobIndex].name) - 1);
+    knobConfigurations[knobIndex].name[sizeof(knobConfigurations[knobIndex].name) - 1] = 0x00;
+    knobConfigurations[knobIndex].cmdbyte  = cmdbyte;
+    knobConfigurations[knobIndex].typecode = typecode;
+}
+
+void SimulatedTeensyHardwareManager::restoreLedState() {
+    for(uint i = 0; i < NUM_BUTTONS; ++i) {
+        getState()->redLED[i]   = s_savedRedLED[i];
+        getState()->greenLED[i] = s_savedGreenLED[i];
+    }
+}
+
+
+void SimulatedTeensyHardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
+    char buf[128];
+    sprintf(buf, "Simulated sendParameter — ID: %u  Value: %u", paramID, value);
+    log(LOG_INFO, buf, __func__);
+}
+
+void SimulatedTeensyHardwareManager::saveLedState() {
+    for(uint i = 0; i < NUM_BUTTONS; ++i) {
+        s_savedRedLED[i]   = getState()->redLED[i];
+        s_savedGreenLED[i] = getState()->greenLED[i];
+    }
+}
+
+void SimulatedTeensyHardwareManager::resetEncoder(uint pos) {
+    getState()->encoderPosition = static_cast<int>(pos);
+}
 
 knobConfig SimulatedTeensyHardwareManager::getKnobConfiguration(uint index) {
-      return knobConfigurations[index];
+    if(index >= NUM_KNOBS) {
+        log(LOG_ERROR, "SimulatedTeensyHardwareManager::getKnobConfiguration() invalid index", __func__);
+        return knobConfig{};
+    }
+    return knobConfigurations[index];
 }
 
 int SimulatedTeensyHardwareManager::AsciiToEncoder(char c) {
-  int v = ((((int)c) - 65) * 4) + 132;
-  return v;
+    return (((static_cast<int>(c)) - 65) * 4) + 132;
 }
 
 long SimulatedTeensyHardwareManager::getEncoderModdedBy(long divisor) {

@@ -51,31 +51,40 @@ extern HardwareInterface* hardware;
     }
 
     bool KnobConfigDialog::isDone() const {
-        return false;
+        return done;
     }
 
-    void KnobConfigDialog::OkPressed() {
-        if(okButtonWidget->getHighlightedStatus()) {
-            log(LOG_INFO, "Ok was pressed", __func__);
-            okButtonWidget->setOnPressCallback(nullptr);
-            hardware->setKnobConfiguration(active_knob, knobNameInputWidget->getText(), cmdByteWidget->getValue(), typeCodeWidget->getValue());
-            hardware->saveKnobs();
-            if(onExitCallback) {
-                this->onExitCallback();
-                delay(500);
-                hardware->clearEncoderButton();
-            }
-        }
+void KnobConfigDialog::OkPressed()
+{
+    done = true;  
+    log(LOG_INFO, "OK was pressed", __func__);
+    if (!okButtonWidget->getHighlightedStatus()) return;
+
+    okButtonWidget->setOnPressCallback(nullptr);
+
+    hardware->setKnobConfiguration(
+        active_knob,
+        knobNameInputWidget->getText(),
+        cmdByteWidget->getValue(),
+        typeCodeWidget->getValue()
+    );
+    hardware->saveKnobs();
+
+
+    if (onExitCallback) {
+        onExitCallback();
     }
+
+}
 
     void KnobConfigDialog::CancelPressed() {
+        done = true;
+        log(LOG_INFO, "Cancel was pressed", __func__);
+
         if(cancelButtonWidget->getHighlightedStatus()) {
-            log(LOG_INFO, "Cancel was pressed", __func__);
             cancelButtonWidget->setOnPressCallback(nullptr);
             if(onExitCallback) {
                 this->onExitCallback();
-                delay(500);
-                hardware->clearEncoderButton();
             }
         }
     }
@@ -83,6 +92,7 @@ extern HardwareInterface* hardware;
     void KnobConfigDialog::onEnter() {
         char buf[8];
         strcpy(buf,"%02x");
+        done = false; 
 
         Widget* blank = new RectangleWidget(xoffset, yoffset, width, height, true, RectColor::BLACK);
         widgets.push_back(blank);
@@ -146,15 +156,10 @@ extern HardwareInterface* hardware;
     }
 
     void KnobConfigDialog::handleInput() {
-        #ifndef TARGET_TEENSY
-            static bool flip = true;
-        #endif
+        if (done) return;      // already marked; wait for ConfigScreen to kill us
+
         if(hardware->buttonStateChanged(1, true, true)) {  // moving right
             if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
-                #ifndef TARGET_TEENSY
-                flip = !flip;
-                if(flip) return;
-                #endif
                 knobNameInputWidget->advanceCurrentPosition();
                 return;
             } else if (cmdByteWidget && cmdByteWidget->getHighlightedStatus()) {
@@ -181,10 +186,6 @@ extern HardwareInterface* hardware;
             }
         } else if(hardware->buttonStateChanged(0, true, true)) { // moving left
             if(knobNameInputWidget && knobNameInputWidget->getHighlightedStatus()) {
-                #ifndef TARGET_TEENSY
-                flip = !flip;
-                if(flip) return;
-                #endif
                 knobNameInputWidget->backtrackCurrentPosition();
                 return;
             } else if (cmdByteWidget && cmdByteWidget->getHighlightedStatus()) {

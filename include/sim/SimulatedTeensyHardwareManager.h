@@ -22,6 +22,8 @@ private:
     knobConfig knobConfigurations_bkup[NUM_KNOBS] = {0}; ///< Backup mapping
     knobConfig lastKnobConfig = {0}; ///< Most recent configuration state
     SimulatedTeensyHardwareState state; ///< Simulation state (potentiometers, buttons, LEDs, encoder)
+    const long SimulatedTeensyHardwareManagerPollIntervalMS = 50;
+    unsigned long lastPollTime = 0;
 
 
 public:
@@ -29,6 +31,8 @@ public:
      * @brief Initializes hardware peripherals: GPIO, ADC, encoder, etc.
      */
     void init() override;      // Set up pins, ADC, etc.
+
+    void gatherControlSettings();
 
     /**
      * @brief Main polling loop, throttled to a fixed interval.

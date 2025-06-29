@@ -67,13 +67,21 @@ void ConfigScreen::draw() {
  * @brief Passes control to either the modal dialog or each registered widget to handle input.
  */
 void ConfigScreen::handleInput() {
-  log(LOG_VERBOSE, "Inside ConfigScreen->handleInput()", __func__);
+//  log(LOG_INFO, "Inside ConfigScreen->handleInput()", __func__);
 
-   if (knobConfigDialog && !knobConfigDialog->isDone()) {
+   if (knobConfigDialog) {
+//        log(LOG_INFO, "Invoking knobConfigDialog->handleInput()", __func__);
+
          knobConfigDialog->handleInput();
+//         log(LOG_INFO, "Invoking knobConfigDialog->isDone()", __func__);         
+         if (knobConfigDialog->isDone()) {
+//            log(LOG_INFO, "Invoking deactiveKnobConfig()", __func__);  
+            deactiveKnobConfig();
+            delay(500);
+         }
          return; // If dialog is active, skip other widgets
    }
-
+//  log(LOG_INFO, "invoking widget()->handleInput()", __func__);
   for (Widget* w : widgets) {
      w->handleInput();
   }
@@ -135,21 +143,25 @@ void ConfigScreen::highlightActiveKnob(int knobix) {
  * @param knobid Index of the knob to configure.
  */
 void ConfigScreen::activateKnobConfig(uint knobid) {
+   if (knobConfigDialog) return; // already active
+
    active_knob = knobid;
-   knobConfigDialog = new KnobConfigDialog(7, 4, 112, 58, active_knob); // Adjust dimensions as needed
-   knobConfigDialog->onEnter();
+   knobConfigDialog = new KnobConfigDialog(7, 4, 112, 58, knobid); // Adjust dimensions as needed
    knobConfigDialog->setOnExitCallback([this]() {
-      deactiveKnobConfig(); // Clean up dialog when done
    });
+   knobConfigDialog->onEnter();
 }
 
 
 void ConfigScreen::deactiveKnobConfig() {
-   if (knobConfigDialog) {
-      knobConfigDialog->onExit();
-      delete knobConfigDialog;
-      knobConfigDialog = nullptr;
-   }
-   active_knob = 0; // Reset active knob index
-   hardware->resetEncoder(0);
+   if (!knobConfigDialog) return;
+   
+    knobConfigDialog->onExit();
+    delete knobConfigDialog;        // no dialog methods on the stack now
+    knobConfigDialog = nullptr;
+
+    active_knob = 0;                // reset global selection
+    hardware->resetEncoder(0);
+    hardware->clearEncoderButton();
+    delay(500);
 }
