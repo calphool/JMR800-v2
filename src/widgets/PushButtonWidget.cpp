@@ -10,9 +10,9 @@
 #include "widgets/Widget.h"
 #include "widgets/PushButtonWidget.h"
 #include "ScreenManager.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
     
 

@@ -9,14 +9,14 @@
 #include "widgets/EncoderKnobWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
 #ifndef TARGET_TEENSY
 #define SH110X_BLACK 0
 #define SH110X_WHITE 1
 #endif
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 

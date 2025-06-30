@@ -5,7 +5,7 @@
 
 typedef unsigned int uint;
 
-class HardwareInterface {
+class IHardwareManager {
 public:
     virtual void init() = 0;
     virtual void loop() = 0;
@@ -30,6 +30,12 @@ public:
     virtual knobConfig getKnobConfiguration(uint i) = 0;
     virtual int  AsciiToEncoder(char c) = 0;
     virtual long getEncoderModdedBy(long i) = 0;
+    virtual uint16_t getLastTouchedKnob() const = 0;
+    virtual void setLastTouchedKnob(uint16_t knobix) = 0;
+    virtual void clearLastTouchedKnob() = 0;
+    virtual bool knobValueChanged(uint i) = 0;
+    virtual void sendParameterToSynth(uint knob) = 0;
+    
 
-    virtual ~HardwareInterface() {};
+    virtual ~IHardwareManager() {};
 };

@@ -13,14 +13,14 @@
 #include "widgets/ButtonWidget.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
 #ifndef TARGET_TEENSY
 #define SH110X_WHITE 1
 #define SH110X_BLACK 0
 #endif
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 /**

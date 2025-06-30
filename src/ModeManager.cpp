@@ -7,14 +7,14 @@
  */
 
 #include "ModeManager.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 #include "Logging.h"
 #include <stdio.h>
 
 /// Global singleton instance of the ModeManager.
 ModeManager modeManager;
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 /**
  * @brief Adds an application mode to the internal mode list.

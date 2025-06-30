@@ -1,5 +1,5 @@
 #pragma once
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
 
 
@@ -16,14 +16,19 @@ struct SimulatedTeensyHardwareState {
 
 
 
-class SimulatedTeensyHardwareManager : public HardwareInterface {
+class SimulatedTeensyHardwareManager : public IHardwareManager {
 private:
     knobConfig knobConfigurations[NUM_KNOBS] = {0};  ///< Current knob-to-parameter mapping
     knobConfig knobConfigurations_bkup[NUM_KNOBS] = {0}; ///< Backup mapping
     knobConfig lastKnobConfig = {0}; ///< Most recent configuration state
-    SimulatedTeensyHardwareState state; ///< Simulation state (potentiometers, buttons, LEDs, encoder)
+    SimulatedTeensyHardwareState simHardwareState; ///< Simulation state (potentiometers, buttons, LEDs, encoder)
+    SimulatedTeensyHardwareState oldSimHardwareState;
     const long SimulatedTeensyHardwareManagerPollIntervalMS = 50;
     unsigned long lastPollTime = 0;
+    uint16_t _lastTouchedKnob  = UINT16_MAX;   // invalid index = “none”
+    uint32_t _lastTouchedMillis = 0;           // timestamp of last change
+
+    void cloneCurrentStateToOld();
 
 
 public:
@@ -165,6 +170,11 @@ public:
 
     long getEncoderModdedBy(long divisor) override;
 
-    SimulatedTeensyHardwareState* getState() { return &state; }
+    SimulatedTeensyHardwareState* getState() { return &simHardwareState; }
 
+     uint16_t getLastTouchedKnob() const override;
+     void setLastTouchedKnob(uint16_t i) override;
+     void clearLastTouchedKnob() override;
+     bool knobValueChanged(uint i) override;
+     void sendParameterToSynth(uint i) override;
 };

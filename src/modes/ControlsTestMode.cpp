@@ -9,9 +9,9 @@
 #include "modes/ControlsTestMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 /**
  * @brief Called when the Controls Test Mode is activated.

@@ -35,7 +35,7 @@
 #include "ScreenManager.h"
 #include "screens/RunModeScreen.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
 #include "ModeManager.h"
 #include "modes/RunMode.h"
@@ -43,7 +43,7 @@
 #include "modes/DirectCommandMode.h"
 #include "modes/ConfigMode.h"
 
-HardwareInterface* hardware = nullptr;
+IHardwareManager* hardware = nullptr;
 RunMode runMode;
 ControlsTestMode testMode;
 DirectCommandMode directMode;

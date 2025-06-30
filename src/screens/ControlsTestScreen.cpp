@@ -17,9 +17,9 @@
 #include "widgets/EncoderKnobWidget.h"
 #include "widgets/ButtonWidget.h"
 #include "screens/SharedControlScreenUtility.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 /**
  * @brief Constructor for ControlsTestScreen.

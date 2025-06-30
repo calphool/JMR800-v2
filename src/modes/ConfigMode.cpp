@@ -6,9 +6,9 @@
 #include "modes/ConfigMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 /**
  * @brief Called when the System Config Mode is entered.

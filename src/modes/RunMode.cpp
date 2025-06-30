@@ -8,8 +8,10 @@
 #include "modes/RunMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "TeensyHardwareManager.h"
+#include "IHardwareManager.h"
 
+
+extern IHardwareManager* hardware;
 
 /**
  * @brief Called when the Run Mode becomes active.
@@ -37,7 +39,12 @@ void RunMode::onExit() {
  * Called regularly while this mode is active. Add polling, automation, or mode-specific control here.
  */
 void RunMode::loop() {
-    // Insert mode-specific polling or logic here
+    for(uint i = 0; i < NUM_KNOBS; i++) {
+      if(hardware->knobValueChanged(i) && millis() > 12000) { // we start sending parameters after 10 seconds (allows knob leveling to settle)
+        hardware->sendParameterToSynth(i);
+        hardware->setLastTouchedKnob(i);
+      }
+    }
 }
 
 

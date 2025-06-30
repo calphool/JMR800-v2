@@ -15,7 +15,7 @@
 #endif
 
 #include "screens/Screen.h"
-#include "DisplayInterface.h"
+#include "IDisplay.h"
 
 
 /**
@@ -47,7 +47,7 @@ public:
      */
     //void init();
 
-    void init(DisplayInterface* externalDisplay);
+    void init(IDisplay* externalDisplay);
 
     /**
      * @brief Sets the active screen to be rendered and updated.
@@ -72,7 +72,7 @@ public:
      * @brief Provides access to the static OLED display instance.
      * @return Pointer to the Adafruit_SH1106G display.
      */
-    static DisplayInterface* getDisplay();
+    static IDisplay* getDisplay();
 };
 
 /**

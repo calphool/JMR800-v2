@@ -14,9 +14,9 @@
 #define SH110X_BLACK 0
 #define SH110X_WHITE 1
 #endif
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 

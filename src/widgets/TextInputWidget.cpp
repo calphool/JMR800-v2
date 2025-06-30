@@ -20,9 +20,9 @@
 #include "ScreenManager.h"
 #include "Logging.h"
 #include "IWidgetNavHandler.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 

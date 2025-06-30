@@ -1,4 +1,4 @@
-// DisplayInterface.h
+// IDisplay.h
 #pragma once
 #include <cstdint>
 
@@ -8,7 +8,7 @@ enum class FontSize {
     Small
 };
 
-class DisplayInterface {
+class IDisplay {
 public:
     virtual void begin() = 0;
     virtual void clearDisplay() = 0;
@@ -30,5 +30,5 @@ public:
     virtual void drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) = 0;
  
 
-    virtual ~DisplayInterface() {}
+    virtual ~IDisplay() {}
 }; 

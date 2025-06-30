@@ -28,6 +28,7 @@ class RunModeScreen : public Screen {
 
 private:
     std::vector<Widget*> widgets; ///< List of widgets displayed on this screen
+    Widget* knobValueLabel  = nullptr;
 
 public:
     /**

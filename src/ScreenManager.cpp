@@ -6,7 +6,7 @@
  * invoking UI lifecycle methods, and coordinating display updates.
  */
 
-#include "DisplayInterface.h"
+#include "IDisplay.h"
 #include "ScreenManager.h"
 #include "defines.h"
 #include "Logging.h"
@@ -21,7 +21,7 @@ ScreenManager screenManager;
 #include "sim/SDLDisplay.h" // to be implemented
 #endif
 
-DisplayInterface* display = nullptr;
+IDisplay* display = nullptr;
 
 /**
  * @brief Initializes the OLED display with default settings.
@@ -50,7 +50,7 @@ void ScreenManager::init() {
 }
 */
 
-void ScreenManager::init(DisplayInterface* externalDisplay) {
+void ScreenManager::init(IDisplay* externalDisplay) {
   if(display != nullptr) {
     delete display;
     display= nullptr;
@@ -119,7 +119,7 @@ Screen* ScreenManager::getScreen() const {
  *
  * @return Adafruit_SH1106G* Pointer to the initialized display object.
  */
-DisplayInterface* ScreenManager::getDisplay()  {
+IDisplay* ScreenManager::getDisplay()  {
   log(LOG_VERBOSE, "inside ScreenManager->getDisplay()", __func__);
   return display;
 }
