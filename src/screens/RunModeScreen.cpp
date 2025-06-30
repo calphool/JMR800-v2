@@ -126,7 +126,7 @@ void RunModeScreen::onEnter() {
    Widget* modeLabel = new TextLabelWidget(labelText, (SCREEN_WIDTH - (strlen(labelText) * 6)) / 2, 0, 1, false);
    addWidget(modeLabel);
 
-   knobValueLabel = new TextLabelWidget("", 10, 24, 1);
+   knobValueLabel = new TextLabelWidget("", 0, 24, 1, true);
    addWidget(knobValueLabel);
 }
 
