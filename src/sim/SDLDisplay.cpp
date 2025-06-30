@@ -178,7 +178,7 @@ void SDLDisplay::drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color,
     if (currentFont == FontSize::Small) {
         font = (const uint8_t (*)[5])smallFont;
         width = 3;
-        height = 5;
+        height = 6;
     }
 
     for (int8_t i = 0; i < width; i++) {

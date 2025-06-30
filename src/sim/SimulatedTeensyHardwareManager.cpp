@@ -15,6 +15,74 @@ static bool s_prevEncoderBtn = false;
 void SimulatedTeensyHardwareManager::init() {
     // No physical peripherals to initialise, but we keep the method
     // to satisfy the interface and symmetry with the Teensy build.
+
+  uint ctr = 0;
+  strcpy(knobConfigurations[ctr].name, "DCO1 Range");     knobConfigurations[ctr].cmdbyte = 0x80; knobConfigurations[ctr].typecode = TYPE_CODE_RANGE;         ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO1 Waveform");  knobConfigurations[ctr].cmdbyte = 0x81; knobConfigurations[ctr].typecode = TYPE_CODE_WAVE_FORM;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO1 Tune");      knobConfigurations[ctr].cmdbyte = 0x82; knobConfigurations[ctr].typecode = TYPE_CODE_OCTAVE;        ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO1 LFO Depth"); knobConfigurations[ctr].cmdbyte = 0x83; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO1 Env Depth"); knobConfigurations[ctr].cmdbyte = 0x84; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "DCO2 Range");     knobConfigurations[ctr].cmdbyte = 0x85; knobConfigurations[ctr].typecode = TYPE_CODE_RANGE;         ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO2 Waveform");  knobConfigurations[ctr].cmdbyte = 0x86; knobConfigurations[ctr].typecode = TYPE_CODE_WAVE_FORM;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO Crossmod");   knobConfigurations[ctr].cmdbyte = 0x87; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO2 Tune");      knobConfigurations[ctr].cmdbyte = 0x88; knobConfigurations[ctr].typecode = TYPE_CODE_OCTAVE;        ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO2 Fine Tune"); knobConfigurations[ctr].cmdbyte = 0x89; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO2 LFO Depth"); knobConfigurations[ctr].cmdbyte = 0x8A; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO2 Env Depth"); knobConfigurations[ctr].cmdbyte = 0x8B; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "DCO Dynamics");   knobConfigurations[ctr].cmdbyte = 0x8F; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "DCO EG Mode");    knobConfigurations[ctr].cmdbyte = 0x90; knobConfigurations[ctr].typecode = TYPE_CODE_MODE;          ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "Mix DCO1");       knobConfigurations[ctr].cmdbyte = 0x91; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "Mix DCO2");       knobConfigurations[ctr].cmdbyte = 0x92; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "Mix Env");        knobConfigurations[ctr].cmdbyte = 0x93; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "Mix EG Dynamic"); knobConfigurations[ctr].cmdbyte = 0x94; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "Mix EG Mode");    knobConfigurations[ctr].cmdbyte = 0x95; knobConfigurations[ctr].typecode = TYPE_CODE_MODE;          ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "VCF HP Filter");  knobConfigurations[ctr].cmdbyte = 0x96; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF Cutoff Frq"); knobConfigurations[ctr].cmdbyte = 0x97; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF Resonance");  knobConfigurations[ctr].cmdbyte = 0x98; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF LFO");        knobConfigurations[ctr].cmdbyte = 0x99; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF Env");        knobConfigurations[ctr].cmdbyte = 0x9A; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF Key Follow"); knobConfigurations[ctr].cmdbyte = 0x9B; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF EG Dynamic"); knobConfigurations[ctr].cmdbyte = 0x9C; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCF EG Mode");    knobConfigurations[ctr].cmdbyte = 0x9D; knobConfigurations[ctr].typecode = TYPE_CODE_MODE;          ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "VCA Level");      knobConfigurations[ctr].cmdbyte = 0x9E; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCA EG Dynamic"); knobConfigurations[ctr].cmdbyte = 0x9F; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "VCA EG Mode");    knobConfigurations[ctr].cmdbyte = 0xAF; knobConfigurations[ctr].typecode = TYPE_CODE_ENV2_GATE;     ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "LFO Waveform");   knobConfigurations[ctr].cmdbyte = 0xA1; knobConfigurations[ctr].typecode = TYPE_CODE_LFO_WAVE_FORM; ctr++;
+  strcpy(knobConfigurations[ctr].name, "LFO Delay");      knobConfigurations[ctr].cmdbyte = 0xA2; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "LFO Rate");       knobConfigurations[ctr].cmdbyte = 0xA3; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "LFO Sync");       knobConfigurations[ctr].cmdbyte = 0xD0; knobConfigurations[ctr].typecode = TYPE_CODE_2_1_OFF;       ctr++;
+  
+  strcpy(knobConfigurations[ctr].name, "EG Env1 Attk");   knobConfigurations[ctr].cmdbyte = 0xA4; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env1 Decay");  knobConfigurations[ctr].cmdbyte = 0xA5; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env1 Sust");   knobConfigurations[ctr].cmdbyte = 0xA6; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env1 Rel");    knobConfigurations[ctr].cmdbyte = 0xA7; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env1 Key");    knobConfigurations[ctr].cmdbyte = 0xA8; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env2 Attk");   knobConfigurations[ctr].cmdbyte = 0xA9; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env2 Decay");  knobConfigurations[ctr].cmdbyte = 0xAA; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env2 Sust");   knobConfigurations[ctr].cmdbyte = 0xAB; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env2 Rel");    knobConfigurations[ctr].cmdbyte = 0xAC; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "EG Env2 Key");    knobConfigurations[ctr].cmdbyte = 0xAD; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  
+  strcpy(knobConfigurations[ctr].name, "PWM Mode");       knobConfigurations[ctr].cmdbyte = 0xD6; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PMW1 Width");     knobConfigurations[ctr].cmdbyte = 0xB0; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PWM1 Env");       knobConfigurations[ctr].cmdbyte = 0xB1; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PMW1 LFO");       knobConfigurations[ctr].cmdbyte = 0xB2; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PWM2 Width");     knobConfigurations[ctr].cmdbyte = 0xB3; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PWM2 Env");       knobConfigurations[ctr].cmdbyte = 0xB4; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PWM2 LFO");       knobConfigurations[ctr].cmdbyte = 0xB5; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
+  strcpy(knobConfigurations[ctr].name, "PWM Dyna");       knobConfigurations[ctr].cmdbyte = 0xCE; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
+  
+  strcpy(knobConfigurations[ctr].name, "Chorus");         knobConfigurations[ctr].cmdbyte = 0xA0; ctr++;
+
+  strcpy(knobConfigurations[ctr].name, "Unassigned");     knobConfigurations[ctr].cmdbyte = 0x00; ctr++;
+  strcpy(knobConfigurations[ctr].name, "Unassigned");     knobConfigurations[ctr].cmdbyte = 0x00; ctr++;
+  strcpy(knobConfigurations[ctr].name, "Unassigned");     knobConfigurations[ctr].cmdbyte = 0x00; ctr++;
 }
 
 void SimulatedTeensyHardwareManager::loop() { 
@@ -187,5 +255,40 @@ long SimulatedTeensyHardwareManager::getEncoderModdedBy(long divisor) {
    return l;
 }
 
+uint16_t SimulatedTeensyHardwareManager::getLastTouchedKnob() const {
+    return _lastTouchedKnob;
+};
+
+void SimulatedTeensyHardwareManager::setLastTouchedKnob(uint16_t i) {
+    _lastTouchedKnob = i;
+};
+
+void SimulatedTeensyHardwareManager::clearLastTouchedKnob() {
+    _lastTouchedKnob = UINT16_MAX;
+};
+
+bool SimulatedTeensyHardwareManager::knobValueChanged(uint i) {
+  if(oldSimHardwareState.potentiometers[i] == simHardwareState.potentiometers[i])
+    return false;
+
+  this->cloneCurrentStateToOld();
+  return true;
+};
+
+void SimulatedTeensyHardwareManager::cloneCurrentStateToOld() {
+    for(uint i=0;i<NUM_KNOBS;i++) oldSimHardwareState.potentiometers[i] = simHardwareState.potentiometers[i];
+    for(uint i=0;i<NUM_BUTTONS;i++) {
+        oldSimHardwareState.buttons[i] = simHardwareState.buttons[i];
+        oldSimHardwareState.redLED[i] = simHardwareState.redLED[i];
+        oldSimHardwareState.greenLED[i] = simHardwareState.greenLED[i];
+    }
+    oldSimHardwareState.encoderPosition = simHardwareState.encoderPosition;
+    oldSimHardwareState.encoderPressed = simHardwareState.encoderPressed;
+}
+
+
+void SimulatedTeensyHardwareManager::sendParameterToSynth(uint i) {
+    log(LOG_INFO, "TODO: sendParameterToSynth() invoked", __func__);
+};
 
 #endif

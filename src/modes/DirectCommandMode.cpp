@@ -9,10 +9,10 @@
 #include "modes/DirectCommandMode.h"
 #include "ScreenManager.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 #include "widgets/Widget.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 /**
  * @brief Called when the Direct Command Mode is activated.

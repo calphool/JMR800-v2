@@ -2,10 +2,10 @@
 
 #ifndef TARGET_TEENSY
 
-#include "DisplayInterface.h"  // Your abstract base
+#include "IDisplay.h"  // Your abstract base
 #include <SDL2/SDL.h>
 
-class SDLDisplay : public DisplayInterface {
+class SDLDisplay : public IDisplay {
 public:
     SDLDisplay(int screenWidth = 128, int screenHeight = 64, int pixelSize = 6);
     ~SDLDisplay();

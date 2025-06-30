@@ -2,10 +2,10 @@
 
 #ifdef TARGET_TEENSY
 
-#include "DisplayInterface.h"
+#include "IDisplay.h"
 #include <Adafruit_SH110X.h>
 
-class SH110XDisplay : public DisplayInterface {
+class SH110XDisplay : public IDisplay {
 public:
     SH110XDisplay();
 

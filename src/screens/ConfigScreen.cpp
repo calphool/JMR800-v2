@@ -12,9 +12,9 @@
 #include "widgets/TextLabelWidget.h"
 #include "screens/SharedControlScreenUtility.h"
 #include "screens/KnobConfigDialog.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 /**

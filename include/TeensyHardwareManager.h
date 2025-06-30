@@ -8,7 +8,7 @@
 #ifdef TARGET_TEENSY
 
 
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 #include <Arduino.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
@@ -34,8 +34,11 @@ struct SentCommand {
  * @class TeensyHardwareManager
  * @brief Handles initialization, polling, and control of physical interface components such as buttons, knobs, and LED indicators.
  */
-class TeensyHardwareManager : public HardwareInterface {
+class TeensyHardwareManager : public IHardwareManager {
 private:
+
+    uint16_t _lastTouchedKnob  = UINT16_MAX;   // invalid index = “none”
+    uint32_t _lastTouchedMillis = 0;           // timestamp of last change
     long iGatherCtr = 0;
     unsigned long lastPollTime = 0;
     const unsigned long TeensyHardwareManagerPollIntervalMS = 50;
@@ -82,7 +85,8 @@ private:
     void updateEncoder(); ///< Reads and updates encoder state
     void writeLedRegistersToHardware() const; ///< Pushes current LED state to shift registers
     static void onPG800ClockFall(); ///< ISR for clocking out serial bits
-    bool knobChanged(int i) const; ///< Detects change in knob value
+    bool knobChanged(int i) const; 
+
 
 public:
     /**
@@ -220,6 +224,12 @@ public:
     int AsciiToEncoder(char c) override;
 
     long getEncoderModdedBy(long divisor) override;
+
+    uint16_t getLastTouchedKnob() const override { return _lastTouchedKnob; };
+    void     clearLastTouchedKnob()     override { _lastTouchedKnob = UINT16_MAX; };
+    bool knobValueChanged(uint i) override;
+    void setLastTouchedKnob(uint16_t knobix) override {_lastTouchedKnob = knobix;}
+    void sendParameterToSynth(uint i) override;
 };
 
 #endif

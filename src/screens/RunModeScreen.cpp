@@ -8,12 +8,16 @@
  */
 
 #include <cstring>
+#include <cstdio>
 #include "screens/RunModeScreen.h"
 #include "ScreenManager.h"
 #include "Logging.h"
 #include "widgets/RectangleWidget.h"
 #include "widgets/TextLabelWidget.h"
 #include "widgets/StarFieldWidget.h"
+#include "IHardwareManager.h"
+
+extern IHardwareManager* hardware;
 
 /**
  * @brief Constructs a RunModeScreen instance and initializes internal state.
@@ -27,6 +31,13 @@ RunModeScreen::RunModeScreen() {
  */
 RunModeScreen::~RunModeScreen() {
   log(LOG_VERBOSE, "Inside RunModeScreen->destructor", __func__);
+  for (Widget* w : widgets) {
+      if(w) {
+        delete w;
+        w = nullptr;
+      }
+  }
+  widgets.clear();
 }
 
 
@@ -69,6 +80,17 @@ void RunModeScreen::draw() {
         return;
   }
 
+  if(knobValueLabel) {
+    TextLabelWidget* tlw = (TextLabelWidget*) knobValueLabel;
+    uint knobix = hardware->getLastTouchedKnob();
+    if(knobix < NUM_KNOBS) {
+      char buf[128];
+      sprintf(buf, "%s: %02X / %02X", hardware->getKnobConfiguration(knobix).name, hardware->getKnobConfiguration(knobix).cmdbyte, 
+        hardware->getKnobValue(knobix));
+      tlw->setText(buf);
+    }
+  }
+
   for (Widget* w : widgets) {
         w->draw();
   }
@@ -103,6 +125,9 @@ void RunModeScreen::onEnter() {
 
    Widget* modeLabel = new TextLabelWidget(labelText, (SCREEN_WIDTH - (strlen(labelText) * 6)) / 2, 0, 1, false);
    addWidget(modeLabel);
+
+   knobValueLabel = new TextLabelWidget("", 10, 24, 1);
+   addWidget(knobValueLabel);
 }
 
 

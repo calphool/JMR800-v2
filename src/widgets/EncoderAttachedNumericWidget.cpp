@@ -15,9 +15,9 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
 #endif
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 

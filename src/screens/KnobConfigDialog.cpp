@@ -8,10 +8,10 @@
 #include "widgets/EncoderAttachedSelectorWidget.h"
 #include "widgets/PushButtonWidget.h"
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 #include "defines.h"
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
     KnobConfigDialog::KnobConfigDialog(int x, int y, int w, int h, int knob) : ModalDialog(x, y, w, h) {
@@ -91,7 +91,7 @@ void KnobConfigDialog::OkPressed()
 
     void KnobConfigDialog::onEnter() {
         char buf[8];
-        strcpy(buf,"%02x");
+        strcpy(buf,"%02X");
         done = false; 
 
         Widget* blank = new RectangleWidget(xoffset, yoffset, width, height, true, RectColor::BLACK);

@@ -9,7 +9,7 @@
 #ifdef TARGET_TEENSY
 
 
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 #include "defines.h"
 #include "Logging.h"
 #include <EEPROM.h>
@@ -612,6 +612,29 @@ void TeensyHardwareManager::setButtonLights(uint buttonId, bool red, bool green)
   // Set the new bits at the proper location
   ledstate |= (bitsToSet << shift);
   writeLedRegistersToHardware();
+}
+
+bool TeensyHardwareManager::knobValueChanged(uint knobIX) {
+    knobIX = knobXformer[knobIX];  // Transform this index (necessary because of wiring) 
+    uint mux = knobIX >> 4;
+    uint mux_ix = knobIX & 0x0F;
+
+    uint16_t currentValue = AnalogValues[mux_ix][mux];
+    uint16_t oldValue = oldAnalogValues[mux_ix][mux];
+
+    // Apply hysteresis (ignore small changes)
+    int delta = (int)currentValue - (int)oldValue;
+    if (abs(delta) < 4)  // Adjust the threshold as needed (3-10 is typical)
+        return false;
+
+    // Update the stored value if the change is significant
+    oldAnalogValues[mux_ix][mux] = currentValue;
+    return true;
+}
+
+
+void TeensyHardwareManager::sendParameterToSynth(uint knob) {
+  log(LOG_INFO, "TODO: implement sendParameterToSynth()", __func__);
 }
 
 #endif

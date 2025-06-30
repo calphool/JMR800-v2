@@ -7,7 +7,7 @@
  */
 
 #include "Logging.h"
-#include "HardwareInterface.h"
+#include "IHardwareManager.h"
 
 #ifndef TARGET_TEENSY
 #include <stdio.h>
@@ -16,7 +16,7 @@
 /// Global timestamp of the last attempt to initialize the Serial interface.
 unsigned long lastSerialInitAttemptMillis = 0;
 
-extern HardwareInterface* hardware;
+extern IHardwareManager* hardware;
 
 
 void outstr(const char* s) {
