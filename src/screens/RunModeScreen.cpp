@@ -16,6 +16,9 @@
 #include "widgets/TextLabelWidget.h"
 #include "widgets/StarFieldWidget.h"
 #include "IHardwareManager.h"
+#include "widgets/CenterWidget.h"
+#include <memory>
+#include "screens/RunModeWidgets.h"
 
 extern IHardwareManager* hardware;
 
@@ -41,6 +44,8 @@ RunModeScreen::~RunModeScreen() {
 }
 
 
+
+
 /**
  * @brief Adds a new widget to the screen for coordinated management.
  *
@@ -59,6 +64,7 @@ void RunModeScreen::addWidget(Widget* w) {
  * Otherwise, delegates rendering to each widget in order.
  */
 void RunModeScreen::draw() {
+  static uint8_t currentTypecode_ = 0xFF; 
   log(LOG_VERBOSE, "Inside RunModeScreen->draw()", __func__);
   long m = millis();
 
@@ -80,19 +86,28 @@ void RunModeScreen::draw() {
         return;
   }
 
-  if(knobValueLabel) {
-    TextLabelWidget* tlw = (TextLabelWidget*) knobValueLabel;
-    uint knobix = hardware->getLastTouchedKnob();
-    if(knobix < NUM_KNOBS) {
-      char buf[128];
-      sprintf(buf, "%s: %02X / %02X", hardware->getKnobConfiguration(knobix).name, hardware->getKnobConfiguration(knobix).cmdbyte, 
-        hardware->getKnobValue(knobix));
-      tlw->setText(buf);
-    }
-  }
-
   for (Widget* w : widgets) {
         w->draw();
+  }
+
+
+  blinkOn_ = !blinkOn_;
+  uint knobix = hardware->getLastTouchedKnob();
+  if(knobix < NUM_KNOBS) {
+    if (hardware->getKnobConfiguration(knobix).typecode != currentTypecode_) {
+      currentTypecode_ = hardware->getKnobConfiguration(knobix).typecode;
+      runModeWidget =  makeWidget(currentTypecode_);
+       for (Widget* w : widgets) {
+          if(w->getType() == WidgetType::TextLabel) {
+            TextLabelWidget* tlw = static_cast<TextLabelWidget*>(w);
+            tlw->setText(" ");
+          }
+       }
+    }
+  }
+  
+  if(runModeWidget) {
+    runModeWidget->draw(hardware->getKnobConfiguration(knobix), hardware->getKnobValue(knobix), blinkOn_);
   }
 }
 
@@ -118,7 +133,7 @@ void RunModeScreen::handleInput() {
  */
 void RunModeScreen::onEnter() {
   log(LOG_VERBOSE, "Inside RunModeScreen->onEnter()", __func__);
-    const char* labelText = "Run Mode";
+  const char* labelText = "Run Mode";
 
    Widget* w = new StarFieldWidget(0,0,SCREEN_WIDTH,64);
    addWidget(w);
@@ -126,8 +141,8 @@ void RunModeScreen::onEnter() {
    Widget* modeLabel = new TextLabelWidget(labelText, (SCREEN_WIDTH - (strlen(labelText) * 6)) / 2, 0, 1, false);
    addWidget(modeLabel);
 
-   knobValueLabel = new TextLabelWidget("", 0, 24, 1, true);
-   addWidget(knobValueLabel);
+   //knobValueLabel = new TextLabelWidget("", 0, 24, 1, false);
+   //addWidget(knobValueLabel);
 }
 
 
