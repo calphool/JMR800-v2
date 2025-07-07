@@ -100,7 +100,7 @@ void RunModeScreen::draw() {
        for (Widget* w : widgets) {
           if(w->getType() == WidgetType::TextLabel) {
             TextLabelWidget* tlw = static_cast<TextLabelWidget*>(w);
-            tlw->setText(" ");
+            tlw->setText(" "); // get rid of "RUN MODE" label once a knob has been touched
           }
        }
     }
