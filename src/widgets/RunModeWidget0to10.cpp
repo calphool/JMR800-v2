@@ -3,6 +3,7 @@
 #include "defines.h"
 #include "ScreenManager.h"
 #include <cstdio>
+#include "widgets/WidgetUtils.h"
 
 #define WHITE 1
 #define BLACK 0 
@@ -16,8 +17,7 @@ void RunModeWidget0to10::draw(const knobConfig &cfg, uint8_t value, bool blinkOn
         d->drawRect(4, 10, 120, 48, WHITE);
 
         d->drawLine(14, 30, 114, 30, WHITE);
-        d->setCursor(22, 15);
-        d->print(cfg.name);
+        centerText(cfg.name, 15);
 
         if (cfg.cmdbyte == 0x89) {        // Fine-tune vs “normal” scale
             d->setCursor(10,38);  d->print("-50");
@@ -38,7 +38,6 @@ void RunModeWidget0to10::draw(const knobConfig &cfg, uint8_t value, bool blinkOn
                    29,
                    WHITE);
 
-        d->setCursor(54,48);
         sprintf(buf, "%03d", value);
-        d->print(buf);
+        centerText(buf, 48);
     }

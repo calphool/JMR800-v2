@@ -96,6 +96,9 @@ void RunModeScreen::draw() {
   if(knobix < NUM_KNOBS) {
     if (hardware->getKnobConfiguration(knobix).typecode != currentTypecode_) {
       currentTypecode_ = hardware->getKnobConfiguration(knobix).typecode;
+      //char buf[120];
+      //sprintf(buf, "RunModeScreen: Knob %u typecode changed to 0x%02X", knobix, currentTypecode_);
+      //log(LOG_INFO, buf, __func__);
       runModeWidget =  makeWidget(currentTypecode_);
        for (Widget* w : widgets) {
           if(w->getType() == WidgetType::TextLabel) {

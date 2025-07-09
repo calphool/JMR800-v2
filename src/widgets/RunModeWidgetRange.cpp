@@ -3,6 +3,8 @@
 #include "defines.h"
 #include <ScreenManager.h>
 #include <cstdio>   // for sprintf / snprintf
+#include "widgets/WidgetUtils.h"  
+
 
 #define WHITE 1
 #define BLACK 0 
@@ -19,8 +21,7 @@ void RunModeWidgetRange::draw(const knobConfig &cfg,
     d->drawRect(4, 10, 120, 48, WHITE);
 
     /* ---------- caption ---------- */
-    d->setCursor(22, 15);
-    d->print(cfg.name);                     // assumes cfg.name is a C-string
+    centerText(cfg.name, 15);  
 
     /* ---------- baseline & tick labels ---------- */
     d->drawLine(14, 30, 14+93, 30, WHITE);    // 100-pixel baseline
@@ -52,7 +53,5 @@ void RunModeWidgetRange::draw(const knobConfig &cfg,
     /* ---------- numeric read-out ---------- */
     char buf[8];
     std::sprintf(buf, "%03u", dispVal);                 // “042”, etc.
-
-    d->setCursor(54, 48);
-    d->print(buf);
+    centerText(buf, 48);  
 }

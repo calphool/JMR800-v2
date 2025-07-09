@@ -3,6 +3,7 @@
 #include "defines.h"
 #include <ScreenManager.h>
 #include <cstdio>
+#include "widgets/WidgetUtils.h"
 
 #define WHITE 1
 #define BLACK 0 
@@ -16,10 +17,8 @@ void RunModeWidget321Off::draw(const knobConfig &cfg, uint8_t value, bool blinkO
         d->drawRect(4, 10, 120, 48, WHITE);
 
         d->drawLine(14, 30, 114, 30, WHITE);
-        d->setCursor(22, 15);
-        d->print(cfg.name);
+        centerText(cfg.name, 15);
 
-        d->setCursor(54,48);
         sprintf(buf, "%03d", value);
-        d->print(buf);
+        centerText(buf, 48);
 }
