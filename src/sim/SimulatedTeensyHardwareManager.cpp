@@ -78,7 +78,7 @@ void SimulatedTeensyHardwareManager::init() {
   strcpy(knobConfigurations[ctr].name, "PWM2 LFO");       knobConfigurations[ctr].cmdbyte = 0xB5; knobConfigurations[ctr].typecode = TYPE_CODE_0_TO_10;       ctr++;
   strcpy(knobConfigurations[ctr].name, "PWM Dyna");       knobConfigurations[ctr].cmdbyte = 0xCE; knobConfigurations[ctr].typecode = TYPE_CODE_3_2_1_OFF;     ctr++;
   
-  strcpy(knobConfigurations[ctr].name, "Chorus");         knobConfigurations[ctr].cmdbyte = 0xA0; ctr++;
+  strcpy(knobConfigurations[ctr].name, "Chorus");         knobConfigurations[ctr].cmdbyte = 0xA0; knobConfigurations[ctr].typecode = TYPE_CODE_2_1_OFF;       ctr++;
 
   strcpy(knobConfigurations[ctr].name, "Unassigned");     knobConfigurations[ctr].cmdbyte = 0x00; ctr++;
   strcpy(knobConfigurations[ctr].name, "Unassigned");     knobConfigurations[ctr].cmdbyte = 0x00; ctr++;

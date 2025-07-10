@@ -26,6 +26,10 @@ void RunModeWidgetRange::draw(const knobConfig &cfg,
     /* ---------- baseline & tick labels ---------- */
     d->drawLine(14, 30, 14+93, 30, WHITE);    // 100-pixel baseline
 
+    if(cfg.cmdbyte == 0x00) { // unassigned knob
+        return; // nothing more to do
+    }
+
     uint8_t legend = 2;                     // will print 2', 4', 8', …
     char    lbl[4];                         // largest is “32'” → 4 bytes inc. NUL
 
