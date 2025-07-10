@@ -186,14 +186,14 @@ static const uint knobXformer[] = {
  * @brief Returns a transformed and smoothed ADC value for the specified knob.
  * 
  * @param knobIX Logical knob index.
- * @return int Smoothed value from 0-255.
+ * @return int Smoothed value from 0-127.
  */
 int TeensyHardwareManager::getKnobValue(uint knobIX) {
   knobIX = knobXformer[knobIX];              // transform this index (necessary because of wiring) 
   uint mux = knobIX >> 4;
   uint mux_ix = knobIX & 0x0F;
 
-  return 255-(this->AnalogValues[mux_ix][mux]);
+  return this->AnalogValues[mux_ix][mux] >> 1;
 }
 
 /**

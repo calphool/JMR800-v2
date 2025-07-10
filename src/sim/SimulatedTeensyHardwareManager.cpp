@@ -99,7 +99,7 @@ void SimulatedTeensyHardwareManager::loadKnobs() {}
 void SimulatedTeensyHardwareManager::saveKnobs() {}
 
 int SimulatedTeensyHardwareManager::getKnobValue(unsigned int knobIX) { 
-  return getState()->potentiometers[knobIX] >> 2; // return smoothed value 
+  return 255 - (getState()->potentiometers[knobIX] >> 2); // return smoothed value (should be 0-127)
 }
 
 long SimulatedTeensyHardwareManager::getEncoderZeroTo(long divisor) {
