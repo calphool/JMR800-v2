@@ -193,7 +193,7 @@ int TeensyHardwareManager::getKnobValue(uint knobIX) {
   uint mux = knobIX >> 4;
   uint mux_ix = knobIX & 0x0F;
 
-  return this->AnalogValues[mux_ix][mux] >> 1;
+  return this->AnalogValues[mux_ix][mux];
 }
 
 /**
@@ -510,6 +510,9 @@ void TeensyHardwareManager::sendParameter(uint8_t paramID, uint8_t value) {
     log(LOG_ERROR, "problem waiting for bitIndex in sendParameter()", __func__);
     return;
   }
+  char buf[128];
+  sprintf(buf, "paramid: %02X, val: %02X", paramID, value);
+  log(LOG_INFO, buf, __func__);
 
   noInterrupts();
   sendBuffer = ((uint16_t)paramID << 8) | value;
@@ -640,41 +643,57 @@ void TeensyHardwareManager::sendParameterToSynth(uint knob)
         return;
 
     uint8_t kv = getKnobValue(knob);
+    char buf[128];
+    sprintf(buf, "typecode: %02X, cmd: %02X, val:%d (knob %d)", cfg.typecode, cfg.cmdbyte, kv, knob);
+    log(LOG_INFO, buf, __func__);
 
     switch (cfg.typecode)
     {
+        // corrected
         case TYPE_CODE_0_TO_10:
         case TYPE_CODE_OCTAVE:
             // Reverse value: 0 = max, 127 = min
-            this->sendParameter(cfg.cmdbyte, 127 - kv);
+            this->sendParameter(cfg.cmdbyte, (255 - kv) >> 1);
             return;
 
+        // corrected
         case TYPE_CODE_LFO_WAVE_FORM:
-        case TYPE_CODE_2_1_OFF:
-            if (kv < 32)
-                this->sendParameter(cfg.cmdbyte, 16);   // Random / OFF
-            else if (kv < 64)
-                this->sendParameter(cfg.cmdbyte, 48);   // Square / 1
+            if (kv < 64)
+                this->sendParameter(cfg.cmdbyte, 0x10);   // Random / OFF
+            else if (kv < 128)
+                this->sendParameter(cfg.cmdbyte, 0x30);   // Square / 1
             else
-                this->sendParameter(cfg.cmdbyte, 96);   // Triangle / 2
+                this->sendParameter(cfg.cmdbyte, 0x60);   // Triangle / 2
             return;
 
+        // corrected
+        case TYPE_CODE_2_1_OFF:
+            if(kv < 64)
+                this->sendParameter(cfg.cmdbyte, 0);   // OFF
+            else if(kv < 191)
+                this->sendParameter(cfg.cmdbyte, 0x24);   // 1
+            else
+                this->sendParameter(cfg.cmdbyte, 0x48);   // 2
+            return;
+
+        // corrected
         case TYPE_CODE_ENV2_GATE:
-            if (kv < 64)
+            if (kv < 127)
                 this->sendParameter(cfg.cmdbyte, 32);   // Gate
             else
-                this->sendParameter(cfg.cmdbyte, 96);   // Normal
+                this->sendParameter(cfg.cmdbyte, 64);   // Normal
             return;
 
+        // corrected
         case TYPE_CODE_RANGE:
         case TYPE_CODE_WAVE_FORM:
         case TYPE_CODE_3_2_1_OFF:
         case TYPE_CODE_MODE:
-            if (kv < 32)
+            if (kv < 48)
                 this->sendParameter(cfg.cmdbyte, 16);   // Range 16', Noise, OFF, Env-2-Inverted
-            else if (kv < 64)
+            else if (kv < 128)
                 this->sendParameter(cfg.cmdbyte, 48);   // Range 8', Sawtooth, 1, Env-2-Normal
-            else if (kv < 96)
+            else if (kv < 208)
                 this->sendParameter(cfg.cmdbyte, 80);   // Range 4', Pulse, 2, Env-1-Inverted
             else
                 this->sendParameter(cfg.cmdbyte, 112);  // Range 2', Square, 3, Env-1-Normal
@@ -682,7 +701,7 @@ void TeensyHardwareManager::sendParameterToSynth(uint knob)
 
         default:
             // Fallback: pass raw value (no transformation)
-            this->sendParameter(cfg.cmdbyte, kv);
+            this->sendParameter(cfg.cmdbyte, kv >> 1); // JX-8P expects 0-127, so divide by 2
             return;
     }
 }
