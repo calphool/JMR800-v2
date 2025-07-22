@@ -7,7 +7,7 @@
 
 class SDLDisplay : public IDisplay {
 public:
-    SDLDisplay(int screenWidth = 128, int screenHeight = 64, int pixelSize = 6);
+    SDLDisplay(int screenWidth = 128, int screenHeight = 64, int pixelSize = 4);
     ~SDLDisplay();
 
     void begin() override;

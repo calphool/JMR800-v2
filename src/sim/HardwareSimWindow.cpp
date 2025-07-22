@@ -10,7 +10,7 @@
 #include "defines.h"
 
 bool HardwareSimWindow::initialize() {
-    window = SDL_CreateWindow("Hardware Simulation", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 700, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Hardware Simulation", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!window) {
         printf("Failed to create hardware sim window: %s\n", SDL_GetError());
         return false;

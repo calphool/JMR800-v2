@@ -31,7 +31,7 @@ void RunModeWidgetRange::draw(const knobConfig &cfg,
     }
 
     uint8_t legend = 2;                     // will print 2', 4', 8', …
-    char    lbl[4];                         // largest is “32'” → 4 bytes inc. NUL
+    char    lbl[8];                          // largest is “32'” → 5 bytes inc. NUL; increased to avoid truncation
 
     for (int x = 14; x <= 112; x += 31) {
         d->drawLine(x, 31, x, 32, WHITE);   // tick mark
